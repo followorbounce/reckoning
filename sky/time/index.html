@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kinds of time · Reckoning</title>
+<meta name="description" content="Apparent, mean, zone, sidereal time and UTC live, with the equation of time and the analemma.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/sky/time/">
+<meta property="og:title" content="Kinds of time · Reckoning">
+<meta property="og:description" content="Apparent, mean, zone, sidereal time and UTC live, with the equation of time and the analemma.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/">Shape</a><a href="../../number/">Number</a><a href="../../sky/" aria-current="page">Sky & sea</a><a href="../../weather/">Weather</a><a href="../../signal/">Signal</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Sky &amp; sea</a> / Kinds of time</p>
+<div class="head"><p class="eyebrow">Sky &amp; sea · time</p><h1>Kinds of time</h1>
+<p class="lede col">“Noon” used to mean the moment the Sun crossed your meridian. That moment drifts through the year, differs from town to town,
+and is not the moment a star returns to the same place. Each of those facts gave navigators and astronomers a different clock.</p></div>
+<div class="plate"><p class="label">Now, at longitude</p>
+<div class="row"><input id="tlon" type="number" step="0.1" min="-180" max="180" value="0" aria-label="Longitude, degrees east positive" style="width:8em">
+<span class="small">° (east +, west −)</span><button class="ghost" type="button" data-lon="0">Greenwich</button><button class="ghost" type="button" data-lon="-74.0">New York</button><button class="ghost" type="button" data-lon="139.7">Tokyo</button><button class="ghost" type="button" data-lon="151.2">Sydney</button><button class="ghost" type="button" data-lon="-157.9">Honolulu</button></div>
+<div class="clocks" id="clocks" aria-live="off"></div>
+<p class="small">Device clock: <span id="tdev" class="mono"></span>. Formulas: <a href="https://gml.noaa.gov/grad/solcalc/calcdetails.html" rel="noopener" title="NOAA Global Monitoring Laboratory Solar Calculator: equations of the Sun’s position and the equation of time (after Meeus)">NOAA solar calculator</a> (Sun) and <a href="https://aa.usno.navy.mil/faq/GAST" rel="noopener" title="Computing Greenwich Apparent Sidereal Time (from USNO Circular 179, 2005)">USNO sidereal time</a> (sidereal time).</p></div>
+<section class="block"><h2>The equation of time</h2>
+<p class="col">A sundial and a clock agree on only four days a year. The difference, the <b>equation of time</b>, comes from two effects: the Earth moves
+faster near perihelion in early January, and the Sun’s path is tilted to the equator, so equal steps along it are not equal steps of right ascension.</p>
+<div class="figure eot"><svg id="eot" viewBox="0 0 720 300" role="img" aria-label="Equation of time across the year"></svg></div>
+<div class="shape"><div class="figure" style="aspect-ratio:3/4;max-width:340px"><svg id="ana" viewBox="0 0 300 400" role="img" aria-label="Analemma"></svg></div>
+<div class="col stack"><p>Plot the Sun’s declination against the equation of time and you get the <b>analemma</b>, the figure eight traced by the Sun if you photograph it at
+the same clock time every few days for a year. Its top and bottom are the solstices; its width is the equation of time.</p>
+<p class="small">The build checks this code against the published worked examples for 1992 October 13 (equation of time +13 m 42.7 s) and finds this year’s extremes,
+about −14.2 min in February and +16.4 min in early November, with four zero crossings.</p></div></div></section>
+<section class="block"><h2>Time zones at sea</h2>
+<p class="col">Ships keep zone time: the ocean is divided into 15° strips centred on multiples of 15°, each one hour from the next. The zone description is the
+number of hours you add to zone time to get UTC, so it is negative east of Greenwich. Each zone also has a letter; J is not used, and Z, for Greenwich, gave “Zulu time”.</p>
+<div class="tablewrap" style="max-width:640px"><table><thead><tr><th>Letter</th><th>Zone description</th><th>Central meridian</th><th>Strip</th></tr></thead><tbody><tr><td class="mono"><b>M</b></td><td class="num">−12</td><td class="num">180°E</td><td class="small">172.5°E – 180°</td></tr><tr><td class="mono"><b>L</b></td><td class="num">−11</td><td class="num">165°E</td><td class="small">157.5°E – 172.5°E</td></tr><tr><td class="mono"><b>K</b></td><td class="num">−10</td><td class="num">150°E</td><td class="small">142.5°E – 157.5°E</td></tr><tr><td class="mono"><b>I</b></td><td class="num">−9</td><td class="num">135°E</td><td class="small">127.5°E – 142.5°E</td></tr><tr><td class="mono"><b>H</b></td><td class="num">−8</td><td class="num">120°E</td><td class="small">112.5°E – 127.5°E</td></tr><tr><td class="mono"><b>G</b></td><td class="num">−7</td><td class="num">105°E</td><td class="small">97.5°E – 112.5°E</td></tr><tr><td class="mono"><b>F</b></td><td class="num">−6</td><td class="num">90°E</td><td class="small">82.5°E – 97.5°E</td></tr><tr><td class="mono"><b>E</b></td><td class="num">−5</td><td class="num">75°E</td><td class="small">67.5°E – 82.5°E</td></tr><tr><td class="mono"><b>D</b></td><td class="num">−4</td><td class="num">60°E</td><td class="small">52.5°E – 67.5°E</td></tr><tr><td class="mono"><b>C</b></td><td class="num">−3</td><td class="num">45°E</td><td class="small">37.5°E – 52.5°E</td></tr><tr><td class="mono"><b>B</b></td><td class="num">−2</td><td class="num">30°E</td><td class="small">22.5°E – 37.5°E</td></tr><tr><td class="mono"><b>A</b></td><td class="num">−1</td><td class="num">15°E</td><td class="small">7.5°E – 22.5°E</td></tr><tr><td class="mono"><b>Z</b></td><td class="num">0</td><td class="num">0°</td><td class="small">7.5°W – 7.5°E</td></tr><tr><td class="mono"><b>N</b></td><td class="num">+1</td><td class="num">15°W</td><td class="small">7.5°W – 22.5°W</td></tr><tr><td class="mono"><b>O</b></td><td class="num">+2</td><td class="num">30°W</td><td class="small">22.5°W – 37.5°W</td></tr><tr><td class="mono"><b>P</b></td><td class="num">+3</td><td class="num">45°W</td><td class="small">37.5°W – 52.5°W</td></tr><tr><td class="mono"><b>Q</b></td><td class="num">+4</td><td class="num">60°W</td><td class="small">52.5°W – 67.5°W</td></tr><tr><td class="mono"><b>R</b></td><td class="num">+5</td><td class="num">75°W</td><td class="small">67.5°W – 82.5°W</td></tr><tr><td class="mono"><b>S</b></td><td class="num">+6</td><td class="num">90°W</td><td class="small">82.5°W – 97.5°W</td></tr><tr><td class="mono"><b>T</b></td><td class="num">+7</td><td class="num">105°W</td><td class="small">97.5°W – 112.5°W</td></tr><tr><td class="mono"><b>U</b></td><td class="num">+8</td><td class="num">120°W</td><td class="small">112.5°W – 127.5°W</td></tr><tr><td class="mono"><b>V</b></td><td class="num">+9</td><td class="num">135°W</td><td class="small">127.5°W – 142.5°W</td></tr><tr><td class="mono"><b>W</b></td><td class="num">+10</td><td class="num">150°W</td><td class="small">142.5°W – 157.5°W</td></tr><tr><td class="mono"><b>X</b></td><td class="num">+11</td><td class="num">165°W</td><td class="small">157.5°W – 172.5°W</td></tr><tr><td class="mono"><b>Y</b></td><td class="num">+12</td><td class="num">180°W</td><td class="small">180° – 172.5°W</td></tr></tbody></table></div>
+<p class="small col">Zone 12 is split by the date line: the half west of 180° (−12, M) is a day ahead of the half east of it (+12, Y). Land time zones follow borders and politics instead.</p></section>
+<section class="block"><h2>Which clock is which</h2><div class="tablewrap"><table><thead><tr><th>Time</th><th>Kept by</th><th>Day length</th></tr></thead><tbody>
+<tr><td><b>Apparent solar time</b></td><td>the real Sun; a sundial. Noon is when the Sun crosses your meridian.</td><td>differs from 24 h by up to about half a minute</td></tr>
+<tr><td><b>Local mean time</b></td><td>an imaginary Sun moving evenly along the equator. Apparent time = mean time + equation of time.</td><td>24 h exactly</td></tr>
+<tr><td><b>Zone time</b></td><td>local mean time of the zone’s central meridian.</td><td>24 h</td></tr>
+<tr><td><b>UTC</b></td><td>atomic clocks, kept within 0.9 s of the Earth’s rotation (UT1) by leap seconds.</td><td>86 400 SI seconds (86 401 with a leap second)</td></tr>
+<tr><td><b>Sidereal time</b></td><td>the stars: the hour angle of the March equinox. A star rises 3 min 56 s earlier each day by the clock.</td><td>23 h 56 min 4.09 s</td></tr>
+</tbody></table></div></section>
+<div class="then col"><b>Then and now</b><p>Until 1925 astronomers began the day at noon, so that a night’s observations kept one date. Greenwich Mean Time was the world’s
+reference until UTC took over; leap seconds, added since 1972, are to stop by 2035 (<a href="https://www.bipm.org/en/cgpm-2022/resolution-4" rel="noopener" title="Resolution 4 of the 27th CGPM (2022): on the use and future development of UTC (leap seconds to end by 2035)">CGPM 2022, Res. 4</a>), when UTC will be allowed to drift further from the Earth’s rotation.</p></div>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather and signal. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p>Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script src="../../assets/astro.js"></script>
+<script src="../../assets/navmath.js"></script>
+<script src="../../assets/skytime.js"></script>
+</body>
+</html>

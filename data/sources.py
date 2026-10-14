@@ -1,6 +1,6 @@
 """Primary sources. Every unit, constant and rule on the site cites one of these keys.
 
-Only standards bodies, statutes and official publications are listed here. The
+Standards bodies, statutes, official publications and the standard reference works are listed here. The
 syllabus came from scanned reference books; those books are not named anywhere
 in this project (project rule), and none of their text or figures is reused.
 """
@@ -137,5 +137,83 @@ SOURCES = {
         'title': 'Allied military phonetic spelling alphabets (secondary source; no primary text found online)',
         'by': 'Wikipedia',
         'url': 'https://en.wikipedia.org/wiki/Allied_military_phonetic_spelling_alphabets',
+    },
+    'noaasun': {
+        'short': 'NOAA solar calculator',
+        'title': 'NOAA Global Monitoring Laboratory Solar Calculator: equations of the Sun’s position and the equation of time (after Meeus)',
+        'by': 'US National Oceanic and Atmospheric Administration',
+        'url': 'https://gml.noaa.gov/grad/solcalc/calcdetails.html',
+    },
+    'usnogast': {
+        'short': 'USNO sidereal time',
+        'title': 'Computing Greenwich Apparent Sidereal Time (from USNO Circular 179, 2005)',
+        'by': 'US Naval Observatory, Astronomical Applications Department',
+        'url': 'https://aa.usno.navy.mil/faq/GAST',
+    },
+    'jplapprox': {
+        'short': 'JPL approximate positions',
+        'title': 'Approximate Positions of the Planets: Keplerian elements and rates, Table 1 (1800–2050)',
+        'by': 'E. M. Standish, NASA Jet Propulsion Laboratory, Solar System Dynamics',
+        'url': 'https://ssd.jpl.nasa.gov/planets/approx_pos.html',
+    },
+    'nasafact': {
+        'short': 'NASA Planetary Fact Sheet',
+        'title': 'Planetary Fact Sheet, metric (updated 18 March 2025)',
+        'by': 'NASA Space Science Data Coordinated Archive',
+        'url': 'https://nssdc.gsfc.nasa.gov/planetary/factsheet/',
+    },
+    'roman1987': {
+        'short': 'Roman 1987 (CDS VI/42)',
+        'title': 'Identification of a constellation from a position, PASP 99, 695 (1987); boundaries of Delporte (1930) at equinox 1875',
+        'by': 'N. G. Roman; catalogue VI/42 at the Strasbourg astronomical Data Center (CDS)',
+        'url': 'https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/42',
+    },
+    'iaustyle': {
+        'short': 'IAU Style Manual 1989',
+        'title': 'The IAU Style Manual (1989), sections 5.15, 5.223 and 5.25',
+        'by': 'G. A. Wilkins for the International Astronomical Union',
+        'url': 'https://iauarchive.eso.org/static/publications/stylemanual1989.pdf',
+    },
+    'iau2006': {
+        'short': 'IAU 2006, Res. B5/B6',
+        'title': 'Resolutions B5 and B6 (2006): definition of a planet; Pluto',
+        'by': 'International Astronomical Union',
+        'url': 'https://iauarchive.eso.org/static/resolutions/Resolution_GA26-5-6.pdf',
+    },
+    'iauconst': {
+        'short': 'IAU constellations',
+        'title': 'The constellations: the 88 names and abbreviations adopted in 1922 and the boundaries of 1930',
+        'by': 'International Astronomical Union',
+        'url': 'https://iauarchive.eso.org/public/themes/constellations/',
+    },
+    'vincenty': {
+        'short': 'Vincenty 1975',
+        'title': 'Direct and inverse solutions of geodesics on the ellipsoid with application of nested equations, Survey Review 23 (176), 1975',
+        'by': 'T. Vincenty',
+        'url': 'https://www.ngs.noaa.gov/PUBS_LIB/inverse.pdf',
+    },
+    'cgpm2022r4': {
+        'short': 'CGPM 2022, Res. 4',
+        'title': 'Resolution 4 of the 27th CGPM (2022): on the use and future development of UTC (leap seconds to end by 2035)',
+        'by': 'CGPM / BIPM',
+        'url': 'https://www.bipm.org/en/cgpm-2022/resolution-4',
+    },
+    'unicode': {
+        'short': 'Unicode',
+        'title': 'The Unicode Standard: code charts and character names (Mathematical Operators, Greek, Miscellaneous Symbols)',
+        'by': 'The Unicode Consortium',
+        'url': 'https://www.unicode.org/charts/',
+    },
+    'iso80000': {
+        'short': 'ISO 80000-2',
+        'title': 'ISO 80000-2:2019, Quantities and units, Part 2: Mathematics',
+        'by': 'International Organization for Standardization',
+        'url': 'https://www.iso.org/standard/64973.html',
+    },
+    'cajori': {
+        'short': 'Cajori',
+        'title': 'A History of Mathematical Notations, 2 vols (1928–1929)',
+        'by': 'Florian Cajori; public domain scan at the Internet Archive',
+        'url': 'https://archive.org/details/historyofmathema031756mbp',
     },
 }

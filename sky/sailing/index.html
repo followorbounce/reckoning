@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Great circle and rhumb line · Reckoning</title>
+<meta name="description" content="Compare great-circle and rhumb-line routes between ports on Mercator and gnomonic charts.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/sky/sailing/">
+<meta property="og:title" content="Great circle and rhumb line · Reckoning">
+<meta property="og:description" content="Compare great-circle and rhumb-line routes between ports on Mercator and gnomonic charts.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/">Shape</a><a href="../../number/">Number</a><a href="../../sky/" aria-current="page">Sky & sea</a><a href="../../weather/">Weather</a><a href="../../signal/">Signal</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Sky &amp; sea</a> / Great circle and rhumb line</p>
+<div class="head"><p class="eyebrow">Sky &amp; sea · sailings</p><h1>Great circle and rhumb line</h1>
+<p class="lede col">There are two natural ways to cross an ocean. A <b>rhumb line</b> keeps the same compass course all the way: easy to steer, but longer.
+A <b>great circle</b> is the shortest path on the sphere, but its course changes continuously. Pick two ports and compare them.</p></div>
+<div class="plate"><p class="label">Voyage</p>
+<div class="row"><select id="sfrom" aria-label="From"><option value="0">Southampton</option><option value="1">Lisbon</option><option value="2">Reykjavík</option><option value="3">New York</option><option value="4">Panama (Balboa)</option><option value="5">Rio de Janeiro</option><option value="6">Valparaíso</option><option value="7">Cape Town</option><option value="8">Mumbai</option><option value="9">Singapore</option><option value="10">Yokohama</option><option value="11">Sydney</option><option value="12">Wellington</option><option value="13">Honolulu</option><option value="14">San Francisco</option></select><span class="mono">→</span><select id="sto" aria-label="To"><option value="0">Southampton</option><option value="1">Lisbon</option><option value="2">Reykjavík</option><option value="3">New York</option><option value="4">Panama (Balboa)</option><option value="5">Rio de Janeiro</option><option value="6">Valparaíso</option><option value="7">Cape Town</option><option value="8">Mumbai</option><option value="9">Singapore</option><option value="10">Yokohama</option><option value="11">Sydney</option><option value="12">Wellington</option><option value="13">Honolulu</option><option value="14">San Francisco</option></select></div>
+<div class="row"><button class="ghost" type="button" data-route="Yokohama|San Francisco">Yokohama → San Francisco</button><button class="ghost" type="button" data-route="New York|Southampton">New York → Southampton</button><button class="ghost" type="button" data-route="Cape Town|Sydney">Cape Town → Sydney</button><button class="ghost" type="button" data-route="Valparaíso|Wellington">Valparaíso → Wellington</button><button class="ghost" type="button" data-route="Lisbon|Rio de Janeiro">Lisbon → Rio de Janeiro</button></div>
+<div class="mapgrid"><figure><figcaption class="small">Mercator projection: the rhumb line is straight</figcaption><div class="mapbox"><svg id="mmerc" viewBox="0 0 720 520" role="img" aria-label="Mercator chart of the voyage"></svg></div></figure>
+<figure><figcaption class="small">Gnomonic projection, centred on the route: the great circle is straight</figcaption><div class="mapbox"><svg id="mgno" viewBox="0 0 520 520" role="img" aria-label="Gnomonic chart of the voyage"></svg></div></figure></div>
+<p class="small"><span class="key gc"></span> great circle &nbsp; <span class="key rl"></span> rhumb line</p>
+<div class="tablewrap"><table><tbody id="sout"></tbody></table></div></div>
+<section class="block"><h2>The formulas</h2><p class="col">On a sphere of radius R, with latitudes φ, longitudes λ, the great-circle distance is
+computed with the haversine; the initial course from the spherical triangle formed with the pole. The rhumb line uses the <i>meridional parts</i>:
+the stretched latitude scale of the Mercator chart.</p>
+<div class="formula"><span class="tex" data-tex="d = 2R\arcsin\sqrt{\sin^2\tfrac{\Delta\varphi}{2}+\cos\varphi_1\cos\varphi_2\sin^2\tfrac{\Delta\lambda}{2}} \qquad \tan C_0=\frac{\sin\Delta\lambda\,\cos\varphi_2}{\cos\varphi_1\sin\varphi_2-\sin\varphi_1\cos\varphi_2\cos\Delta\lambda}"></span></div>
+<div class="formula"><span class="tex" data-tex="\Delta\psi=\ln\frac{\tan(\pi/4+\varphi_2/2)}{\tan(\pi/4+\varphi_1/2)} \qquad \tan C=\frac{\Delta\lambda}{\Delta\psi} \qquad d=\frac{\Delta\varphi}{\cos C}\,R"></span></div>
+<p class="small col">Distances use the navigator’s sphere, on which a minute of arc is exactly one nautical mile. The true distance on the WGS 84 ellipsoid comes
+from <a href="https://www.ngs.noaa.gov/PUBS_LIB/inverse.pdf" rel="noopener">Direct and inverse solutions of geodesics on the ellipsoid with application of nested equations, Survey Review 23 (176), 1975</a>, the method checked here against its published worked example to the millimetre. The build also computes every great-circle
+distance twice, by the haversine and by vectors, and compares the rhumb-line formula with a step-by-step integration along the track.</p></section>
+<div class="then col"><b>Then and now</b><p>Without computers, navigators drew the great circle as a straight line on a gnomonic chart, read off points every few
+degrees of longitude, transferred them to the Mercator chart and steered rhumb lines between them. The older <i>mid-latitude sailing</i> shortcut is shown
+in the table: good over short distances, poor over long ones. Today’s chart plotters do the same calculation on the ellipsoid.</p></div>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather and signal. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p>Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script>window.RK_PORTS = [["Southampton", 50.9, -1.4], ["Lisbon", 38.7, -9.15], ["Reykjavík", 64.15, -21.94], ["New York", 40.7, -74.02], ["Panama (Balboa)", 8.95, -79.57], ["Rio de Janeiro", -22.9, -43.17], ["Valparaíso", -33.03, -71.63], ["Cape Town", -33.91, 18.43], ["Mumbai", 18.94, 72.84], ["Singapore", 1.26, 103.84], ["Yokohama", 35.45, 139.65], ["Sydney", -33.86, 151.21], ["Wellington", -41.28, 174.78], ["Honolulu", 21.31, -157.87], ["San Francisco", 37.8, -122.42]];</script>
+<script src="../../assets/navmath.js"></script>
+<script src="../../assets/sailing.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(!window.katex)return;document.querySelectorAll(".tex").forEach(function(el){try{katex.render(el.getAttribute("data-tex"),el,{displayMode:true,throwOnError:false})}catch(e){el.textContent=el.getAttribute("data-tex")}})});</script>
+</body>
+</html>

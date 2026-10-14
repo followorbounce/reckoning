@@ -28,8 +28,21 @@ measure/, shape/, about/, sitemap.xml, robots.txt).
 - data/weather.py: Beaufort (Met Office/WMO limits and wave heights), WMO code 3700, visibility
   terms, Saffir-Simpson (NHC, km/h as published), cyclone basins. data/land-110m.json is Natural
   Earth (public domain) for the basin map; rooms2.py builds the Signal and Weather pages.
+- data/number.py: 59 symbols (Unicode name + Cajori first use, blank when unverified), constants, Greek
+  alphabet with uses, Unicode look-alikes (micro/ohm/ångström/increment), 32 compass points.
+- data/sky.py: planets (symbol, Unicode name, gods, naming, IAU 1989 abbreviations), NASA fact-sheet values,
+  aspects, the 88 constellations, 12 signs, ports and preset routes, zone letters.
+- data/constbounds_1875.dat: Roman (1987) / CDS VI/42 constellation table (equinox 1875), used as is.
+- rooms3.py builds the Number and Sky & sea pages; writes assets/land.json (Natural Earth rings) for
+  the globe and the sailing charts. Exact trig values are read from assets/trigmath.js via node.
 
 ## Checks
+- tests/check_wave3.py: Unicode names of every symbol/letter/planet/sign; look-alike normalisation; 88
+  constellations vs the boundary table; then runs tests/check_wave3.js, which tests assets/astro.js,
+  navmath.js and trigmath.js against published worked examples (Meeus 7, 12.a/b, 25.a, 28.b, 32.a;
+  Roman's 8 test positions; GDA Vincenty example on GRS80; WGS 84 meridian quadrant), plus internal
+  cross-checks (JPL Earth vs NOAA Sun < 0.02°, haversine vs n-vector, rhumb vs integration, triangle
+  solver round trips and SSA counts, slide-rule products). Node is a build dependency.
 - tests/check_units.py: factors vs reference values typed separately from NIST tables;
   temperature fixed points; prefix/SI table sizes; every source key exists.
 - tests/check_wave2.py: flags A-Z = ICAO words, designs draw, Morse codes distinct, PARIS = 50
@@ -44,5 +57,8 @@ measure/, shape/, about/, sitemap.xml, robots.txt).
 - assets/shape.js: sliders, live quantities, 2D SVG figures. assets/solid.js: three.js r128
   solids (lathe for solids of revolution; cut-away quarter for hollow solids; `RK_RENDER()` hook
   for headless capture). KaTeX 0.16.9 from cdnjs renders formulas.
+- Wave 3 front end: astro.js, navmath.js, trigmath.js are pure (UMD: window.RK_* or module.exports)
+  so node tests run the page code. UI: trig.js, sliderule.js, globe.js, sailing.js, skytime.js,
+  celestial.js, orrery.js. Globe and celestial sphere expose RK_RENDER for headless capture.
 - Headless Firefox screenshots don't capture WebGL: inject `RK_RENDER()` then copy the canvas
   via toDataURL into an <img> in a throwaway _dbg_*.html (delete after). Use a fresh --profile.

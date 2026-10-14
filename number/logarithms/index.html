@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Logarithms and the slide rule · Reckoning</title>
+<meta name="description" content="Logarithms, characteristic and mantissa, and a working slide rule with seven scales.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/number/logarithms/">
+<meta property="og:title" content="Logarithms and the slide rule · Reckoning">
+<meta property="og:description" content="Logarithms, characteristic and mantissa, and a working slide rule with seven scales.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/">Shape</a><a href="../../number/" aria-current="page">Number</a><a href="../../sky/">Sky & sea</a><a href="../../weather/">Weather</a><a href="../../signal/">Signal</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Number</a> / Logarithms</p>
+<div class="head"><p class="eyebrow">Number · logarithms</p><h1>Logarithms and the slide rule</h1>
+<p class="lede col">The logarithm of a number is the power of 10 that gives it: log 1000 = 3, log 2 ≈ 0.301. Because powers add when numbers
+multiply, a table of logarithms turns every multiplication into an addition, and every root into a division. A slide rule does the same
+addition with two rulers laid side by side.</p></div>
+<div class="plate"><p class="label">Take a logarithm</p>
+<div class="row"><input id="lx" type="text" inputmode="decimal" value="0.0345" aria-label="Number" style="width:10em;font-family:var(--mono)">
+<button class="ghost" type="button" data-lx="2">2</button><button class="ghost" type="button" data-lx="3456">3456</button><button class="ghost" type="button" data-lx="0.0345">0.0345</button><button class="ghost" type="button" data-lx="1000">1000</button><button class="ghost" type="button" data-lx="299792458">299792458</button></div>
+<div class="qty" id="lq"></div></div>
+<section class="block"><h2>Characteristic and mantissa</h2><div class="col stack">
+<p>A logarithm splits into two parts. The whole-number <b>characteristic</b> says where the decimal point is; the decimal <b>mantissa</b> depends only
+on the digits. So 3.456, 345.6 and 0.003 456 share the mantissa 0.5386, and a printed table needed only the mantissas of numbers from 1 to 10.</p>
+<p>For numbers below 1 the tables kept the mantissa positive and wrote a negative characteristic with a bar over it:
+log 0.0345 = −1.4622 was written 2̄.5378, meaning −2 + 0.5378.</p></div>
+<div class="formula"><span class="tex" data-tex="\log(ab)=\log a+\log b \qquad \log\frac{a}{b}=\log a-\log b \qquad \log a^n = n\log a"></span></div></section>
+<section class="block"><h2>A working slide rule</h2>
+<p class="col">Drag the middle strip (the slide) and the hairline (the cursor), or use the examples. Distances on the C and D scales are proportional to
+logarithms, so sliding C along D adds logarithms: to multiply 2 × 3, put the 1 of C over 2 on D and read D under 3 on C.</p>
+<div class="rule-wrap"><svg id="sr" viewBox="0 0 1000 310" role="img" aria-label="Slide rule"></svg></div>
+<div class="row"><button class="ghost" type="button" data-sr="mul:2:3">2 × 3</button><button class="ghost" type="button" data-sr="mul:3.7:4.6">3.7 × 4.6</button><button class="ghost" type="button" data-sr="div:8.4:2.1">8.4 ÷ 2.1</button><button class="ghost" type="button" data-sr="sq:7">7²</button><button class="ghost" type="button" data-sr="cube:2.5">2.5³</button><button class="ghost" type="button" data-sr="rec:4">1/4</button><button class="ghost" type="button" data-sr="log:3">log 3</button></div>
+<p class="prov" id="srout" aria-live="polite"></p>
+<div class="tablewrap" style="max-width:720px"><table><thead><tr><th>Scale</th><th>Range</th><th>Position along the rule</th><th>Used for</th></tr></thead><tbody>
+<tr><td><b>D</b>, <b>C</b></td><td class="mono">1 – 10</td><td class="mono">log x</td><td>multiplication and division</td></tr>
+<tr><td><b>CI</b></td><td class="mono">10 – 1</td><td class="mono">1 − log x</td><td>reciprocals</td></tr>
+<tr><td><b>A</b>, <b>B</b></td><td class="mono">1 – 100</td><td class="mono">½ log x</td><td>squares and square roots</td></tr>
+<tr><td><b>K</b></td><td class="mono">1 – 1000</td><td class="mono">⅓ log x</td><td>cubes and cube roots</td></tr>
+<tr><td><b>L</b></td><td class="mono">0 – 1</td><td class="mono">x</td><td>the mantissa itself: log of the D reading</td></tr></tbody></table></div>
+<p class="small col">A slide rule gives three significant figures; you place the decimal point yourself, which is exactly what the characteristic does.</p></section>
+<div class="then col"><b>Then and now</b><p>John Napier published logarithms in 1614 and Henry Briggs, with Napier’s agreement, recast them in base 10 within a few years.
+William Oughtred described logarithmic scales that move against each other in <i>The Circles of Proportion</i> (1632). For the next 340 years slide rules
+and log tables did the arithmetic of ships, bridges, aircraft and the first spacecraft, until pocket electronic calculators replaced them in the 1970s.</p></div>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather and signal. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p>Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script src="../../assets/trigmath.js"></script>
+<script src="../../assets/sliderule.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(!window.katex)return;document.querySelectorAll(".tex").forEach(function(el){try{katex.render(el.getAttribute("data-tex"),el,{displayMode:true,throwOnError:false})}catch(e){el.textContent=el.getAttribute("data-tex")}})});</script>
+</body>
+</html>

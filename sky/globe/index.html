@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Latitude and longitude · Reckoning</title>
+<meta name="description" content="A globe you can turn and tap, with lengths of a minute of latitude and longitude on WGS 84.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/sky/globe/">
+<meta property="og:title" content="Latitude and longitude · Reckoning">
+<meta property="og:description" content="A globe you can turn and tap, with lengths of a minute of latitude and longitude on WGS 84.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/">Shape</a><a href="../../number/">Number</a><a href="../../sky/" aria-current="page">Sky & sea</a><a href="../../weather/">Weather</a><a href="../../signal/">Signal</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Sky &amp; sea</a> / Latitude and longitude</p>
+<div class="head"><p class="eyebrow">Sky &amp; sea · coordinates</p><h1>Latitude and longitude</h1>
+<p class="lede col">Latitude is how far north or south you are, measured as an angle from the equator; longitude is how far east or west,
+measured from the meridian through Greenwich. Two angles fix any point on Earth. Turn the globe, and tap anywhere to read its position.</p></div>
+<div class="shape"><div class="figure globe" style="aspect-ratio:1/1"><canvas id="globe" aria-label="Globe: drag to turn, tap to read a position"></canvas><p class="hint">drag to turn · tap to read</p></div>
+<div class="stack"><div class="plate"><p class="label">Position</p>
+<div class="row"><label class="small">Latitude <input id="glat" type="number" step="0.01" min="-90" max="90" value="51.48" style="width:8em"></label>
+<label class="small">Longitude <input id="glon" type="number" step="0.01" min="-180" max="180" value="0" style="width:8em"></label></div>
+<div class="row"><button class="ghost" type="button" data-ll="51.4779,-0.0015">Greenwich</button><button class="ghost" type="button" data-ll="90,0">North Pole</button><button class="ghost" type="button" data-ll="0,0">Equator, 0°</button><button class="ghost" type="button" data-ll="-55.98,-67.27">Cape Horn</button><button class="ghost" type="button" data-ll="21.31,-157.87">Honolulu</button></div>
+<div class="qty" id="gq"></div></div>
+<p class="small col">Red: equator. Yellow: tropics and polar circles, at the obliquity of the ecliptic for this year. Blue: prime meridian and the 180th meridian.</p></div></div>
+<section class="block"><h2>How long is a minute?</h2>
+<p class="col">The Earth is slightly flattened (WGS 84: equatorial radius 6 378 137 m, flattening 1/298.257 223 563), so a minute of latitude is a
+little longer near the poles, where the surface is flatter. Averaged over the globe it is close to 1852 m, and that is where the nautical mile
+comes from. A minute of longitude shrinks with the cosine of the latitude and vanishes at the poles.</p>
+<div class="tablewrap" style="max-width:720px"><table><thead><tr><th>Latitude</th><th>1′ of latitude</th><th>1′ of longitude</th><th>Geocentric latitude</th></tr></thead><tbody id="mtab"></tbody></table></div>
+<p class="small col">Computed live from the WGS 84 ellipsoid (<a href="https://epsg.org/ellipsoid_7030/WGS-84.html" rel="noopener" title="World Geodetic System 1984 (WGS 84): equatorial radius a = 6 378 137 m">WGS 84</a>). The build checks the code against the length of the meridian quadrant,
+10 001 965.729 m from the equator to the pole. Geocentric latitude is the angle seen from the Earth’s centre; maps and GPS use the geodetic latitude; the two differ by up to 11.5′, at 45°.</p></section>
+<div class="lens col"><b>Topology lens</b><p>No flat map can show a sphere without stretching it: Gauss proved in 1827 that distances on a curved surface cannot all be kept on a plane.
+Every chart therefore chooses what to keep true. Mercator keeps angles, so a constant course is a straight line; the gnomonic projection keeps great circles straight.
+See both on the <a href="../sailing/">sailing page</a>.</p></div>
+<div class="then col"><b>Then and now</b><p>The British Admiralty mile was 6080 ft (1853.184 m), close to a minute of latitude in the English Channel. The international
+nautical mile was fixed at exactly 1852 m in 1929; see <a href="../../measure/length/">length units</a>. Latitudes today refer to WGS 84; old charts used local datums that can differ by hundreds of metres.</p></div>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather and signal. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p>Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="../../assets/navmath.js"></script>
+<script src="../../assets/astro.js"></script>
+<script src="../../assets/globe.js"></script>
+</body>
+</html>

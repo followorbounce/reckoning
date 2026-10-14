@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trigonometry · Reckoning</title>
+<meta name="description" content="An interactive unit circle, exact values, angle units and a triangle solver with the ambiguous case.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/number/trig/">
+<meta property="og:title" content="Trigonometry · Reckoning">
+<meta property="og:description" content="An interactive unit circle, exact values, angle units and a triangle solver with the ambiguous case.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/">Shape</a><a href="../../number/" aria-current="page">Number</a><a href="../../sky/">Sky & sea</a><a href="../../weather/">Weather</a><a href="../../signal/">Signal</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Number</a> / Trigonometry</p>
+<div class="head"><p class="eyebrow">Number · plane trigonometry</p><h1>Trigonometry</h1>
+<p class="lede col">Sine and cosine are coordinates: walk an angle round a circle of radius 1, and the point you reach is (cos θ, sin θ).
+Everything else, including the tangent, the laws of sines and cosines and every navigator’s traverse table, follows from that picture.</p></div>
+<div class="shape">
+<div class="figure" style="aspect-ratio:1/1"><svg id="uc" viewBox="-1.45 -1.45 2.9 2.9" role="img" aria-label="Unit circle"></svg><p class="hint">drag the point</p></div>
+<div class="stack"><div class="plate"><p class="label">Angle</p>
+<div class="sliders"><label>θ (degrees)<input id="ucd" type="range" min="0" max="360" step="0.25" value="30"><output id="ucdv">30</output></label></div>
+<div class="row"><button class="ghost" type="button" data-ang="0">0°</button><button class="ghost" type="button" data-ang="30">30°</button><button class="ghost" type="button" data-ang="45">45°</button><button class="ghost" type="button" data-ang="60">60°</button><button class="ghost" type="button" data-ang="90">90°</button><button class="ghost" type="button" data-ang="120">120°</button><button class="ghost" type="button" data-ang="135">135°</button><button class="ghost" type="button" data-ang="180">180°</button><button class="ghost" type="button" data-ang="225">225°</button><button class="ghost" type="button" data-ang="270">270°</button><button class="ghost" type="button" data-ang="300">300°</button></div>
+<div class="qty" id="ucq"></div></div>
+<p class="small col">Green: sin θ (height). Blue: cos θ (width). Red: tan θ, the length cut off on the tangent line at x = 1. As a navigator’s bearing,
+angles run clockwise from north instead; the panel gives both.</p></div></div>
+<section class="block"><h2>Exact values</h2><p class="col">At a few angles the values are exact surds, from the half-square (45°) and the half-equilateral triangle (30°, 60°);
+15° and 75° follow by the addition formulas, 18°, 36° and 72° from the regular pentagon. Each entry here is checked against the computer’s sine when the site is built.</p>
+<div class="tablewrap" style="max-width:640px"><table><thead><tr><th>θ</th><th>sin θ</th><th>cos θ</th><th>tan θ</th></tr></thead><tbody><tr><td class="num">0°</td><td class="mono">0</td><td class="mono">1</td><td class="mono">0</td></tr><tr><td class="num">15°</td><td class="mono">(√6−√2)/4</td><td class="mono">(√6+√2)/4</td><td class="mono">2−√3</td></tr><tr><td class="num">18°</td><td class="mono">(√5−1)/4</td><td class="mono">√(10+2√5)/4</td><td class="mono">√(25−10√5)/5</td></tr><tr><td class="num">30°</td><td class="mono">1/2</td><td class="mono">√3/2</td><td class="mono">√3/3</td></tr><tr><td class="num">36°</td><td class="mono">√(10−2√5)/4</td><td class="mono">(1+√5)/4</td><td class="mono">√(5−2√5)</td></tr><tr><td class="num">45°</td><td class="mono">√2/2</td><td class="mono">√2/2</td><td class="mono">1</td></tr><tr><td class="num">60°</td><td class="mono">√3/2</td><td class="mono">1/2</td><td class="mono">√3</td></tr><tr><td class="num">72°</td><td class="mono">√(10+2√5)/4</td><td class="mono">(√5−1)/4</td><td class="mono">√(5+2√5)</td></tr><tr><td class="num">75°</td><td class="mono">(√6+√2)/4</td><td class="mono">(√6−√2)/4</td><td class="mono">2+√3</td></tr><tr><td class="num">90°</td><td class="mono">1</td><td class="mono">0</td><td class="mono">∞</td></tr></tbody></table></div></section>
+<section class="block"><h2>Solve a triangle</h2>
+<p class="col">Name the sides a, b, c and the opposite angles A, B, C. Any three facts that include a side fix the triangle, with one exception:
+two sides and an angle that is not between them (SSA) can give two different triangles, one, or none. That is the <i>ambiguous case</i>.</p>
+<div class="shape"><div class="plate"><p class="label">Given</p>
+<div class="row"><select id="tk" aria-label="What is given"><option value="SSS">three sides (SSS)</option><option value="SAS">two sides and the angle between (SAS)</option>
+<option value="ASA">two angles and the side between (ASA)</option><option value="AAS">two angles and another side (AAS)</option><option value="SSA" selected>two sides and an angle not between (SSA)</option></select></div>
+<div class="row" id="tin"></div><div id="tout" class="qty" aria-live="polite"></div></div>
+<div class="figure"><svg id="tsvg" viewBox="0 0 400 300" role="img" aria-label="Solved triangle"></svg></div></div>
+<div class="formula"><span class="tex" data-tex="\frac{a}{\sin A}=\frac{b}{\sin B}=\frac{c}{\sin C} \qquad a^2=b^2+c^2-2bc\cos A"></span></div>
+<p class="small col">The solver is the same code that the build checks: 2 000 random triangles are recovered from every kind of data, and the number of SSA solutions is compared with a ruler-and-compass construction.</p></section>
+<section class="block"><h2>Units of angle</h2><div class="tablewrap" style="max-width:720px"><table><thead><tr><th>Unit</th><th>Symbol</th><th>Size</th><th>In radians</th></tr></thead><tbody><tr><td>turn</td><td class="mono">1 turn</td><td class="mono">360°</td><td class="mono">2π rad</td></tr><tr><td>degree</td><td class="mono">1°</td><td class="mono">1/360 turn</td><td class="mono">π/180 rad</td></tr><tr><td>minute of arc</td><td class="mono">1′</td><td class="mono">1/60°</td><td class="mono">π/10 800 rad</td></tr><tr><td>second of arc</td><td class="mono">1″</td><td class="mono">1/60′</td><td class="mono">π/648 000 rad</td></tr><tr><td>radian (SI)</td><td class="mono">1 rad</td><td class="mono">180/π ° ≈ 57.295 78°</td><td class="mono">arc length = radius</td></tr><tr><td>gon (grade)</td><td class="mono">1 gon</td><td class="mono">0.9°</td><td class="mono">π/200 rad</td></tr><tr><td>point of the compass</td><td class="mono">1 point</td><td class="mono">11.25°</td><td class="mono">π/16 rad</td></tr><tr><td>NATO mil</td><td class="mono">1 mil</td><td class="mono">360/6400 °</td><td class="mono">π/3200 rad</td></tr></tbody></table></div>
+<p class="col">The 32 points of the mariner’s compass, 11¼° apart:</p><div class="points"><span class="pt"><b>N</b> 0°</span><span class="pt"><b>N by E</b> 11.25°</span><span class="pt"><b>NNE</b> 22.5°</span><span class="pt"><b>NE by N</b> 33.75°</span><span class="pt"><b>NE</b> 45°</span><span class="pt"><b>NE by E</b> 56.25°</span><span class="pt"><b>ENE</b> 67.5°</span><span class="pt"><b>E by N</b> 78.75°</span><span class="pt"><b>E</b> 90°</span><span class="pt"><b>E by S</b> 101.25°</span><span class="pt"><b>ESE</b> 112.5°</span><span class="pt"><b>SE by E</b> 123.75°</span><span class="pt"><b>SE</b> 135°</span><span class="pt"><b>SE by S</b> 146.25°</span><span class="pt"><b>SSE</b> 157.5°</span><span class="pt"><b>S by E</b> 168.75°</span><span class="pt"><b>S</b> 180°</span><span class="pt"><b>S by W</b> 191.25°</span><span class="pt"><b>SSW</b> 202.5°</span><span class="pt"><b>SW by S</b> 213.75°</span><span class="pt"><b>SW</b> 225°</span><span class="pt"><b>SW by W</b> 236.25°</span><span class="pt"><b>WSW</b> 247.5°</span><span class="pt"><b>W by S</b> 258.75°</span><span class="pt"><b>W</b> 270°</span><span class="pt"><b>W by N</b> 281.25°</span><span class="pt"><b>WNW</b> 292.5°</span><span class="pt"><b>NW by W</b> 303.75°</span><span class="pt"><b>NW</b> 315°</span><span class="pt"><b>NW by N</b> 326.25°</span><span class="pt"><b>NNW</b> 337.5°</span><span class="pt"><b>N by W</b> 348.75°</span></div></section>
+<div class="then col"><b>Then and now</b><p>Navigators worked with printed tables of logarithms of sines, and of the <i>haversine</i>, hav θ = sin²(θ/2), which keeps every
+quantity positive and avoids sign errors. The same haversine formula computes the great-circle distances on the <a href="../../sky/sailing/">sailing page</a>.
+Courses were once given in points (“west by south”); today they are three-figure bearings, 000° to 359°.</p></div>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather and signal. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p>Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script src="../../assets/trigmath.js"></script>
+<script src="../../assets/trig.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(!window.katex)return;document.querySelectorAll(".tex").forEach(function(el){try{katex.render(el.getAttribute("data-tex"),el,{displayMode:true,throwOnError:false})}catch(e){el.textContent=el.getAttribute("data-tex")}})});</script>
+</body>
+</html>

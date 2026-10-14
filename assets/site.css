@@ -169,3 +169,62 @@ svg.map .blbl { fill: var(--signal); font: 600 15px var(--mono); }
 svg.map .eq { stroke: var(--muted); stroke-dasharray: 4 4; }
 
 @media (max-width: 560px) { .nav { margin-left: 0; } .nav a { padding: 0 7px; font-size: 14px; } .bar .wrap { gap: 4px 10px; } }
+
+/* ---------- wave 3: number ---------- */
+td.sym, .sym { font: 400 26px/1.1 "Source Serif 4", "STIX Two Math", "Cambria Math", "Segoe UI Symbol", "Apple Symbols", "DejaVu Sans", serif; text-align: center; min-width: 2.2em; }
+.gkgrid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.gk { display: flex; gap: 12px; align-items: flex-start; background: var(--sheet); border: 1px solid var(--rule); padding: 10px 12px; min-width: 0; }
+.gk h3 { font-size: 19px; text-transform: capitalize; }
+.gl { font: 400 34px/1 "Source Serif 4", Georgia, serif; display: flex; gap: 6px; align-items: baseline; min-width: 92px; flex-wrap: wrap; }
+.gv { font-size: 20px; color: var(--muted); width: 100%; }
+.drill { display: grid; gap: 12px; justify-items: start; }
+.gbig { font: 400 88px/1 "Source Serif 4", Georgia, serif; min-width: 1.2em; }
+.points { display: flex; flex-wrap: wrap; gap: 6px; }
+.pt { font: 13px var(--mono); background: var(--sheet); border: 1px solid var(--rule); padding: 4px 8px; }
+.rule-wrap { overflow-x: auto; background: var(--sheet); border: 1px solid var(--rule); }
+.rule-wrap svg { display: block; width: 100%; min-width: 760px; height: auto; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+#sr line { stroke: var(--ink); stroke-width: 1; }
+#sr text { font-family: var(--mono); }
+#sr .sr-body { fill: var(--tint); stroke: var(--rule); }
+#sr .sr-slide { fill: var(--sheet); stroke: var(--muted); cursor: ew-resize; }
+#sr .sr-cursor { fill: color-mix(in srgb, var(--flag-b) 8%, transparent); stroke: var(--flag-b); stroke-width: 1; cursor: ew-resize; }
+#sr line.sr-hair { stroke: var(--signal); stroke-width: 1.5; }
+#uc text { font-family: var(--mono); }
+
+/* ---------- wave 3: sky & sea ---------- */
+.figure.globe { background: var(--sheet); touch-action: none; }
+.figure.globe canvas { cursor: grab; }
+.mapgrid { display: grid; gap: 12px; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); }
+@media (max-width: 760px) { .mapgrid { grid-template-columns: 1fr; } }
+.mapgrid figure { margin: 0; display: grid; gap: 6px; }
+.mapbox { background: color-mix(in srgb, var(--flag-b) 9%, var(--sheet)); border: 1px solid var(--rule); }
+.mapbox svg { display: block; width: 100%; height: auto; }
+.mapbox .mland { fill: var(--tint); stroke: var(--muted); stroke-width: .6; }
+.mapbox .mland.edge { fill: none; }
+.mapbox .mgrat { fill: none; stroke: var(--muted); stroke-width: .4; opacity: .5; }
+.mapbox .mgc, .key.gc { stroke: var(--signal); }
+.mapbox .mrl, .key.rl { stroke: var(--flag-b); }
+.mapbox .mgc, .mapbox .mrl { fill: none; stroke-width: 2.5; }
+.mapbox .mrl { stroke-dasharray: 8 5; }
+.mapbox .mport { fill: var(--ink); stroke: var(--sheet); stroke-width: 2; }
+.mapbox .mlbl { font: 600 14px var(--mono); fill: var(--ink); paint-order: stroke; stroke: var(--sheet); stroke-width: 3px; }
+.key { display: inline-block; width: 28px; border-top: 3px solid; vertical-align: middle; }
+.key.rl { border-top-style: dashed; }
+.key.gc { border-color: var(--signal); } .key.rl { border-color: var(--flag-b); }
+.clocks { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.clock { background: var(--paper); border: 1px solid var(--rule); padding: 10px 12px; display: grid; gap: 2px; }
+.clock .ck { font: 600 13px/1.2 var(--display); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.clock .cv { font: 500 30px/1.15 var(--mono); font-variant-numeric: tabular-nums; }
+.clock .cv.sm { font-size: 22px; }
+.clock .cn { font-size: 13px; color: var(--muted); }
+.figure.eot, .figure.band { aspect-ratio: auto; }
+.figure.band { overflow-x: auto; }
+.figure.band svg { min-width: 760px; }
+#band text, #eot text, #ana text, #orr text { font-family: var(--mono); }
+#band .b-sign { fill: color-mix(in srgb, var(--flag-b) 10%, var(--sheet)); stroke: var(--rule); }
+#band .b-sign.alt { fill: color-mix(in srgb, var(--flag-b) 18%, var(--sheet)); }
+#band .b-con { fill: color-mix(in srgb, var(--flag-y) 22%, var(--sheet)); stroke: var(--rule); }
+#band .b-con.alt { fill: color-mix(in srgb, var(--flag-y) 40%, var(--sheet)); }
+#band .b-con.oph { fill: color-mix(in srgb, var(--signal) 30%, var(--sheet)); }
+tr.hl td { background: color-mix(in srgb, var(--signal) 10%, var(--sheet)); }
+.pdot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
