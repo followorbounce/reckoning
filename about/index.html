@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How Reckoning is checked</title>
+<meta name="description" content="The rules and automatic checks behind every value and formula in Reckoning, and its primary sources.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/about/">
+<meta property="og:title" content="How Reckoning is checked">
+<meta property="og:description" content="The rules and automatic checks behind every value and formula in Reckoning, and its primary sources.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../measure/">Measure</a><a href="../shape/">Shape</a><a href="../about/" aria-current="page">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../index.html">Reckoning</a> / About</p>
+<div class="head"><p class="eyebrow">Method</p><h1>How it is checked</h1>
+<p class="lede col">A handbook is only useful if it is right. These are the rules this one follows, and the checks that ran when this copy was built.</p></div>
+<section class="block"><h2>Rules</h2><ul class="col">
+<li>Every unit is stored once, as an exact fraction of its SI unit wherever the unit is defined exactly, with the source of that definition.</li>
+<li>Values are compared with reference values typed in separately from the NIST tables; the build stops on any mismatch.</li>
+<li>Every area and volume formula is compared with a Monte Carlo measurement of the shape, made from a point-in-shape test written from
+the shape’s definition, not from its formula. Selected perimeters and surfaces are integrated numerically.</li>
+<li>The formula shown on a page is the same expression that was checked; the page evaluates it live.</li>
+<li>Old values are not deleted. They are shown as “then and now”, so old documents can still be read.</li>
+<li>All text is new. The topics follow mid-century practical handbooks; no text or drawings are taken from them.</li>
+</ul></section>
+<section class="block"><h2>This build</h2><div class="prov"><pre style="white-space:pre-wrap;margin:0">units: 144, of which 141 exact
+shapes: 42 (20 plane, 22 solid); every area/volume formula checked
+checks skipped</pre></div></section>
+<section class="block"><h2>Review</h2><p class="col">Pages are reviewed through the lenses of the studio charter: mathematics (formulas, topology), physics and metrology
+(units and constants), history (then-and-now notes), teaching (one clear point per page) and design (honest scales, accessibility).
+These reviews are done by the author applying those lenses. An outside review by working practitioners has not happened yet; if you
+find an error, it will be corrected and the correction noted.</p></section>
+<section class="block"><h2>Sources</h2><ul class="col"><li><a href="https://www.bipm.org/en/publications/si-brochure" rel="noopener">The International System of Units (SI), 9th edition (2019), with later updates</a>, Bureau International des Poids et Mesures (BIPM).</li><li><a href="https://www.bipm.org/en/cgpm-2022/resolution-3" rel="noopener">Resolution 3 of the 27th General Conference on Weights and Measures (2022): ronna, quetta, ronto, quecto</a>, CGPM / BIPM.</li><li><a href="https://www.nist.gov/pml/special-publication-811" rel="noopener">Guide for the Use of the International System of Units (SP 811, 2008), Appendix B: conversion factors</a>, National Institute of Standards and Technology (NIST).</li><li><a href="https://www.nist.gov/pml/owm/nist-handbook-44-current-edition" rel="noopener">Handbook 44, Appendix C: General Tables of Units of Measurement</a>, National Institute of Standards and Technology (NIST).</li><li><a href="https://www.nist.gov/pml/us-surveyfoot/revised-unit-conversion-factors" rel="noopener">Refinement of values for the yard and the pound (international yard and pound agreement, 1959)</a>, US National Bureau of Standards, Federal Register 24 FR 5348; same values adopted by the UK, Canada, Australia, New Zealand and South Africa.</li><li><a href="https://www.legislation.gov.uk/ukpga/1985/72/schedule/1" rel="noopener">Weights and Measures Act 1985, Schedule 1 (imperial units defined in metric terms)</a>, UK Parliament.</li><li><a href="https://www.nist.gov/pml/us-surveyfoot" rel="noopener">The US survey foot (deprecated from 1 January 2023)</a>, NIST and the National Geodetic Survey.</li><li><a href="https://iauarchive.eso.org/static/resolutions/IAU2012_English.pdf" rel="noopener">Resolution B2 (2012): re-definition of the astronomical unit of length</a>, International Astronomical Union.</li><li><a href="https://epsg.org/ellipsoid_7030/WGS-84.html" rel="noopener">World Geodetic System 1984 (WGS 84): equatorial radius a = 6 378 137 m</a>, US National Geospatial-Intelligence Agency; parameters as registered in the EPSG Geodetic Parameter Dataset (IOGP).</li><li><a href="https://www.bipm.org/en/publications/si-brochure" rel="noopener">International nautical mile of 1852 m (International Hydrographic Conference, Monaco, 1929); listed among non-SI units in the SI Brochure</a>, International Hydrographic Organization / BIPM.</li><li><a href="https://www.bipm.org/en/publications/si-brochure" rel="noopener">Kelvin defined through the Boltzmann constant (2019); degree Celsius t/°C = T/K − 273.15</a>, BIPM (SI Brochure, section 2.3.1 and Table 4).</li></ul></section>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape and signal. Every value cites a primary standard; every formula is checked when the site is built. <a href="../about/">How it is checked</a>.</p>
+<p>Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+</body>
+</html>

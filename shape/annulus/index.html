@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Annulus (ring) · Reckoning</title>
+<meta name="description" content="Annulus (ring): The flat ring between two circles with the same centre, like a washer. Live figure, checked formulas, topology.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/shape/annulus/">
+<meta property="og:title" content="Annulus (ring) · Reckoning">
+<meta property="og:description" content="Annulus (ring): The flat ring between two circles with the same centre, like a washer. Live figure, checked formulas, topology.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/" aria-current="page">Shape</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Shape</a> / Annulus (ring)</p>
+<div class="head"><p class="eyebrow">Plane figure · Circles</p><h1>Annulus (ring)</h1>
+<p class="lede col">The flat ring between two circles with the same centre, like a washer.</p></div>
+<div class="shape">
+  <div class="stack"><div class="figure"><svg id="fig2d" viewBox="0 0 400 300" role="img" aria-label="Annulus (ring) drawn to scale"></svg></div>
+    <div class="row"><button class="ghost" id="reset" type="button">Reset</button>
+    <label class="unitsel">Units <select id="lenunit"><option value="">none</option><option>m</option><option>cm</option><option>mm</option><option>in</option><option>ft</option></select></label></div>
+  </div>
+  <div class="stack">
+    <div class="plate"><p class="label">Dimensions</p><div class="sliders"><label>outer radius R<input type="range" id="p-R" data-k="R" min="1" max="3" step="0.1" value="2.8"><output>2.8</output></label><label>inner radius r<input type="range" id="p-r" data-k="r" min="0.2" max="2.8" step="0.1" value="1.5"><output>1.5</output></label></div></div>
+    <div class="plate"><p class="label">Results</p><p class="warn" id="warn" hidden></p><div class="qty" id="qty"><div><span>area <span class="mono">A</span></span><span data-i="0"></span></div></div></div>
+  </div>
+</div>
+<section class="block"><h2>Formulas</h2><div class="formula"><span class="tex" data-tex="A = \pi(R^2 - r^2) = \pi(R + r)(R - r)"></span></div>
+<p class="col">The big disc minus the hole. Written as π(R + r)(R − r) it is the mean circumference times the width: unroll the ring into a strip.</p>
+<p class="small">Checked: the A formula agrees with a Monte Carlo measurement of the shape itself, made from its geometric definition, every time the site is built.</p></section>
+<div class="lens col"><b>Topology lens</b><p>A region with one hole. Its Euler characteristic is 0: it can be stretched into any other ring, but never into a disc without tearing. <a href="../topology/">More on the lens</a>.</p></div>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape and signal. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p>Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script>window.RK_SHAPE = {"slug": "annulus", "dim": 2, "params": [{"key": "R", "label": "outer radius R", "default": 2.8, "min": 1, "max": 3, "step": 0.1, "unit": "len"}, {"key": "r", "label": "inner radius r", "default": 1.5, "min": 0.2, "max": 2.8, "step": 0.1, "unit": "len"}], "let": [], "q": [{"sym": "A", "name": "area", "expr": "PI*(R**2-r**2)", "kind": "area", "approx": false}], "valid": ["r < R", "The inner radius must be smaller than the outer."]};</script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(!window.katex)return;document.querySelectorAll(".tex").forEach(function(el){try{katex.render(el.getAttribute("data-tex"),el,{displayMode:true,throwOnError:false})}catch(e){el.textContent=el.getAttribute("data-tex")}})});</script>
+<script src="../../assets/shape.js"></script>
+</body>
+</html>

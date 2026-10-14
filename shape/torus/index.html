@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Torus (anchor ring) · Reckoning</title>
+<meta name="description" content="Torus (anchor ring): A circle of radius r swept round an axis at distance R: a ring, a doughnut, an O-ring. Live figure, checked formulas, topology.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/shape/torus/">
+<meta property="og:title" content="Torus (anchor ring) · Reckoning">
+<meta property="og:description" content="Torus (anchor ring): A circle of radius r swept round an axis at distance R: a ring, a doughnut, an O-ring. Live figure, checked formulas, topology.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/" aria-current="page">Shape</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Shape</a> / Torus (anchor ring)</p>
+<div class="head"><p class="eyebrow">Solid · Rings</p><h1>Torus (anchor ring)</h1>
+<p class="lede col">A circle of radius r swept round an axis at distance R: a ring, a doughnut, an O-ring.</p></div>
+<div class="shape">
+  <div class="stack"><div class="figure" id="fig3d"><p class="hint">Drag to turn · pinch or scroll to zoom</p></div>
+    <div class="row"><button class="ghost" id="reset" type="button">Reset</button><button class="ghost" id="refit" type="button">Re-centre</button>
+    <label class="unitsel">Units <select id="lenunit"><option value="">none</option><option>m</option><option>cm</option><option>mm</option><option>in</option><option>ft</option></select></label></div>
+  </div>
+  <div class="stack">
+    <div class="plate"><p class="label">Dimensions</p><div class="sliders"><label>ring radius R<input type="range" id="p-R" data-k="R" min="0.6" max="2" step="0.1" value="1.6"><output>1.6</output></label><label>tube radius r<input type="range" id="p-r" data-k="r" min="0.1" max="1.5" step="0.1" value="0.5"><output>0.5</output></label></div></div>
+    <div class="plate"><p class="label">Results</p><p class="warn" id="warn" hidden></p><div class="qty" id="qty"><div><span>volume <span class="mono">V</span></span><span data-i="0"></span></div><div><span>surface area <span class="mono">S</span></span><span data-i="1"></span></div></div></div>
+  </div>
+</div>
+<section class="block"><h2>Formulas</h2><div class="formula"><span class="tex" data-tex="V = 2\pi^2Rr^2"></span></div><div class="formula"><span class="tex" data-tex="S = 4\pi^2Rr"></span></div>
+<p class="col">Pappus’s theorems: a shape swept round an axis gives a volume equal to its area times the distance its centre travels, here πr² × 2πR; the same for perimeter and surface.</p>
+<p class="small">Checked: the V, S formula agrees with a Monte Carlo measurement of the shape itself, made from its geometric definition, every time the site is built.</p></section>
+<div class="lens col"><b>Topology lens</b><p>A solid with one hole through it, like a ring or a pipe. Its surface is a torus: Euler characteristic 0, genus 1. No stretching makes it a ball. <a href="../topology/">More on the lens</a>.</p></div>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape and signal. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p>Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="../../assets/solid.js"></script>
+<script>window.RK_SHAPE = {"slug": "torus", "dim": 3, "params": [{"key": "R", "label": "ring radius R", "default": 1.6, "min": 0.6, "max": 2, "step": 0.1, "unit": "len"}, {"key": "r", "label": "tube radius r", "default": 0.5, "min": 0.1, "max": 1.5, "step": 0.1, "unit": "len"}], "let": [], "q": [{"sym": "V", "name": "volume", "expr": "2*PI**2*R*r**2", "kind": "vol", "approx": false}, {"sym": "S", "name": "surface area", "expr": "4*PI**2*R*r", "kind": "area", "approx": false}], "valid": ["r < R", "The tube radius must be smaller than the ring radius, or the ring closes up."]};</script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(!window.katex)return;document.querySelectorAll(".tex").forEach(function(el){try{katex.render(el.getAttribute("data-tex"),el,{displayMode:true,throwOnError:false})}catch(e){el.textContent=el.getAttribute("data-tex")}})});</script>
+<script src="../../assets/shape.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Regular octagon · Reckoning</title>
+<meta name="description" content="Regular octagon: Eight equal sides and angles; a square with its corners cut off at 45°. Live figure, checked formulas, topology.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/shape/octagon/">
+<meta property="og:title" content="Regular octagon · Reckoning">
+<meta property="og:description" content="Regular octagon: Eight equal sides and angles; a square with its corners cut off at 45°. Live figure, checked formulas, topology.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/" aria-current="page">Shape</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Shape</a> / Regular octagon</p>
+<div class="head"><p class="eyebrow">Plane figure · Polygons</p><h1>Regular octagon</h1>
+<p class="lede col">Eight equal sides and angles; a square with its corners cut off at 45°.</p></div>
+<div class="shape">
+  <div class="stack"><div class="figure"><svg id="fig2d" viewBox="0 0 400 300" role="img" aria-label="Regular octagon drawn to scale"></svg></div>
+    <div class="row"><button class="ghost" id="reset" type="button">Reset</button>
+    <label class="unitsel">Units <select id="lenunit"><option value="">none</option><option>m</option><option>cm</option><option>mm</option><option>in</option><option>ft</option></select></label></div>
+  </div>
+  <div class="stack">
+    <div class="plate"><p class="label">Dimensions</p><div class="sliders"><label>side s<input type="range" id="p-s" data-k="s" min="0.4" max="2.4" step="0.1" value="1.6"><output>1.6</output></label></div></div>
+    <div class="plate"><p class="label">Results</p><p class="warn" id="warn" hidden></p><div class="qty" id="qty"><div><span>area <span class="mono">A</span></span><span data-i="0"></span></div><div><span>width across flats <span class="mono">w</span></span><span data-i="1"></span></div></div></div>
+  </div>
+</div>
+<section class="block"><h2>Formulas</h2><div class="formula"><span class="tex" data-tex="A = 2(1 + \sqrt{2})\,s^2 \approx 4.828\,s^2"></span></div><div class="formula"><span class="tex" data-tex="w = (1 + \sqrt{2})\,s"></span></div>
+<p class="col">A square of side w = s(1 + √2) minus four corner triangles with legs s/√2.</p>
+<p class="small">Checked: the A formula agrees with a Monte Carlo measurement of the shape itself, made from its geometric definition, every time the site is built.</p></section>
+<div class="lens col"><b>Topology lens</b><p>Topologically a disc, like every figure here without a hole: Euler characteristic 1. Stretching turns it into a circle, a square or a star. <a href="../topology/">More on the lens</a>.</p></div>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape and signal. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p>Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script>window.RK_SHAPE = {"slug": "octagon", "dim": 2, "params": [{"key": "s", "label": "side s", "default": 1.6, "min": 0.4, "max": 2.4, "step": 0.1, "unit": "len"}], "let": [], "q": [{"sym": "A", "name": "area", "expr": "2*(1+sqrt(2))*s**2", "kind": "area", "approx": false}, {"sym": "w", "name": "width across flats", "expr": "(1+sqrt(2))*s", "kind": "len", "approx": false}], "valid": null};</script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(!window.katex)return;document.querySelectorAll(".tex").forEach(function(el){try{katex.render(el.getAttribute("data-tex"),el,{displayMode:true,throwOnError:false})}catch(e){el.textContent=el.getAttribute("data-tex")}})});</script>
+<script src="../../assets/shape.js"></script>
+</body>
+</html>

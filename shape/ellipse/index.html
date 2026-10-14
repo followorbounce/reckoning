@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ellipse · Reckoning</title>
+<meta name="description" content="Ellipse: A circle stretched in one direction: the set of points whose distances to two foci add to 2a. Live figure, checked formulas, topology.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/shape/ellipse/">
+<meta property="og:title" content="Ellipse · Reckoning">
+<meta property="og:description" content="Ellipse: A circle stretched in one direction: the set of points whose distances to two foci add to 2a. Live figure, checked formulas, topology.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/" aria-current="page">Shape</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Shape</a> / Ellipse</p>
+<div class="head"><p class="eyebrow">Plane figure · Circles</p><h1>Ellipse</h1>
+<p class="lede col">A circle stretched in one direction: the set of points whose distances to two foci add to 2a.</p></div>
+<div class="shape">
+  <div class="stack"><div class="figure"><svg id="fig2d" viewBox="0 0 400 300" role="img" aria-label="Ellipse drawn to scale"></svg></div>
+    <div class="row"><button class="ghost" id="reset" type="button">Reset</button>
+    <label class="unitsel">Units <select id="lenunit"><option value="">none</option><option>m</option><option>cm</option><option>mm</option><option>in</option><option>ft</option></select></label></div>
+  </div>
+  <div class="stack">
+    <div class="plate"><p class="label">Dimensions</p><div class="sliders"><label>semi-axis a<input type="range" id="p-a" data-k="a" min="0.5" max="3.2" step="0.1" value="3"><output>3</output></label><label>semi-axis b<input type="range" id="p-b" data-k="b" min="0.5" max="3.2" step="0.1" value="1.8"><output>1.8</output></label></div></div>
+    <div class="plate"><p class="label">Results</p><p class="warn" id="warn" hidden></p><div class="qty" id="qty"><div><span>area <span class="mono">A</span></span><span data-i="0"></span></div><div><span>perimeter (Ramanujan) <span class="mono">P</span></span><span data-i="1"></span></div></div></div>
+  </div>
+</div>
+<section class="block"><h2>Formulas</h2><div class="formula"><span class="tex" data-tex="A = \pi ab"></span></div><div class="formula"><span class="tex" data-tex="P \approx \pi\left[3(a+b) - \sqrt{(3a+b)(a+3b)}\right]"></span> <span class="tag approx">approximation</span></div>
+<p class="col">Stretching a circle of radius b by a/b in one direction multiplies every area by a/b: πb² · a/b = πab. The perimeter has no formula in elementary functions; Ramanujan’s (1914) is good to a few parts per million for ordinary shapes.</p><div class="then col"><b>Then and now</b><p>Older handbooks give P ≈ π√(2(a² + b²)), which overestimates: by about 2.5 % when one axis is twice the other, and more for flatter ellipses.</p></div>
+<p class="small">Checked: the A formula agrees with a Monte Carlo measurement of the shape itself, made from its geometric definition, every time the site is built.</p></section>
+<div class="lens col"><b>Topology lens</b><p>Topologically a disc, like every figure here without a hole: Euler characteristic 1. Stretching turns it into a circle, a square or a star. <a href="../topology/">More on the lens</a>.</p></div>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape and signal. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p>Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script>window.RK_SHAPE = {"slug": "ellipse", "dim": 2, "params": [{"key": "a", "label": "semi-axis a", "default": 3, "min": 0.5, "max": 3.2, "step": 0.1, "unit": "len"}, {"key": "b", "label": "semi-axis b", "default": 1.8, "min": 0.5, "max": 3.2, "step": 0.1, "unit": "len"}], "let": [], "q": [{"sym": "A", "name": "area", "expr": "PI*a*b", "kind": "area", "approx": false}, {"sym": "P", "name": "perimeter (Ramanujan)", "expr": "PI*(3*(a+b)-sqrt((3*a+b)*(a+3*b)))", "kind": "len", "approx": true}], "valid": null};</script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(!window.katex)return;document.querySelectorAll(".tex").forEach(function(el){try{katex.render(el.getAttribute("data-tex"),el,{displayMode:true,throwOnError:false})}catch(e){el.textContent=el.getAttribute("data-tex")}})});</script>
+<script src="../../assets/shape.js"></script>
+</body>
+</html>
