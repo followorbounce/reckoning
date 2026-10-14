@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Buoyancy and the load line · Reckoning</title>
+<meta name="description" content="Displacement, tonnes per centimetre, fresh water allowance and the load line mark drawn to the 1966 Convention.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/ship/buoyancy/">
+<meta property="og:title" content="Buoyancy and the load line · Reckoning">
+<meta property="og:description" content="Displacement, tonnes per centimetre, fresh water allowance and the load line mark drawn to the 1966 Convention.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/">Shape</a><a href="../../number/">Number</a><a href="../../sky/">Sky & sea</a><a href="../../weather/">Weather</a><a href="../../signal/">Signal</a><a href="../../ship/" aria-current="page">Ship</a><a href="../../life/">Code of life</a><a href="../../glossary/">Glossary</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Ship</a> / Buoyancy and the load line</p>
+<div class="head"><p class="eyebrow">Ship · buoyancy</p><h1>Buoyancy and the load line</h1>
+<p class="lede col">A floating ship pushes aside its own mass of water (Archimedes). Its <b>displacement</b> is that mass. The heavier the
+load, the deeper it floats. The <b>load line</b> painted on its side marks how deep it may legally go, in each season and in each kind of water.</p></div>
+<div class="shape"><div class="figure ll"><svg id="llsvg" viewBox="0 0 640 520" role="img" aria-label="Load line mark drawn to scale"></svg></div>
+<div class="stack"><div class="plate"><p class="label">The ship</p><div class="sliders">
+<label>Length L <input type="range" id="lL" min="40" max="300" step="1" value="150"><output id="lLv"></output></label>
+<label>Breadth B <input type="range" id="lB" min="8" max="50" step="0.5" value="23"><output id="lBv"></output></label>
+<label>Summer draught T <input type="range" id="lT" min="2" max="18" step="0.1" value="9.5"><output id="lTv"></output></label>
+<label><span>Block coefficient C<sub>B</sub></span> <input type="range" id="lCb" min="0.5" max="0.88" step="0.01" value="0.75"><output id="lCbv"></output></label>
+<label><span>Waterplane coeff. C<sub>W</sub></span> <input type="range" id="lCw" min="0.65" max="0.95" step="0.01" value="0.85"><output id="lCwv"></output></label>
+<label>Water density <input type="range" id="lrho" min="1.000" max="1.025" step="0.001" value="1.025"><output id="lrhov"></output></label>
+</div><div class="qty" id="lq"></div></div></div></div>
+<section class="block"><h2>The arithmetic</h2><p class="col">The block coefficient C<sub>B</sub> says how much of the box L × B × T the hull fills (about 0.8 for a
+tanker, 0.6 for a fast container ship); C<sub>W</sub> does the same for the waterplane. With sea water at 1.025 t/m³:</p>
+<div class="formula"><span class="tex" data-tex="\Delta = \rho\,L\,B\,T\,C_B \qquad \mathrm{TPC} = \frac{\rho\,A_W}{100} = \frac{\rho\,L\,B\,C_W}{100} \qquad \mathrm{FWA} = \frac{\Delta}{40\,\mathrm{TPC}}\ \text{cm}"></span></div>
+<p class="col"><b>TPC</b>, tonnes per centimetre immersion, is the load that sinks the ship one centimetre deeper. The <b>fresh water allowance</b>
+is how much deeper the same ship floats in fresh water (density 1.000) than in the sea: for a wall-sided hull it comes to exactly 1/40 of the draught,
+because fresh water is 1/40 less dense. In dock water between the two densities the allowance is taken in proportion
+(Convention, article 12).</p></section>
+<section class="block"><h2>The marks</h2><p class="col">The <b>deck line</b> marks the freeboard deck. Below it, by the assigned summer freeboard, the centre of the
+<b>ring</b> (300 mm across, 25 mm wide) sits at the summer load line, with a 450 mm bar whose upper edge runs through its centre. Beside it, lines 230 mm long
+mark the other load lines. The <b>upper edge</b> of each line is the limit. Tropical (T) is 1/48 of the summer draught above summer (S),
+winter (W) the same below, and Winter North Atlantic (WNA), only for ships of 100 m or less, 50 mm below winter. The fresh-water lines (F, TF) lie aft of the vertical
+line, raised by the fresh water allowance. The letters beside the ring identify the authority that assigned the freeboard. Sizes and rules: the <a href="https://www.imo.org/en/OurWork/Safety/Pages/LoadLines.aspx" rel="noopener" title="International Convention on Load Lines, 1966, Annex I: regulations 4 to 8 (marks) and 40 (minimum freeboards); article 12 (fresh water)">Load Lines 1966</a> Convention, Annex I, regulations 4 to 8 and 40.</p></section>
+<div class="then col"><b>Then and now</b><p>Samuel Plimsoll’s campaign against overloaded “coffin ships” led to compulsory load-line marks in British law in
+1876; the first international convention came in 1930, the present one in 1966. Older handbooks give the fresh-water rule as 1/48 of the draught: the
+1966 Convention still allows that figure, but only when the displacement at the summer waterline cannot be certified. Otherwise the allowance is Δ / 40 TPC.
+Before metric units, the same rules were written with tons of 2240 lb, and with 35 cubic feet of sea water to the ton.</p></div>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather, signal, ship and the code of life. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p><a href="../../glossary/">Glossary</a> · <a href="../../sky/names/">Names from the sky</a> · Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script>window.RK_LL = {"deck_line": [300, 25], "ring_outer": 300, "ring_width": 25, "ring_bar": [450, 25], "line": [230, 25], "vertical_from_ring": 540, "letters": [115, 75], "wna_add_mm": 50, "wna_max_length_m": 100, "tropical_fraction": 48};</script>
+<script src="../../assets/stability.js"></script>
+<script src="../../assets/loadline.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(!window.katex)return;document.querySelectorAll(".tex").forEach(function(el){try{katex.render(el.getAttribute("data-tex"),el,{displayMode:true,throwOnError:false})}catch(e){el.textContent=el.getAttribute("data-tex")}})});</script>
+</body>
+</html>

@@ -22,6 +22,7 @@ from texts import KIND_PAGES, SYSTEM_ORDER  # noqa: E402
 sys.path.insert(0, ROOT)
 import rooms2  # noqa: E402
 import rooms3  # noqa: E402
+import rooms4  # noqa: E402
 
 SITE = 'https://followorbounce.github.io/reckoning/'
 E = html.escape
@@ -32,7 +33,7 @@ THREE = ('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/thre
 FLAGS = ('<svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/>'
          '<rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>')
 
-LIVE_WAVE = 3
+LIVE_WAVE = 4
 ROOMS = [
     ('measure', 'Measure', 'Units, their exact definitions, and a converter that says where every factor comes from.', 1),
     ('shape', 'Shape', 'Areas and volumes of 42 figures and solids, each formula checked, with a topology lens.', 1),
@@ -49,7 +50,7 @@ def page(rel_path, title, desc, body, extra_head='', scripts='', nav=None):
     depth = rel_path.count('/')
     up = '../' * depth
     navs = ''.join('<a href="%s%s/"%s>%s</a>' % (up, k, ' aria-current="page"' if nav == k else '', n)
-                   for k, n in (('measure', 'Measure'), ('shape', 'Shape'), ('number', 'Number'), ('sky', 'Sky & sea'), ('weather', 'Weather'), ('signal', 'Signal'), ('about', 'About')))
+                   for k, n in (('measure', 'Measure'), ('shape', 'Shape'), ('number', 'Number'), ('sky', 'Sky & sea'), ('weather', 'Weather'), ('signal', 'Signal'), ('ship', 'Ship'), ('life', 'Code of life'), ('glossary', 'Glossary'), ('about', 'About')))
     canon = SITE + (rel_path[:-len('index.html')] if rel_path.endswith('index.html') else rel_path)
     out = f'''<!doctype html>
 <html lang="en">
@@ -78,8 +79,8 @@ def page(rel_path, title, desc, body, extra_head='', scripts='', nav=None):
 {body}
 </main>
 <footer><div class="wrap">
-<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather and signal. Every value cites a primary standard; every formula is checked when the site is built. <a href="{up}about/">How it is checked</a>.</p>
-<p>Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather, signal, ship and the code of life. Every value cites a primary standard; every formula is checked when the site is built. <a href="{up}about/">How it is checked</a>.</p>
+<p><a href="{up}glossary/">Glossary</a> · <a href="{up}sky/names/">Names from the sky</a> · Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
 </div></footer>
 {scripts}</body>
 </html>
@@ -242,17 +243,20 @@ def home():
         cards.append('<a class="card" href="%s/">%s</a>' % (slug, inner) if live else '<div class="card room-off">%s</div>' % inner)
     body = f'''
 <div class="head">
-  <p class="eyebrow">An interactive handbook · wave {LIVE_WAVE} of 4</p>
+  <p class="eyebrow">An interactive handbook · eight rooms</p>
   <h1>Reckoning</h1>
   <p class="lede col">Measure, shape, number, sky, weather, signal, ship and code: the reference tables a navigator, engineer or student
   reaches for, made into instruments you can use. Every value is traced to a current primary standard, and every formula is checked
   by computer each time the site is built.</p>
 </div>
 <section class="block"><h2>Rooms</h2><div class="grid">{''.join(cards)}</div></section>
+<section class="block"><h2>Reference</h2><div class="grid"><a class="card" href="glossary/"><h3>Glossary</h3><p class="small">Nautical terms in English, Spanish and French, and words that mean different things in different rooms.</p></a>
+<a class="card" href="sky/names/"><h3>Names from the sky</h3><p class="small">The gods behind the planets, their moons, the days of the week, the months and a dozen elements.</p></a>
+<a class="card" href="about/"><h3>How it is checked</h3><p class="small">The rules, the automatic checks that ran for this build, and every primary source.</p></a></div></section>
 <section class="block"><h2>Start here</h2>{converter(pair=('nmi', 'km'), title='Convert anything')}
 <p class="small col">Results are exact when both units are defined exactly and the decimal ends. Otherwise they are rounded to
 15 significant figures and marked with an ellipsis.</p></section>'''
-    return page('index.html', 'Reckoning', 'An interactive handbook: exact unit definitions, 42 checked shape formulas, symbols and slide rule, globe and sailings, kinds of time, planets, signals and weather.',
+    return page('index.html', 'Reckoning', 'An interactive handbook: exact unit definitions, 42 checked shape formulas, symbols and slide rule, globe and sailings, kinds of time, planets, signals, weather, ship stability and DNA.',
                 body, scripts=conv_scripts(''))
 
 
@@ -531,13 +535,44 @@ find an error, it will be corrected and the correction noted.</p></section>
 
 def run_checks():
     out = []
-    for t in ('tests/check_units.py', 'tests/check_shapes.py', 'tests/check_wave2.py', 'tests/check_wave3.py'):
+    for t in ('tests/check_units.py', 'tests/check_shapes.py', 'tests/check_wave2.py', 'tests/check_wave3.py', 'tests/check_wave4.py'):
         r = subprocess.run([sys.executable, os.path.join(ROOT, t)], capture_output=True, text=True)
         out.append(r.stdout.strip().splitlines()[-1] if r.stdout.strip() else r.stderr)
         if r.returncode:
             print(r.stdout[-3000:], r.stderr[-3000:])
             sys.exit('checks failed: %s' % t)
     return out
+
+
+def write_signal_of_day():
+    """assets/signal-of-day.json: the 26 code flags (drawn by flagart), their meanings and Morse, read at run time by the
+    "Signal of the day" card on followorbounce.github.io, so the card never holds its own copy of the code."""
+    from signals import FLAGS, MORSE
+    from flagart import flag_svg
+    out = [{'L': L, 'word': w, 'svg': flag_svg(d, title='%s flag, %s' % (L, w)), 'meaning': m, 'note': n, 'morse': MORSE[L],
+            'url': SITE + 'signal/flags/#flag-' + L} for L, w, d, m, n in FLAGS]
+    with open(os.path.join(ROOT, 'assets', 'signal-of-day.json'), 'w') as f:
+        json.dump({'source': SITE + 'signal/flags/', 'code': 'International Code of Signals (1965 edition, in force 1969)', 'flags': out}, f, ensure_ascii=False, separators=(',', ':'))
+
+
+def check_links(paths):
+    """Every internal href and src in the generated pages must resolve to a file; the build stops otherwise."""
+    import re
+    bad = []
+    for rel in paths:
+        base = os.path.dirname(os.path.join(ROOT, rel))
+        for ref in re.findall(r'(?:href|src)="([^"#?]+)', open(os.path.join(ROOT, rel)).read()):
+            if re.match(r'^(https?:|mailto:|data:|//)', ref):
+                continue
+            target = os.path.normpath(os.path.join(base, ref))
+            if ref.endswith('/') or os.path.isdir(target):
+                target = os.path.join(target, 'index.html')
+            if not os.path.exists(target):
+                bad.append('%s -> %s' % (rel, ref))
+    if bad:
+        print('\n'.join(bad[:40]))
+        sys.exit('broken internal links: %d' % len(bad))
+    return 'internal links: all resolve (%d pages)' % len(paths)
 
 
 def main():
@@ -548,18 +583,24 @@ def main():
               'shapes: %d (%d plane, %d solid); every area/volume formula checked\n' % (nshape, sum(s['dim'] == 2 for s in SHAPES), sum(s['dim'] == 3 for s in SHAPES)) +
               'signal: 40 flags and pennants, %d Morse signs; weather: Beaufort 0-12, WMO codes 3700 and 4677\n' % len(rooms2.MORSE) +
               'number: %d symbols, 24 Greek letters, triangle solver, slide rule; sky: Sun, sidereal time, planets, 88 constellations, Vincenty\n' % sum(len(i) for g, i in rooms3.SYMBOLS) +
+              'ship: %d named parts, stability from the section polygon, IMO 2008 criteria, load-line marks; life: 15 IUPAC letters, 5 bases, A/B/Z forms, Lk = Tw + Wr\n' % len(rooms4.PARTS) +
               '\n'.join(lines))
     paths = [home(), measure_hub(), si_page(), derived_page(), prefix_page(), fractions_page()]
     paths += [kind_page(k) for k in KINDS]
     paths += [shape_hub(), topology_page()] + [shape_page(s) for s in SHAPES]
     paths += rooms2.signal_pages(page, src_link) + rooms2.weather_pages(page, src_link)
     paths += rooms3.number_pages(page, src_link) + rooms3.sky_pages(page, src_link)
+    paths += rooms4.ship_pages(page, src_link) + rooms4.life_pages(page, src_link, ROOT)
+    paths += [rooms4.glossary_page(page, src_link), rooms4.names_page(page, src_link)]
     paths.append(about_page(report))
+    write_signal_of_day()
+    report_links = check_links(paths)
     urls = ''.join('<url><loc>%s%s</loc></url>' % (SITE, p[:-len('index.html')] if p.endswith('index.html') else p) for p in paths)
     open(os.path.join(ROOT, 'sitemap.xml'), 'w').write('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">%s</urlset>\n' % urls)
     open(os.path.join(ROOT, 'robots.txt'), 'w').write('User-agent: *\nAllow: /\nSitemap: %ssitemap.xml\n' % SITE)
     open(os.path.join(ROOT, '.nojekyll'), 'w').write('')
     print(report)
+    print(report_links)
     print('wrote %d pages' % len(paths))
 
 

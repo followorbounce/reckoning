@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stability · Reckoning</title>
+<meta name="description" content="Load a hull and watch G, B, M and the righting-lever curve, with the IMO intact stability criteria.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/ship/stability/">
+<meta property="og:title" content="Stability · Reckoning">
+<meta property="og:description" content="Load a hull and watch G, B, M and the righting-lever curve, with the IMO intact stability criteria.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/">Shape</a><a href="../../number/">Number</a><a href="../../sky/">Sky & sea</a><a href="../../weather/">Weather</a><a href="../../signal/">Signal</a><a href="../../ship/" aria-current="page">Ship</a><a href="../../life/">Code of life</a><a href="../../glossary/">Glossary</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Ship</a> / Stability</p>
+<div class="head"><p class="eyebrow">Ship · stability</p><h1>Stability</h1>
+<p class="lede col">Weight acts down through the centre of gravity <b>G</b>; buoyancy acts up through the centre of the underwater volume, <b>B</b>.
+Upright they are in line. Heel the ship and B moves towards the low side. If it moves far enough to lie outside G, the two forces form a couple
+that turns the ship back. The arm of that couple is the righting lever <b>GZ</b>.</p></div>
+<div class="shape"><div class="figure stab"><svg id="stsvg" viewBox="0 0 600 450" role="img" aria-label="Heeled ship section showing G, B, M and the righting lever"></svg></div>
+<div class="stack"><div class="plate"><p class="label">Load the ship</p>
+<div class="row"><select id="shull" aria-label="Hull"></select></div>
+<div class="sliders">
+<label>Draught T <input type="range" id="sT" step="0.01"><output id="sTv"></output></label>
+<label>Height of G, KG <input type="range" id="sKG" step="0.01"><output id="sKGv"></output></label>
+<label>G off centre <input type="range" id="sGy" step="0.01" value="0"><output id="sGyv"></output></label>
+<label>Slack tank width <input type="range" id="sFs" min="0" step="0.1" value="0"><output id="sFsv"></output></label>
+<label>Heel to show <input type="range" id="sH" min="0" max="90" step="0.5" value="20"><output id="sHv"></output></label>
+</div><div class="qty" id="sq"></div></div></div></div>
+<section class="block"><h2>The righting-lever curve</h2>
+<div class="figure gzc"><svg id="gzsvg" viewBox="0 0 760 330" role="img" aria-label="GZ curve from 0 to 90 degrees of heel"></svg></div>
+<p class="small col">Shaded: the areas the criteria measure. Dashed: the tangent at the origin, which reaches GM at one radian (57.3°); for small heels GZ ≈ GM sin θ.</p>
+<div class="tablewrap" style="max-width:760px"><table><thead><tr><th>IMO criterion (2008 IS Code, A 2.2)</th><th>Required</th><th>This loading</th><th></th></tr></thead><tbody id="crit"></tbody></table></div>
+<p class="small col">The criteria come from <a href="https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MSCResolutions/MSC.267(85).pdf" rel="noopener" title="International Code on Intact Stability, 2008 (2008 IS Code), resolution MSC.267(85), Part A, 2.2: criteria regarding righting lever curve properties">IMO IS Code 2008</a>. They apply to real ships of full form whose curves come from their own hull lines; here they are applied to a
+prism so you can see how loading changes them, not to certify anything. Downflooding through openings, wind and the effect of the ship’s ends are not modelled.</p></section>
+<section class="block"><h2>How it is computed</h2><p class="col">Nothing here comes from a stored table. For every angle the program cuts the hull section with a
+waterline, moves the waterline until the cut-off area equals the upright underwater area (the displacement does not change when a ship heels), and takes the centroid of
+that area as B. Then GZ is the horizontal distance between B and G. The hull is a prism, the same section along the whole length, so the calculation is
+exact for a barge and an approximation for a ship.</p>
+<div class="formula"><span class="tex" data-tex="KM = KB + BM,\quad BM = \frac{I}{\nabla} = \frac{B^2}{12\,T}\ \text{(box)},\qquad GM = KM - KG,\qquad GZ \approx GM\sin\theta"></span></div>
+<div class="formula"><span class="tex" data-tex="GZ = \sin\theta\left(GM + \tfrac12 BM\tan^2\theta\right)\quad\text{(wall-sided, until the deck edge immerses)}"></span></div>
+<p class="small col">Checked when the site is built: for a box, KB = T/2 and BM = B²/12T; GZ agrees with the wall-sided formula to 10⁻⁶ m up to deck-edge
+immersion; a circular section gives GZ = (KM − KG) sin θ at every angle, because its metacentre is fixed at the centre; the angle of loll matches
+tan θ = √(2|GM|/BM); and GZ(−θ) = −GZ(θ).</p></section>
+<div class="lens col"><b>Free surface</b><p>Liquid in a partly filled tank flows to the low side as the ship heels, so its weight acts as if G were higher. For a
+rectangular tank of breadth b the virtual rise is (ρ<sub>tank</sub>/ρ<sub>sea</sub>) · l b³ / 12 ∇. The cube makes wide tanks dangerous, which is why tanks
+are divided by fore-and-aft bulkheads. Try the slack-tank slider.</p></div>
+<div class="then col"><b>Then and now</b><p>Older practice gave stability as a table of KM and a “stability curve” for a few loadings, worked out by hand with
+planimeters and integrators. The 1968 and 1993 IMO recommendations became the mandatory 2008 IS Code, which added weather criteria for wind and rolling.
+The physics of G, B and M has not changed since Pierre Bouguer named the metacentre in 1746.</p></div>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather, signal, ship and the code of life. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p><a href="../../glossary/">Glossary</a> · <a href="../../sky/names/">Names from the sky</a> · Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script src="../../assets/stability.js"></script>
+<script src="../../assets/stab-ui.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(!window.katex)return;document.querySelectorAll(".tex").forEach(function(el){try{katex.render(el.getAttribute("data-tex"),el,{displayMode:true,throwOnError:false})}catch(e){el.textContent=el.getAttribute("data-tex")}})});</script>
+</body>
+</html>

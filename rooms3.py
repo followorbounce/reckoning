@@ -261,7 +261,8 @@ def sky_pages(page, src_link):
                     ('sailing', 'Great circle and rhumb line', 'The shortest route against the constant course, drawn on two different map projections.'),
                     ('time', 'Kinds of time', 'Apparent, mean, zone and sidereal time, live, and the equation of time across the year.'),
                     ('celestial', 'The celestial sphere', 'Right ascension and declination, the ecliptic, and why the signs no longer match the constellations.'),
-                    ('planets', 'Planets and their names', 'Symbols, gods and discoverers, and an orrery showing where each planet is today.')],
+                    ('planets', 'Planets and their names', 'Symbols, gods and discoverers, and an orrery showing where each planet is today.'),
+                    ('names', 'Names from the sky', 'The gods behind the planets, moons, days of the week, months and chemical elements.')],
                    'Latitude and longitude, great circles and rhumb lines, the kinds of time, the celestial sphere and the planets.'))
 
     # ------------------------------------------------------------------ globe

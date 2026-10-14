@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Supercoiling · Reckoning</title>
+<meta name="description" content="Linking number, twist and writhe of closed DNA, computed live on a ribbon you can coil.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/life/supercoil/">
+<meta property="og:title" content="Supercoiling · Reckoning">
+<meta property="og:description" content="Linking number, twist and writhe of closed DNA, computed live on a ribbon you can coil.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/">Shape</a><a href="../../number/">Number</a><a href="../../sky/">Sky & sea</a><a href="../../weather/">Weather</a><a href="../../signal/">Signal</a><a href="../../ship/">Ship</a><a href="../../life/" aria-current="page">Code of life</a><a href="../../glossary/">Glossary</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Code of life</a> / Supercoiling</p>
+<div class="head"><p class="eyebrow">Code of life · topology lens</p><h1>Supercoiling</h1>
+<p class="lede col">Many DNA molecules are closed loops: bacterial chromosomes, plasmids, the DNA of mitochondria. Once a loop is closed, the number of times one strand
+winds round the other, the <b>linking number</b> Lk, cannot change without cutting a strand. It can still be spent in two ways: as <b>twist</b>
+(the strands winding round each other) or as <b>writhe</b> (the whole axis coiling on itself).</p></div>
+<div class="formula"><span class="tex" data-tex="\mathrm{Lk} = \mathrm{Tw} + \mathrm{Wr}"></span></div>
+<div class="shape"><div class="figure globe" style="aspect-ratio:1/1"><canvas id="sc" aria-label="Closed DNA ribbon in 3D: drag to turn"></canvas><p class="hint">drag to turn</p></div>
+<div class="stack"><div class="plate"><p class="label">The loop</p>
+<div class="row" role="radiogroup" aria-label="Kind of supercoil"><button type="button" class="scf" data-f="plect" aria-pressed="true">Interwound</button><button type="button" class="scf ghost" data-f="toroid" aria-pressed="false">Toroidal</button></div>
+<div class="sliders"><label>Extra turns ΔLk <input type="range" id="scl" min="-6" max="6" step="1" value="-4"><output id="sclv"></output></label>
+<label>Coiling <input type="range" id="scs" min="0" max="1" step="0.02" value="0.6"><output id="scsv"></output></label></div>
+<div class="qty" id="scq"></div></div>
+<p class="small">The ribbon’s two colours are its two edges; count how often they swap to see the twist. The ribbon shows only the extra turns, ΔLk:
+the 1 turn per 10.4 base pairs of the relaxed helix is left out so the picture stays readable.</p></div></div>
+<section class="block"><h2>What the numbers mean</h2><p class="col">Drag <b>Coiling</b> and watch the exchange. With the loop flat, all the extra turns are twist.
+As the axis coils, writhe grows and twist shrinks by exactly the same amount, while Lk stays fixed. Nothing is cut, so Lk cannot change. A strained,
+over- or under-twisted helix relieves itself by coiling, as a twisted telephone cord does.</p>
+<p class="col">The page computes all three numbers independently. <b>Writhe</b> is the Gauss double integral of the axis with itself; <b>twist</b> comes from how much the
+ribbon turns about the axis beyond parallel transport; <b>Lk</b> is the Gauss linking integral of the ribbon’s two edges, treated as two separate closed curves.
+That Tw + Wr equals that integer is the Călugăreanu–White–Fuller theorem (<a href="https://doi.org/10.2307/2373348" rel="noopener" title="Self-linking and the Gauss integral in higher dimensions, American Journal of Mathematics 91 (1969) 693–728: Lk = Tw + Wr">White 1969</a>; <a href="https://doi.org/10.1073/pnas.68.4.815" rel="noopener" title="The writhing number of a space curve, PNAS 68 (1971) 815–819">Fuller 1971</a>). Here it is a measurement, not an assumption.
+Integrals use the exact formula for straight segments of <a href="https://doi.org/10.1002/1097-0282(20001015)54:5&lt;307::AID-BIP20&gt;3.0.CO;2-Y" rel="noopener" title="Computation of writhe in modeling of supercoiled DNA, Biopolymers 54 (2000) 307–317: the exact formula for straight segments used here">Klenin &amp; Langowski 2000</a>.</p></section>
+<section class="block"><h2>In the cell</h2><p class="col">DNA in cells is usually <b>negatively</b> supercoiled: it has fewer turns than a relaxed helix, which makes the strands easier
+to open for copying and reading. Negative supercoils take a right-handed interwound shape or a left-handed toroidal one; the second is how DNA wraps round
+the histone spools of chromatin. Enzymes called <b>topoisomerases</b> change Lk on purpose: type I cut one strand and change Lk in steps of 1, type II cut both
+and pass a double strand through, in steps of 2. Bacterial <b>gyrase</b> spends energy to add negative turns (<a href="https://doi.org/10.1073/pnas.73.11.3872" rel="noopener" title="DNA gyrase: an enzyme that introduces superhelical turns into DNA, PNAS 73 (1976) 3872–3876">Gellert et al. 1976</a>). Supercoiling itself
+was discovered in a small viral DNA (<a href="https://doi.org/10.1073/pnas.53.5.1104" rel="noopener" title="The twisted circular form of polyoma viral DNA, PNAS 53 (1965) 1104–1111: the discovery of supercoiling">Vinograd et al. 1965</a>).</p></section>
+<div class="lens col"><b>Topology lens</b><p>Linking number is a topological invariant: no bending or stretching changes it, only cutting does. Twist and writhe are not:
+they depend on the exact shape. Compare the <a href="../../shape/topology/">Euler characteristic</a>, another number that survives any deformation, and the
+<a href="https://followorbounce.github.io/knots/">Knot Atlas</a>, where knots are classified by invariants of the same kind.</p></div>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather, signal, ship and the code of life. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p><a href="../../glossary/">Glossary</a> · <a href="../../sky/names/">Names from the sky</a> · Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="../../assets/dnamath.js"></script>
+<script src="../../assets/supercoil.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(!window.katex)return;document.querySelectorAll(".tex").forEach(function(el){try{katex.render(el.getAttribute("data-tex"),el,{displayMode:true,throwOnError:false})}catch(e){el.textContent=el.getAttribute("data-tex")}})});</script>
+</body>
+</html>

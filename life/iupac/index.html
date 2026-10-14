@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The IUPAC letters · Reckoning</title>
+<meta name="description" content="IUPAC ambiguity letters for nucleic acids with a decoder, complements and a two-strand pattern search.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/life/iupac/">
+<meta property="og:title" content="The IUPAC letters · Reckoning">
+<meta property="og:description" content="IUPAC ambiguity letters for nucleic acids with a decoder, complements and a two-strand pattern search.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/">Shape</a><a href="../../number/">Number</a><a href="../../sky/">Sky & sea</a><a href="../../weather/">Weather</a><a href="../../signal/">Signal</a><a href="../../ship/">Ship</a><a href="../../life/" aria-current="page">Code of life</a><a href="../../glossary/">Glossary</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Code of life</a> / The IUPAC letters</p>
+<div class="head"><p class="eyebrow">Code of life · shorthand</p><h1>The IUPAC letters</h1>
+<p class="lede col">Sequencers are not always sure which base they read, and many enzymes recognise a family of sequences rather than one. The IUPAC–IUB code
+gives every <b>set</b> of bases its own letter: R for “A or G”, N for “any”. Fifteen letters cover all fifteen non-empty sets of four bases.</p></div>
+<div class="plate"><p class="label">Decoder</p>
+<div class="row"><input id="iseq" type="text" value="GTYRAC" spellcheck="false" autocapitalize="characters" aria-label="Sequence with IUPAC letters" style="flex:1;min-width:220px;font-family:var(--mono)">
+<label class="small"><input type="checkbox" id="irna" style="min-height:auto"> RNA (U for T)</label></div>
+<div class="row"><button class="ghost" type="button" data-iseq="GTYRAC">HincII site</button><button class="ghost" type="button" data-iseq="GANTC">HinfI site</button><button class="ghost" type="button" data-iseq="YATR">Y A T R</button><button class="ghost" type="button" data-iseq="TATAWAWR">TATA box (consensus)</button><button class="ghost" type="button" data-iseq="NNNN">NNNN</button></div>
+<div class="qty" id="iq"></div></div>
+<div class="plate"><p class="label">Find a pattern in a sequence (both strands)</p>
+<div class="row"><input id="ipat" type="text" value="GTYRAC" spellcheck="false" autocapitalize="characters" aria-label="Pattern" style="width:12em;font-family:var(--mono)"></div>
+<textarea id="itgt" rows="3" spellcheck="false" aria-label="Sequence to search" style="width:100%;font:16px var(--mono)">ATGGTCAACGCTAGTTAACCGGTCGACATTGTTGACGGAGTCAACTAG</textarea>
+<div id="ihits" class="seqout"></div></div>
+<section class="block"><h2>The table</h2><div class="tablewrap" style="max-width:820px"><table><thead><tr><th>Letter</th><th>Means</th><th>Why that letter</th><th>Set</th><th>Complement</th></tr></thead><tbody><tr><td class="sym">A</td><td>adenine</td><td class="small">Adenine</td><td class="mono">{A}</td><td class="sym">T</td></tr><tr><td class="sym">C</td><td>cytosine</td><td class="small">Cytosine</td><td class="mono">{C}</td><td class="sym">G</td></tr><tr><td class="sym">G</td><td>guanine</td><td class="small">Guanine</td><td class="mono">{G}</td><td class="sym">C</td></tr><tr><td class="sym">T</td><td>thymine (U, uracil, in RNA)</td><td class="small">Thymine</td><td class="mono">{T}</td><td class="sym">A</td></tr><tr><td class="sym">R</td><td>A or G</td><td class="small">puRine</td><td class="mono">{A, G}</td><td class="sym">Y</td></tr><tr><td class="sym">Y</td><td>C or T</td><td class="small">pYrimidine</td><td class="mono">{C, T}</td><td class="sym">R</td></tr><tr><td class="sym">S</td><td>G or C</td><td class="small">Strong: three hydrogen bonds</td><td class="mono">{C, G}</td><td class="sym">S</td></tr><tr><td class="sym">W</td><td>A or T</td><td class="small">Weak: two hydrogen bonds</td><td class="mono">{A, T}</td><td class="sym">W</td></tr><tr><td class="sym">K</td><td>G or T</td><td class="small">Keto</td><td class="mono">{G, T}</td><td class="sym">M</td></tr><tr><td class="sym">M</td><td>A or C</td><td class="small">aMino</td><td class="mono">{A, C}</td><td class="sym">K</td></tr><tr><td class="sym">B</td><td>C, G or T</td><td class="small">not A: B comes after A</td><td class="mono">{C, G, T}</td><td class="sym">V</td></tr><tr><td class="sym">D</td><td>A, G or T</td><td class="small">not C: D comes after C</td><td class="mono">{A, G, T}</td><td class="sym">H</td></tr><tr><td class="sym">H</td><td>A, C or T</td><td class="small">not G: H comes after G</td><td class="mono">{A, C, T}</td><td class="sym">D</td></tr><tr><td class="sym">V</td><td>A, C or G</td><td class="small">not T (not U): V comes after U</td><td class="mono">{A, C, G}</td><td class="sym">B</td></tr><tr><td class="sym">N</td><td>any base</td><td class="small">aNy</td><td class="mono">{A, C, G, T}</td><td class="sym">N</td></tr></tbody></table></div>
+<p class="small col">Code: <a href="https://doi.org/10.1093/nar/13.9.3021" rel="noopener" title="Nomenclature for incompletely specified bases in nucleic acid sequences: recommendations 1984, Nucleic Acids Research 13 (1985) 3021–3030">NC-IUB 1985</a>. The sets live in one table in the site’s code; the meanings, the complements and the decoder are all generated from it,
+and the build checks that the complement of every letter’s complement is the letter itself, and that the meanings above say the same as the sets.</p></section>
+<div class="lens col"><b>Why the complements come out this way</b><p>Complementing a set swaps A with T and G with C inside it. Purines become pyrimidines, so R ↔ Y. Strong stays strong and weak
+stays weak, so S and W are their own complements. Keto and amino swap (K ↔ M), and “not A” becomes “not T” (B ↔ V), just as D ↔ H.</p></div>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather, signal, ship and the code of life. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p><a href="../../glossary/">Glossary</a> · <a href="../../sky/names/">Names from the sky</a> · Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script src="../../assets/dnamath.js"></script>
+<script src="../../assets/iupac.js"></script>
+</body>
+</html>

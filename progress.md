@@ -39,9 +39,27 @@
   Kepler's law with the JPL a is 0.7 % longer than NASA's sidereal period (planetary perturbations;
   check tolerance 1 %). The IAU 1989 manual (scanned) was read page by page for 5.15/5.223/5.25.
 
+## 2026-10-14: Wave 4 (Ship + Code of life), glossary, naming page, homepage card
+- Ship: tappable midship section (25 parts, transverse/longitudinal framing, strakes lettered); buoyancy and
+  load line (displacement, TPC, FWA = Δ/40 TPC, dock water, the mark drawn to Annex I sizes); stability
+  simulator computed from the section polygon (three hulls, KG, off-centre G, slack tank, GZ curve to 90°,
+  IMO 2008 IS Code A 2.2 criteria).
+- Code of life: bases as skeletal formulas (formulas re-derived from the drawing at build time), WC pairs,
+  nucleotide; IUPAC decoder with expansion, complements, two-strand pattern search; A/B/Z helix in 3D;
+  supercoiling with Lk, Tw and Wr each computed independently on a coiled ribbon.
+- Glossary (61 terms EN/ES/FR + same-word-different-meaning cards) and Names from the sky (gods, moon
+  themes, dwarf planets, weekdays, months, elements). Nav gains Ship, Code of life, Glossary.
+- Homepage: "Signal of the day" card on followorbounce.github.io reads reckoning/assets/signal-of-day.json.
+- Found while checking: B-DNA in solution is 10.4 ± 0.1 bp/turn (Wang 1979), not the often-quoted 10.5;
+  the old "1/48 of the draught" fresh-water rule survives in the 1966 Convention only as the fallback when
+  the displacement cannot be certified (reg. 40(8)); a common gods table pairs Apollo with Sol, but Rome
+  kept Apollo's Greek name.
+- Not verified on a real iPhone: dragging the 3D views and sliders (headless screenshots only).
+
 ## Next
 - Wave 2 leftovers: semaphore; bell and gong signals; the other 80 present-weather symbols.
-- Wave 4: Ship + Code of life (and glossary/naming pages, homepage widget).
+- Wave 4 leftovers: hull ends and a 3D hull; weather criterion (wind heel); RNA secondary structure;
+  codon table / genetic code; more glossary terms.
 - Wave 3 leftovers: Moon phases; star chart; sight reduction; log-table page for sines.
 - Known gaps: foreign national units of the old handbook (vara, arroba…) are left out because
   they varied by country; density/specific-gravity explorer not built yet.

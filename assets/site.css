@@ -99,7 +99,7 @@ section.block + .lens, .block .then { margin-top: 4px; }
 .figure svg, .figure canvas { width: 100%; height: 100%; display: block; }
 .figure .hint { position: absolute; left: 10px; bottom: 8px; font: 12px var(--mono); color: var(--muted); pointer-events: none; }
 .sliders { display: grid; gap: 2px; }
-.sliders label { display: grid; grid-template-columns: minmax(84px, 36%) minmax(0, 1fr) 52px; gap: 10px; align-items: center; font-size: 15px; }
+.sliders label { display: grid; grid-template-columns: minmax(84px, 36%) minmax(0, 1fr) 72px; gap: 10px; align-items: center; font-size: 15px; }
 .sliders input[type=range] { min-width: 0; width: 100%; }
 .sliders output { font: 500 15px var(--mono); text-align: right; font-variant-numeric: tabular-nums; }
 .qty { display: grid; gap: 6px; }
@@ -157,7 +157,7 @@ button.blast.lit i { background: var(--signal); }
 .seawrap { background: var(--tint); border: 1px solid var(--rule); }
 #seacv { display: block; width: 100%; height: clamp(240px, 42vw, 380px); }
 .hbar { height: 10px; background: var(--flag-b); min-width: 2px; }
-.wxgrid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.wxgrid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
 .wxtile { display: flex; gap: 12px; align-items: center; background: var(--sheet); border: 1px solid var(--rule); padding: 10px 12px; color: var(--ink); }
 .wxtile p { font-size: 15px; }
 svg.wx { width: 60px; height: 60px; flex: none; color: var(--ink); }
@@ -228,3 +228,95 @@ td.sym, .sym { font: 400 26px/1.1 "Source Serif 4", "STIX Two Math", "Cambria Ma
 #band .b-con.oph { fill: color-mix(in srgb, var(--signal) 30%, var(--sheet)); }
 tr.hl td { background: color-mix(in srgb, var(--signal) 10%, var(--sheet)); }
 .pdot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+
+/* ---- wave 4: ship ---- */
+.figure.mid, .figure.ll, .figure.gzc { aspect-ratio: auto; }
+.figure.mid { max-width: 960px; }
+#mid { touch-action: manipulation; }
+#mid .ps { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+#mid .shellp { stroke-width: 4.5; }
+#mid .keelp { stroke-width: 8; stroke-linecap: butt; }
+#mid .pf { stroke: var(--ink); stroke-width: 1; }
+#mid .floorf { fill: color-mix(in srgb, var(--flag-b) 14%, var(--sheet)); }
+#mid .framef { fill: color-mix(in srgb, var(--ink) 45%, var(--sheet)); }
+#mid .brk { fill: color-mix(in srgb, var(--ink) 28%, var(--sheet)); }
+#mid .hit { fill: none; stroke: transparent; stroke-width: 18; pointer-events: stroke; }
+#mid .part { cursor: pointer; }
+#mid .part .callout circle { fill: var(--sheet); stroke: var(--ink); stroke-width: 1.2; }
+#mid .part .callout text { font: 600 11px var(--mono); fill: var(--ink); }
+#mid.picking .part { opacity: .28; }
+#mid.picking .part.on { opacity: 1; }
+#mid .part.on .ps { stroke: var(--signal); }
+#mid .part.on .pf { fill: color-mix(in srgb, var(--signal) 45%, var(--sheet)); stroke: var(--signal); }
+#mid .part.on .callout circle { fill: var(--signal); stroke: var(--signal); }
+#mid .part.on .callout text { fill: #fff; }
+#mid.sys-tr .lg, #mid.sys-lg .tr { display: none; }
+#mid .lgdots circle { fill: var(--ink); }
+#mid .sea, #stsvg .sea { fill: color-mix(in srgb, var(--flag-b) 12%, var(--sheet)); }
+#mid .wl, #stsvg .wl { stroke: var(--flag-b); stroke-width: 1.5; stroke-dasharray: 8 5; }
+#mid .wlt { font: 11px var(--mono); fill: var(--muted); }
+#mid .cl, #stsvg .cl { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 10 4 2 4; }
+#mid .strk { font: 600 11px var(--mono); fill: var(--flag-b); }
+.legend { columns: 2 260px; column-gap: 24px; }
+.legend .label { break-after: avoid; margin-top: 8px; }
+ol.parts { margin: 4px 0 8px; padding-left: 2.2em; }
+ol.parts li { margin: 2px 0; break-inside: avoid; }
+ol.parts button { min-height: 44px; padding: 6px 10px; font: 15px var(--body); text-transform: none; letter-spacing: 0; text-align: left; }
+ol.parts button[aria-pressed="true"] { background: var(--signal); color: #fff; border-color: var(--signal); }
+#llsvg .llsea { fill: color-mix(in srgb, var(--flag-b) 12%, var(--sheet)); }
+#llsvg .llwl { stroke: var(--flag-b); stroke-width: 1.5; stroke-dasharray: 8 5; }
+#llsvg .llm { fill: var(--ink); }
+#llsvg .llring { fill: none; stroke: var(--ink); }
+#llsvg .llbrk { fill: none; stroke: var(--muted); stroke-width: 1.2; }
+#llsvg .lltx { font: 12px var(--mono); fill: var(--muted); }
+#llsvg .llk { font: 600 18px var(--display); fill: var(--ink); }
+#llsvg .llauth { font-family: var(--display); font-weight: 600; fill: var(--ink); }
+#stsvg .hullp { fill: var(--sheet); stroke: var(--ink); stroke-width: 2; }
+#stsvg .subp { fill: color-mix(in srgb, var(--flag-b) 28%, transparent); stroke: none; }
+#stsvg .tankp { fill: none; stroke: var(--muted); stroke-width: 1.2; }
+#stsvg .liqp { fill: color-mix(in srgb, var(--ok) 40%, transparent); }
+#stsvg .fup { stroke: var(--flag-b); stroke-width: 2; marker-end: none; }
+#stsvg .fdn { stroke: var(--signal); stroke-width: 2; }
+#stsvg .gzl { stroke: var(--ink); stroke-width: 3; }
+#stsvg .pg, #gzsvg .pg { fill: var(--signal); stroke: var(--sheet); stroke-width: 1.5; }
+#stsvg .pb { fill: var(--flag-b); stroke: var(--sheet); stroke-width: 1.5; }
+#stsvg .pm, #gzsvg .pm { fill: var(--flag-y); stroke: var(--ink); stroke-width: 1; }
+#stsvg .pz { fill: var(--ink); }
+#stsvg text, #gzsvg text { font: 12px var(--mono); fill: var(--ink); }
+#stsvg text.lbl { font: 600 14px var(--mono); }
+#stsvg .small-t { fill: var(--muted); font-size: 11px; }
+#gzsvg .grid { stroke: var(--rule); stroke-width: 1; }
+#gzsvg .axis { stroke: var(--ink); stroke-width: 1.2; }
+#gzsvg .ar1 { fill: color-mix(in srgb, var(--flag-b) 16%, transparent); }
+#gzsvg .ar2 { fill: color-mix(in srgb, var(--flag-b) 32%, transparent); }
+#gzsvg .tan { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 6 4; }
+#gzsvg .gzc { fill: none; stroke: var(--ink); stroke-width: 2.5; }
+#gzsvg .now { stroke: var(--signal); stroke-width: 1; stroke-dasharray: 3 3; }
+.tag.warn { color: var(--signal); border-color: var(--signal); }
+
+/* ---- wave 4: code of life ---- */
+.basegrid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+.basefig, .pairfig { margin: 0; background: var(--sheet); border: 1px solid var(--rule); padding: 8px; display: grid; gap: 4px; }
+.basefig figcaption { font-size: 14px; color: var(--muted); text-align: center; }
+.pairs { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.pairfig svg, .basefig svg, .nucfig svg { width: 100%; height: auto; display: block; }
+.nucfig { background: var(--sheet); border: 1px solid var(--rule); padding: 8px; max-width: 560px; }
+svg .bd { stroke: var(--ink); stroke-width: 1.7; stroke-linecap: round; }
+svg .bd.sug { stroke-dasharray: 3 3; }
+svg .hb { stroke: var(--signal); stroke-width: 1.6; stroke-dasharray: 4 3; }
+svg .at { font: 500 14px var(--mono); fill: var(--ink); }
+svg .at.ox { fill: var(--signal); }
+svg .at.ni { fill: var(--flag-b); }
+svg .num-t { font: 9px var(--mono); fill: var(--muted); }
+svg .small-t { font: 10px var(--mono); fill: var(--muted); }
+svg .phos { fill: color-mix(in srgb, var(--flag-y) 45%, var(--sheet)); stroke: var(--ink); }
+svg .basebox { fill: color-mix(in srgb, var(--flag-b) 12%, var(--sheet)); stroke: var(--ink); }
+.seqout .seq { word-break: break-all; font-size: 16px; line-height: 1.9; margin: 6px 0; }
+.seqout mark { color: var(--ink); padding: 1px 0; }
+.seqout mark.m1 { background: color-mix(in srgb, var(--flag-y) 55%, transparent); }
+.seqout mark.m2 { background: color-mix(in srgb, var(--flag-b) 30%, transparent); }
+.seqout mark.m3 { background: color-mix(in srgb, var(--ok) 40%, transparent); }
+.qty .wrapnum { word-break: break-all; text-align: right; }
+textarea { font-size: 16px; color: var(--ink); background: var(--paper); border: 1px solid var(--rule); padding: 8px 10px; }
+.plate + .plate { margin-top: 12px; }
+@media (max-width: 700px) { .figure.mid { overflow-x: auto; } .figure.mid svg { width: 680px; height: auto; } }

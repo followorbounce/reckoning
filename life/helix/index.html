@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The double helix · Reckoning</title>
+<meta name="description" content="A-, B- and Z-DNA in 3D with their helical parameters.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/life/helix/">
+<meta property="og:title" content="The double helix · Reckoning">
+<meta property="og:description" content="A-, B- and Z-DNA in 3D with their helical parameters.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/">Shape</a><a href="../../number/">Number</a><a href="../../sky/">Sky & sea</a><a href="../../weather/">Weather</a><a href="../../signal/">Signal</a><a href="../../ship/">Ship</a><a href="../../life/" aria-current="page">Code of life</a><a href="../../glossary/">Glossary</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Code of life</a> / The double helix</p>
+<div class="head"><p class="eyebrow">Code of life · shape</p><h1>The double helix</h1>
+<p class="lede col">The two strands wind round a common axis with the base pairs stacked between them like the treads of a spiral stair. The same chemistry
+can take more than one shape: the familiar <b>B</b> form, the squat <b>A</b> form, and the left-handed <b>Z</b> form.</p></div>
+<div class="shape"><div class="figure globe" style="aspect-ratio:3/4"><canvas id="hx" aria-label="Double helix in 3D: drag to turn"></canvas><p class="hint">drag to turn</p></div>
+<div class="stack"><div class="plate"><p class="label">Form</p><div class="row" role="radiogroup" aria-label="Form"><button type="button" class="hxf ghost" data-f="A" aria-pressed="false">A-DNA</button><button type="button" class="hxf" data-f="B" aria-pressed="true">B-DNA</button><button type="button" class="hxf ghost" data-f="Z" aria-pressed="false">Z-DNA</button></div>
+<div class="sliders"><label>Base pairs <input type="range" id="hxn" min="6" max="36" step="1" value="24"><output id="hxnv"></output></label></div>
+<div class="qty" id="hxq"></div>
+<p class="small"><span class="key" style="background:#2f7d4f"></span> A &nbsp;<span class="key" style="background:#c8261d"></span> T &nbsp;<span class="key" style="background:#e8b500"></span> G &nbsp;<span class="key" style="background:#1d4f91"></span> C</p></div></div></div>
+<section class="block"><h2>The three forms</h2><div class="tablewrap"><table><thead><tr><th>Form</th><th>Hand</th><th>bp per turn</th><th>Rise per bp (nm)</th><th>Twist per bp</th><th>Pitch (nm)</th><th>Diameter (nm)</th><th>Base-pair tilt</th><th>Grooves</th><th>Found in</th></tr></thead><tbody><tr><td class="sym">A</td><td>right</td><td class="num">11</td><td class="num">0.256</td><td class="num">+32.7°</td><td class="num">2.82</td><td class="num">≈ 2.3</td><td class="num">+20°</td><td class="small">major deep and narrow; minor wide and shallow</td><td class="small">dehydrated DNA; RNA double helices and DNA–RNA hybrids take this shape</td></tr><tr><td class="sym">B</td><td>right</td><td class="num">10</td><td class="num">0.338</td><td class="num">+36.0°</td><td class="num">3.38</td><td class="num">≈ 2.0</td><td class="num">-6°</td><td class="small">major wide; minor narrow</td><td class="small">the usual form in water and in cells; in solution 10.4 ± 0.1 bp per turn</td></tr><tr><td class="sym">Z</td><td>left</td><td class="num">12</td><td class="num">0.372</td><td class="num">-30.0°</td><td class="num">4.46</td><td class="num">≈ 1.8</td><td class="num">-7°</td><td class="small">no real major groove; minor narrow and deep</td><td class="small">alternating purine–pyrimidine runs such as (CG)n, at high salt or under negative supercoiling</td></tr></tbody></table></div>
+<p class="small col">A and B: fibre models of <a href="https://doi.org/10.1016/0006-291X(72)90243-4" rel="noopener" title="Optimised parameters for A-DNA and B-DNA, Biochemical and Biophysical Research Communications 47 (1972) 1504–1509">Arnott &amp; Hukins 1972</a>; Z: the crystal structure of <a href="https://doi.org/10.1038/282680a0" rel="noopener" title="Molecular structure of a left-handed double helical DNA fragment at atomic resolution, Nature 282 (1979) 680–686">Wang et al. 1979</a>. Diameters and tilts are rounded, as given in <a href="https://doi.org/10.1007/978-1-4612-5190-3" rel="noopener" title="Principles of Nucleic Acid Structure (Springer, 1984), the standard reference for helix dimensions">Saenger 1984</a>.
+In solution B-DNA turns a little less tightly than in fibres: <a href="https://doi.org/10.1073/pnas.76.1.200" rel="noopener" title="Helical repeat of DNA in solution, PNAS 76 (1979) 200–203: 10.4 ± 0.1 base pairs per turn">Wang 1979</a> measured 10.4 ± 0.1 bp per turn.
+The build checks that the twist is 360° divided by the base pairs per turn, and that the pitch is the rise times the base pairs per turn. The 3D model is drawn from these numbers. It is a diagram, not an atomic model.</p></section>
+<div class="then col"><b>Then and now</b><p>The 1953 model had 10 base pairs per turn and a pitch of 3.4 nm, read from Rosalind Franklin and Raymond Gosling’s X-ray photographs of
+the B form. The left-handed Z form was not seen until 1979, when a short (CG)<sub>3</sub> crystal was solved at atomic resolution. In it the backbone zigzags
+because the repeating unit is two base pairs, not one.</p></div>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather, signal, ship and the code of life. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p><a href="../../glossary/">Glossary</a> · <a href="../../sky/names/">Names from the sky</a> · Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>window.RK_FORMS = [{"f": "A", "hand": "right", "n": 11, "rise": 0.256, "twist": 32.7, "pitch": 2.82, "diam": 2.3}, {"f": "B", "hand": "right", "n": 10, "rise": 0.338, "twist": 36.0, "pitch": 3.38, "diam": 2.0}, {"f": "Z", "hand": "left", "n": 12, "rise": 0.372, "twist": -30.0, "pitch": 4.46, "diam": 1.8}];</script>
+<script src="../../assets/dnamath.js"></script>
+<script src="../../assets/helix.js"></script>
+</body>
+</html>
