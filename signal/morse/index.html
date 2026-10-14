@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Morse code · Reckoning</title>
+<meta name="description" content="International Morse code with sound, correct ITU timing, Farnsworth spacing and an ear-training drill.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/signal/morse/">
+<meta property="og:title" content="Morse code · Reckoning">
+<meta property="og:description" content="International Morse code with sound, correct ITU timing, Farnsworth spacing and an ear-training drill.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/">Shape</a><a href="../../signal/" aria-current="page">Signal</a><a href="../../weather/">Weather</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Signal</a> / Morse code</p>
+<div class="head"><p class="eyebrow">Signal · ITU-R M.1677-1</p><h1>Morse code</h1>
+<p class="lede col">Everything in Morse is counted in one unit: a dot is one unit long, a dash three, and the silences between
+elements, letters and words are one, three and seven. Speed is given in words per minute, using the word PARIS (exactly 50 units) as the standard word.</p></div>
+<div class="plate"><p class="label">Send</p>
+<div class="row"><input id="mtext" type="text" value="SOS DE RECKONING" aria-label="Text to send" autocapitalize="characters" spellcheck="false" style="flex:1;min-width:200px">
+<button id="mplay" type="button">Play</button><span id="mlamp" class="lamp" aria-hidden="true"></span></div>
+<div class="sliders"><label>Speed (wpm)<input id="mwpm" type="range" min="5" max="40" value="18"><output id="mwpmv">18</output></label>
+<label>Farnsworth (wpm)<input id="mfwpm" type="range" min="5" max="40" value="18"><output id="mfwpmv">18</output></label>
+<label>Tone (Hz)<input id="mtone" type="range" min="400" max="1000" step="10" value="650" oninput="this.nextElementSibling.textContent=this.value"><output>650</output></label></div>
+<label class="row small"><input type="checkbox" id="moldgap" style="min-height:auto"> Use the older 5-unit gap between words</label>
+<div class="mbar" id="mbar" aria-hidden="true"></div><p class="prov" id="minfo"></p>
+<div class="row"><button class="ghost" type="button" data-say="SOS">SOS</button><button class="ghost" type="button" data-say="PARIS">PARIS</button><button class="ghost" type="button" data-say="CQ">CQ</button><button class="ghost" type="button" data-say="TEST">TEST</button></div></div>
+<div class="plate"><p class="label">Train your ear</p>
+<div class="row"><select id="dset" aria-label="Characters"><option value="easy">Short codes (E T I A N M…)</option><option value="letters">All letters</option><option value="digits">Figures</option><option value="all">Letters and figures</option></select>
+<select id="dlen" aria-label="Group length"><option value="1">1 character</option><option value="3" selected>3 characters</option><option value="5">5 characters</option></select>
+<button id="dlisten" type="button">Listen</button></div>
+<div class="row"><input id="dans" type="text" aria-label="What you heard" autocapitalize="characters" spellcheck="false" autocomplete="off"><button class="ghost" id="dcheck" type="button">Check</button></div>
+<p class="out" id="dres" aria-live="polite"></p></div>
+<div class="then col"><b>Then and now</b><p>Some older manuals gave five units between words; the ITU recommendation uses seven. Tick the box above to hear the difference.
+The commercial at (·−−·−·) was added in 2004 so that e-mail addresses could be sent.</p></div>
+<section class="block"><h2>Timing</h2><div class="tablewrap" style="max-width:420px"><table><thead><tr><th>Element</th><th>Units</th></tr></thead><tbody><tr><td>dot</td><td class="num">1</td></tr><tr><td>dash</td><td class="num">3</td></tr><tr><td>gap inside a letter</td><td class="num">1</td></tr><tr><td>gap between letters</td><td class="num">3</td></tr><tr><td>gap between words</td><td class="num">7</td></tr></tbody></table></div>
+<p class="col small">At a speed of w words per minute one unit lasts 1.2/w seconds: 60 s divided by 50 units per word.</p></section>
+<section class="block"><h2>The code</h2><div class="tablewrap"><table class="morsetab"><thead><tr><th>Sign</th><th>Code</th><th>Name</th></tr></thead><tbody><tr><td class="mono"><b>A</b></td><td class="mono morse-code">·−</td><td></td></tr><tr><td class="mono"><b>B</b></td><td class="mono morse-code">−···</td><td></td></tr><tr><td class="mono"><b>C</b></td><td class="mono morse-code">−·−·</td><td></td></tr><tr><td class="mono"><b>D</b></td><td class="mono morse-code">−··</td><td></td></tr><tr><td class="mono"><b>E</b></td><td class="mono morse-code">·</td><td></td></tr><tr><td class="mono"><b>F</b></td><td class="mono morse-code">··−·</td><td></td></tr><tr><td class="mono"><b>G</b></td><td class="mono morse-code">−−·</td><td></td></tr><tr><td class="mono"><b>H</b></td><td class="mono morse-code">····</td><td></td></tr><tr><td class="mono"><b>I</b></td><td class="mono morse-code">··</td><td></td></tr><tr><td class="mono"><b>J</b></td><td class="mono morse-code">·−−−</td><td></td></tr><tr><td class="mono"><b>K</b></td><td class="mono morse-code">−·−</td><td></td></tr><tr><td class="mono"><b>L</b></td><td class="mono morse-code">·−··</td><td></td></tr><tr><td class="mono"><b>M</b></td><td class="mono morse-code">−−</td><td></td></tr><tr><td class="mono"><b>N</b></td><td class="mono morse-code">−·</td><td></td></tr><tr><td class="mono"><b>O</b></td><td class="mono morse-code">−−−</td><td></td></tr><tr><td class="mono"><b>P</b></td><td class="mono morse-code">·−−·</td><td></td></tr><tr><td class="mono"><b>Q</b></td><td class="mono morse-code">−−·−</td><td></td></tr><tr><td class="mono"><b>R</b></td><td class="mono morse-code">·−·</td><td></td></tr><tr><td class="mono"><b>S</b></td><td class="mono morse-code">···</td><td></td></tr><tr><td class="mono"><b>T</b></td><td class="mono morse-code">−</td><td></td></tr><tr><td class="mono"><b>U</b></td><td class="mono morse-code">··−</td><td></td></tr><tr><td class="mono"><b>V</b></td><td class="mono morse-code">···−</td><td></td></tr><tr><td class="mono"><b>W</b></td><td class="mono morse-code">·−−</td><td></td></tr><tr><td class="mono"><b>X</b></td><td class="mono morse-code">−··−</td><td></td></tr><tr><td class="mono"><b>Y</b></td><td class="mono morse-code">−·−−</td><td></td></tr><tr><td class="mono"><b>Z</b></td><td class="mono morse-code">−−··</td><td></td></tr><tr><td class="mono"><b>1</b></td><td class="mono morse-code">·−−−−</td><td></td></tr><tr><td class="mono"><b>2</b></td><td class="mono morse-code">··−−−</td><td></td></tr><tr><td class="mono"><b>3</b></td><td class="mono morse-code">···−−</td><td></td></tr><tr><td class="mono"><b>4</b></td><td class="mono morse-code">····−</td><td></td></tr><tr><td class="mono"><b>5</b></td><td class="mono morse-code">·····</td><td></td></tr><tr><td class="mono"><b>6</b></td><td class="mono morse-code">−····</td><td></td></tr><tr><td class="mono"><b>7</b></td><td class="mono morse-code">−−···</td><td></td></tr><tr><td class="mono"><b>8</b></td><td class="mono morse-code">−−−··</td><td></td></tr><tr><td class="mono"><b>9</b></td><td class="mono morse-code">−−−−·</td><td></td></tr><tr><td class="mono"><b>0</b></td><td class="mono morse-code">−−−−−</td><td></td></tr><tr><td class="mono"><b>.</b></td><td class="mono morse-code">·−·−·−</td><td>full stop</td></tr><tr><td class="mono"><b>,</b></td><td class="mono morse-code">−−··−−</td><td>comma</td></tr><tr><td class="mono"><b>:</b></td><td class="mono morse-code">−−−···</td><td>colon</td></tr><tr><td class="mono"><b>?</b></td><td class="mono morse-code">··−−··</td><td>question mark</td></tr><tr><td class="mono"><b>&#x27;</b></td><td class="mono morse-code">·−−−−·</td><td>apostrophe</td></tr><tr><td class="mono"><b>-</b></td><td class="mono morse-code">−····−</td><td>hyphen</td></tr><tr><td class="mono"><b>/</b></td><td class="mono morse-code">−··−·</td><td>fraction bar</td></tr><tr><td class="mono"><b>(</b></td><td class="mono morse-code">−·−−·</td><td>open bracket</td></tr><tr><td class="mono"><b>)</b></td><td class="mono morse-code">−·−−·−</td><td>close bracket</td></tr><tr><td class="mono"><b>&quot;</b></td><td class="mono morse-code">·−··−·</td><td>quotation marks</td></tr><tr><td class="mono"><b>=</b></td><td class="mono morse-code">−···−</td><td>double hyphen (break)</td></tr><tr><td class="mono"><b>+</b></td><td class="mono morse-code">·−·−·</td><td>cross (end of message)</td></tr><tr><td class="mono"><b>@</b></td><td class="mono morse-code">·−−·−·</td><td>commercial at (added 2004)</td></tr></tbody></table></div></section>
+<section class="block"><h2>Procedure signals</h2><div class="tablewrap"><table><thead><tr><th>Signal</th><th>Code</th><th>Use</th></tr></thead><tbody><tr><td>Starting signal</td><td class="mono morse-code">−·−·−</td><td class="small">Sent before each transmission.</td></tr><tr><td>Invitation to transmit (K)</td><td class="mono morse-code">−·−</td><td class="small">Over to you.</td></tr><tr><td>Wait (AS)</td><td class="mono morse-code">·−···</td><td class="small">Wait.</td></tr><tr><td>Understood (SN)</td><td class="mono morse-code">···−·</td><td class="small">Message received and understood.</td></tr><tr><td>Error</td><td class="mono morse-code">········</td><td class="small">Eight dots: the last word or group was wrong; it follows corrected.</td></tr><tr><td>Cross (AR)</td><td class="mono morse-code">·−·−·</td><td class="small">End of the message (end of telegram).</td></tr><tr><td>End of work (SK)</td><td class="mono morse-code">···−·−</td><td class="small">End of the whole exchange.</td></tr></tbody></table></div>
+<p class="small">Source: <a href="https://www.itu.int/rec/R-REC-M.1677" rel="noopener">Recommendation ITU-R M.1677-1: International Morse code</a>.</p></section>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape and signal. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p>Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script>window.RK_MORSE = {"code": {"A": ".-", "B": "-...", "C": "-.-.", "D": "-..", "E": ".", "F": "..-.", "G": "--.", "H": "....", "I": "..", "J": ".---", "K": "-.-", "L": ".-..", "M": "--", "N": "-.", "O": "---", "P": ".--.", "Q": "--.-", "R": ".-.", "S": "...", "T": "-", "U": "..-", "V": "...-", "W": ".--", "X": "-..-", "Y": "-.--", "Z": "--..", "1": ".----", "2": "..---", "3": "...--", "4": "....-", "5": ".....", "6": "-....", "7": "--...", "8": "---..", "9": "----.", "0": "-----", ".": ".-.-.-", ",": "--..--", ":": "---...", "?": "..--..", "'": ".----.", "-": "-....-", "/": "-..-.", "(": "-.--.", ")": "-.--.-", "\"": ".-..-.", "=": "-...-", "+": ".-.-.", "@": ".--.-."}};</script>
+<script src="../../assets/audio.js"></script>
+<script src="../../assets/morse.js"></script>
+</body>
+</html>

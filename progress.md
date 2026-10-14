@@ -12,10 +12,21 @@
 - Found while checking: the old handbook ellipse perimeter rule overestimates by 2.54 % at 2:1
   (text says "about 2.5 %"); two source URLs were dead and were replaced (IAU archive, EPSG).
 
+## 2026-10-14: Wave 2 (Signal + Weather) built
+- Signal: 26 code flags + 10 numeral pennants + 3 substitutes + answering pennant, drawn from
+  their blazons; single-letter meanings (ICS 1969/2005); hoist composer with substitute rules;
+  Morse player (ITU timing, PARIS wpm, Farnsworth, lamp, older 5-unit gap toggle) and ear drill;
+  ICAO/ITU alphabet + figure code words + 1941 Able-Baker list (secondary source, labelled);
+  COLREGs sound signals played at real length.
+- Weather: Beaufort 0-12 with an animated sea at a fixed scale beside a 10 m boat; WMO sea-state
+  code 3700 (verified against the 2010 WMO-No. 306 text); marine visibility terms; 20 present-
+  weather symbols (ww meanings verified in WMO-No. 306); cyclone basins map + Saffir-Simpson.
+- Found while checking: the Beaufort knot and m/s limits are separately rounded tables and
+  disagree by up to ~0.5 m/s at forces 4-6; stated on the page, check allows 0.6.
+- Dropped: the swell (Douglas) table, because no primary source was found.
+
 ## Next
-- Wave 2: Signal (current ICS flags + composer, Morse with sound/drills, phonetic alphabets
-  then/now, sound signals) and Weather (Beaufort with animated sea, sea/visibility scales,
-  WMO symbols).
+- Wave 2 leftovers: semaphore; bell and gong signals; the other 80 present-weather symbols.
 - Wave 3: Sky & sea + Number. Wave 4: Ship + Code of life.
 - Known gaps: foreign national units of the old handbook (vara, arroba…) are left out because
   they varied by country; density/specific-gravity explorer not built yet.

@@ -19,6 +19,8 @@ from si import CONSTANTS, BASE, DERIVED, PREFIXES  # noqa: E402
 from sources import SOURCES  # noqa: E402
 from shapes import SHAPES, VALID  # noqa: E402
 from texts import KIND_PAGES, SYSTEM_ORDER  # noqa: E402
+sys.path.insert(0, ROOT)
+import rooms2  # noqa: E402
 
 SITE = 'https://followorbounce.github.io/reckoning/'
 E = html.escape
@@ -29,12 +31,13 @@ THREE = ('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/thre
 FLAGS = ('<svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/>'
          '<rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>')
 
+LIVE_WAVE = 2
 ROOMS = [
     ('measure', 'Measure', 'Units, their exact definitions, and a converter that says where every factor comes from.', 1),
     ('shape', 'Shape', 'Areas and volumes of 42 figures and solids, each formula checked, with a topology lens.', 1),
     ('number', 'Number', 'Symbols, Greek letters, trigonometry on the unit circle, logarithms and a working slide rule.', 3),
     ('sky', 'Sky & sea', 'Latitude and longitude on a globe, great circles against rhumb lines, the kinds of time.', 3),
-    ('weather', 'Weather', 'The Beaufort scale with an animated sea, sea and visibility scales, weather symbols.', 2),
+    ('weather', 'Weather', 'The Beaufort scale with an animated sea, sea state, visibility, weather symbols, tropical cyclones.', 2),
     ('signal', 'Signal', 'Code flags, Morse with sound and correct timing, phonetic alphabets, sound signals.', 2),
     ('ship', 'Ship', 'A hull cutaway with every named part, buoyancy, and a stability simulator.', 4),
     ('life', 'Code of life', 'DNA bases and pairing in 3D, the IUPAC letters, and supercoiling as topology.', 4),
@@ -45,7 +48,7 @@ def page(rel_path, title, desc, body, extra_head='', scripts='', nav=None):
     depth = rel_path.count('/')
     up = '../' * depth
     navs = ''.join('<a href="%s%s/"%s>%s</a>' % (up, k, ' aria-current="page"' if nav == k else '', n)
-                   for k, n in (('measure', 'Measure'), ('shape', 'Shape'), ('about', 'About')))
+                   for k, n in (('measure', 'Measure'), ('shape', 'Shape'), ('signal', 'Signal'), ('weather', 'Weather'), ('about', 'About')))
     canon = SITE + (rel_path[:-len('index.html')] if rel_path.endswith('index.html') else rel_path)
     out = f'''<!doctype html>
 <html lang="en">
@@ -233,12 +236,12 @@ def thumb(sh):
 def home():
     cards = []
     for slug, name, what, wave in ROOMS:
-        live = wave == 1
+        live = wave <= LIVE_WAVE
         inner = '<h3>%s %s</h3><p class="small">%s</p>' % (E(name), '' if live else '<span class="tag soon">wave %d</span>' % wave, E(what))
         cards.append('<a class="card" href="%s/">%s</a>' % (slug, inner) if live else '<div class="card room-off">%s</div>' % inner)
     body = f'''
 <div class="head">
-  <p class="eyebrow">An interactive handbook · wave 1 of 4</p>
+  <p class="eyebrow">An interactive handbook · wave {LIVE_WAVE} of 4</p>
   <h1>Reckoning</h1>
   <p class="lede col">Measure, shape, number, sky, weather, signal, ship and code: the reference tables a navigator, engineer or student
   reaches for, made into instruments you can use. Every value is traced to a current primary standard, and every formula is checked
@@ -527,7 +530,7 @@ find an error, it will be corrected and the correction noted.</p></section>
 
 def run_checks():
     out = []
-    for t in ('tests/check_units.py', 'tests/check_shapes.py'):
+    for t in ('tests/check_units.py', 'tests/check_shapes.py', 'tests/check_wave2.py'):
         r = subprocess.run([sys.executable, os.path.join(ROOT, t)], capture_output=True, text=True)
         out.append(r.stdout.strip().splitlines()[-1] if r.stdout.strip() else r.stderr)
         if r.returncode:
@@ -542,10 +545,12 @@ def main():
     nshape = len(SHAPES)
     report = ('units: %d, of which %d exact\n' % (len(UNITS), sum(u['exact'] for u in UNITS)) +
               'shapes: %d (%d plane, %d solid); every area/volume formula checked\n' % (nshape, sum(s['dim'] == 2 for s in SHAPES), sum(s['dim'] == 3 for s in SHAPES)) +
+              'signal: 40 flags and pennants, %d Morse signs; weather: Beaufort 0-12, WMO codes 3700 and 4677\n' % len(rooms2.MORSE) +
               '\n'.join(lines))
     paths = [home(), measure_hub(), si_page(), derived_page(), prefix_page(), fractions_page()]
     paths += [kind_page(k) for k in KINDS]
     paths += [shape_hub(), topology_page()] + [shape_page(s) for s in SHAPES]
+    paths += rooms2.signal_pages(page, src_link) + rooms2.weather_pages(page, src_link)
     paths.append(about_page(report))
     urls = ''.join('<url><loc>%s%s</loc></url>' % (SITE, p[:-len('index.html')] if p.endswith('index.html') else p) for p in paths)
     open(os.path.join(ROOT, 'sitemap.xml'), 'w').write('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">%s</urlset>\n' % urls)

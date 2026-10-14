@@ -22,15 +22,24 @@ measure/, shape/, about/, sitemap.xml, robots.txt).
   `PI`, `rad(deg)`); the same strings are checked by tests and evaluated live by assets/shape.js.
   VALID holds parameter conditions (Python `and`/`or`, converted for JS).
 - data/texts.py: Measure page text.
+- data/signals.py: ICS flags (designs as kinds + colour letters, checked against the blazons),
+  single-letter meanings, pennants, substitutes; Morse (ITU-R M.1677-1); ICAO/ITU and 1941
+  alphabets; COLREGs sound signals. flagart.py draws flags and WMO weather symbols as SVG.
+- data/weather.py: Beaufort (Met Office/WMO limits and wave heights), WMO code 3700, visibility
+  terms, Saffir-Simpson (NHC, km/h as published), cyclone basins. data/land-110m.json is Natural
+  Earth (public domain) for the basin map; rooms2.py builds the Signal and Weather pages.
 
 ## Checks
 - tests/check_units.py: factors vs reference values typed separately from NIST tables;
   temperature fixed points; prefix/SI table sizes; every source key exists.
+- tests/check_wave2.py: flags A-Z = ICAO words, designs draw, Morse codes distinct, PARIS = 50
+  units, Beaufort ranges contiguous and consistent with 0.836 B^1.5, sea state, Saffir-Simpson.
 - tests/check_shapes.py: every area/volume formula vs Monte Carlo of a point-membership test
   written from the shape's definition (not its formula); selected perimeters/surfaces by
   numerical integration; Euler characteristic from meshes and V-E+F.
 
 ## Front end
+- assets/audio.js (shared, iOS unlock), morse.js, horn.js, hoist.js, sea.js (Beaufort canvas).
 - assets/convert.js: exact BigInt rational conversion; prints full decimals when they terminate.
 - assets/shape.js: sliders, live quantities, 2D SVG figures. assets/solid.js: three.js r128
   solids (lathe for solids of revolution; cut-away quarter for hollow solids; `RK_RENDER()` hook
