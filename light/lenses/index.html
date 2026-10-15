@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lenses · Reckoning</title>
+<meta name="description" content="Converging and diverging lenses traced surface by surface: focal points, the lensmaker’s formula, spherical and chromatic aberration, and the ideal thin lens.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/light/lenses/">
+<meta property="og:title" content="Lenses · Reckoning">
+<meta property="og:description" content="Converging and diverging lenses traced surface by surface: focal points, the lensmaker’s formula, spherical and chromatic aberration, and the ideal thin lens.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/">Shape</a><a href="../../number/">Number</a><a href="../../sky/">Sky & sea</a><a href="../../weather/">Weather</a><a href="../../signal/">Signal</a><a href="../../ship/">Ship</a><a href="../../life/">Code of life</a><a href="../../light/" aria-current="page">Light</a><a href="../../glossary/">Glossary</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Light</a> / Lenses</p>
+<div class="head"><p class="eyebrow">Light · two surfaces</p><h1>Lenses</h1>
+<p class="lede col">A lens is two refracting surfaces close together. Thicker in the middle, it bends parallel light together to a focus. Thinner in
+the middle, it spreads light as if from a point in front of it. Here every ray is traced through both real spherical surfaces, so you see what a
+simple formula hides: the rays from the rim do not focus where the rays near the axis do.</p></div>
+<div class="shape"><div class="figure bench" data-page="lenses"><canvas role="img" aria-label="Rays passing through a lens and coming to a focus"></canvas><span class="hint">rays traced exactly · drag the yellow handles where shown</span></div>
+<div class="stack"><div class="plate"><p class="label">The lens</p><div class="sliders">
+<label>Type <select id="ltype"><option value="biconvex">Biconvex (converging)</option><option value="plano-convex">Plano-convex (converging)</option><option value="meniscus">Meniscus (converging)</option>
+<option value="biconcave">Biconcave (diverging)</option><option value="plano-concave">Plano-concave (diverging)</option><option value="ideal">Ideal thin lens (a model)</option></select><span></span></label>
+<label id="lRrow">Radius R <input type="range" id="lR" min="40" max="300" step="1" value="100"><output id="lRv"></output></label>
+<label id="lfrow" hidden>Focal length <input type="range" id="lf" min="-200" max="200" step="1" value="100"><output id="lfv"></output></label>
+<label>Diameter <input type="range" id="lD" min="10" max="90" step="1" value="50"><output id="lDv"></output></label>
+<label id="lmatrow">Material <select id="lmat"><option value="water">Water</option><option value="silica">Fused silica</option><option value="bk7" selected>Crown glass (N-BK7)</option><option value="f2">Flint glass (N-F2)</option><option value="diamond">Diamond</option></select><span></span></label></div></div>
+<div class="plate"><p class="label">The light</p><div class="sliders">
+<label>Source <select id="llight"><option value="beam">Parallel beam (distant object)</option><option value="point">Point on the axis</option></select><span></span></label>
+<label id="ltiltrow">Beam tilt <input type="range" id="ltilt" min="-12" max="12" step="0.5" value="0"><output id="ltiltv"></output></label>
+<label id="lurow" hidden>Object distance <input type="range" id="lu" min="40" max="400" step="5" value="220"><output id="luv"></output></label>
+<label>Rays <input type="range" id="ln" min="3" max="31" step="2" value="11"><output id="lnv"></output></label>
+<label>Colour <select id="lcol"><option value="mono">One colour (d line)</option><option value="white">White light</option></select><span></span></label></div></div>
+<div class="plate" aria-live="polite"><p class="label">Measured</p><div class="qty" id="lq"></div></div></div></div>
+<section class="block"><h2>The lensmaker’s formula</h2><p class="col">Light travels left to right. A surface’s radius R is positive when its centre
+of curvature lies to the right of it. So a biconvex lens has R<sub>1</sub> &gt; 0 and R<sub>2</sub> &lt; 0. For a lens of index n and centre thickness t,
+the focal length f is</p>
+<div class="formula"><span class="tex" data-tex="\frac{1}{f} = (n-1)\left[\frac{1}{R_1} - \frac{1}{R_2} + \frac{(n-1)\,t}{n\,R_1 R_2}\right]"></span></div>
+<p class="col">The focal length is measured from the lens’s principal plane. The <b>back focal distance</b>, from the last surface to the focus F′,
+is what you measure with a ruler. <b>Power</b> is 1/f in dioptres when f is in metres: a +2.5 reading glass has f = 400 mm. For the default lens here
+(crown glass, R = ±100 mm, 12 mm thick) f = 98.8 mm and the back focal distance is 94.7 mm.</p></section>
+<section class="block"><h2>Two flaws of a simple lens</h2><p class="col"><b>Spherical aberration.</b> A sphere is easy to grind but is not the
+shape that sends every ray to one point. Rays through the rim are bent too much and cross the axis short of the focus, so the image of a star is a
+small blur, not a point. Make the lens wider and watch the crossing points spread along the axis. Opticians reduce the flaw by sharing the bending
+between surfaces (turn a plano-convex lens with its curved side to the parallel light), by stopping down the aperture, or by grinding an
+<b>asphere</b>.</p>
+<p class="col"><b>Chromatic aberration.</b> The index is higher for blue, so blue focuses closer to the lens than red. For the default lens the
+blue F light focuses 1.49 mm before the red C light. Choose white light and look at the coloured fringe at the focus. An
+<b>achromatic doublet</b> cures most of it: a converging crown-glass lens cemented to a weaker diverging flint-glass lens, whose larger
+dispersion cancels the crown’s while leaving some converging power.</p></section>
+<section class="block"><h2>The ideal thin lens</h2><p class="col">The ideal thin lens is a model with no thickness and no aberrations. Every ray
+from one point meets again at one point. It is what the familiar formula describes, with u the object distance in front of the lens, v the image
+distance behind it (negative when the image is virtual) and magnification −v/u. Choose it, put a point source on the axis, and compare it with a
+real lens of the same focal length.</p>
+<div class="formula"><span class="tex" data-tex="\frac{1}{u} + \frac{1}{v} = \frac{1}{f}"></span></div></section>
+<div class="then col"><b>Then and now</b><p>Reading stones, polished domes of rock crystal or glass laid on a page, are older than spectacles. Spectacles
+appeared in northern Italy in the late 1280s: in a sermon preached in Florence in February 1306, the Pisan friar Giordano said the art of making
+them had been found less than twenty years before. The achromatic doublet was made by Chester Moor Hall in the 1730s and patented by John Dollond in 1758. Today a camera lens of a dozen
+elements is designed by tracing many thousands of rays, exactly as this bench does, only in three dimensions.</p></div>
+<div class="then col"><b>What this model leaves out</b><p>These are rays, the geometrical-optics picture: light is treated as lines that bend and split at surfaces. Diffraction and interference, which need the wave picture, are not shown. The bench is a flat cross-section, so a lens here is really a cylinder of glass seen end-on. That is exact for rays in the plane of the drawing. Air is taken as n = 1, and the glass and water indices are given relative to air, so the angles are right. Colours on screen are an approximation of the spectrum.</p></div>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather, signal, ship, the code of life and light. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p><a href="../../glossary/">Glossary</a> · <a href="../../sky/names/">Names from the sky</a> · Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script src="../../assets/optics.js"></script>
+<script src="../../assets/light.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(!window.katex)return;document.querySelectorAll(".tex").forEach(function(el){try{katex.render(el.getAttribute("data-tex"),el,{displayMode:true,throwOnError:false})}catch(e){el.textContent=el.getAttribute("data-tex")}})});</script>
+</body>
+</html>

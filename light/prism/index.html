@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prisms and colour · Reckoning</title>
+<meta name="description" content="A prism on an exact ray tracer: deviation, minimum deviation, measuring the index, and white light opened into a spectrum.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/light/prism/">
+<meta property="og:title" content="Prisms and colour · Reckoning">
+<meta property="og:description" content="A prism on an exact ray tracer: deviation, minimum deviation, measuring the index, and white light opened into a spectrum.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/">Shape</a><a href="../../number/">Number</a><a href="../../sky/">Sky & sea</a><a href="../../weather/">Weather</a><a href="../../signal/">Signal</a><a href="../../ship/">Ship</a><a href="../../life/">Code of life</a><a href="../../light/" aria-current="page">Light</a><a href="../../glossary/">Glossary</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Light</a> / Prisms and colour</p>
+<div class="head"><p class="eyebrow">Light · dispersion</p><h1>Prisms and colour</h1>
+<p class="lede col">A prism bends light twice, both times towards its thick base. White light comes out as a fan of colours, because each colour has
+its own refractive index. Turn the incoming ray and watch the deviation fall to a least value, then rise again.</p></div>
+<div class="shape"><div class="figure bench" data-page="prism"><canvas role="img" aria-label="A ray of white light entering a glass prism and leaving as a spectrum"></canvas><span class="hint">rays traced exactly · drag the yellow handles where shown</span></div>
+<div class="stack"><div class="plate"><p class="label">The prism and the ray</p><div class="sliders">
+<label>Apex angle A <input type="range" id="pA" min="20" max="75" step="1" value="60"><output id="pAv"></output></label>
+<label>Material <select id="pmat"><option value="water">Water</option><option value="silica">Fused silica</option><option value="bk7" selected>Crown glass (N-BK7)</option><option value="f2">Flint glass (N-F2)</option><option value="diamond">Diamond</option></select><span></span></label>
+<label>Incidence i <input type="range" id="pi" min="0" max="89" step="0.1" value="50"><output id="piv"></output></label>
+<label>Light <select id="pcol"><option value="white">White light</option><option value="mono">One colour</option></select><span></span></label>
+<label>Wavelength <input type="range" id="plam" min="400" max="700" step="1" value="589"><output id="plamv"></output></label></div>
+<div class="row"><button type="button" id="pmin">Set to minimum deviation</button></div></div>
+<div class="plate" aria-live="polite"><p class="label">Measured</p><div class="qty" id="pq"></div></div></div></div>
+<section class="block"><h2>Deviation</h2><p class="col">The ray meets the first face at angle i and leaves the second at angle e. Its total turn,
+the <b>deviation</b>, is</p>
+<div class="formula"><span class="tex" data-tex="\delta = i + e - A"></span></div>
+<p class="col">Turn the incoming ray and δ passes through a least value, the <b>minimum deviation</b>. It happens when the ray crosses the prism
+symmetrically, parallel to the base, entering and leaving at the same angle. There the index follows from two angles alone. Measuring them on a
+prism of the glass is how glass makers measure indices to five decimal places:</p>
+<div class="formula"><span class="tex" data-tex="n = \frac{\sin\frac{A+\delta_{\min}}{2}}{\sin\frac{A}{2}}"></span></div>
+<p class="col">For a 60° prism of crown glass in yellow light, δ<sub>min</sub> = 38.65°, reached at i = 49.3°. Make the incidence too
+small, or the prism too steep, and the ray meets the second face beyond the critical angle and is totally reflected inside.</p></section>
+<section class="block"><h2>Dispersion</h2><p class="col">In blue F light the same crown prism deviates by 39.14° and in red C light by
+38.43°, which opens a fan of 0.71°. A flint glass prism opens it to 1.67°. Flint glasses, with lead or titanium
+oxide in them, spread colours more for the same amount of bending, which is what a spectroscope needs and an achromatic lens exploits.</p>
+<p class="col">A prism with a 90° corner is also used without any colour at all: light enters the long face square on, is totally reflected
+by the two short faces, and goes back the way it came (try the right-angle prism on the <a href="../bench/">free bench</a>). Binoculars use such prisms (Ignazio Porro, 1854) to fold the
+light path and turn the image the right way up.</p></section>
+<div class="then col"><b>Then and now</b><p>Prisms making colours were well known, but people thought the glass coloured the light. From 1666 Isaac
+Newton experimented with prisms. Passing a single colour from one prism through a second, he found that it did not change. White light is a mixture, and the prism only sorts it.
+He reported this in 1672 and set it out in <i>Opticks</i> (1704) (<a href="https://www.gutenberg.org/ebooks/33504" rel="noopener" title="Opticks: or, a Treatise of the Reflexions, Refractions, Inflexions and Colours of Light (1704; this text is the 4th edition, 1730), Book I">Newton, Opticks</a>). Newton counted seven colours, choosing the
+number to match the notes of the musical scale; the spectrum itself is continuous. In 1814 Joseph von Fraunhofer saw dark lines crossing the solar
+spectrum and used them to measure the dispersion of his glasses. The F and C lines in the table on the refraction page still carry his letters (his
+D is the yellow sodium line). The d line beside them is a line of helium, an element found only in 1868.</p></div>
+<div class="then col"><b>What this model leaves out</b><p>These are rays, the geometrical-optics picture: light is treated as lines that bend and split at surfaces. Diffraction and interference, which need the wave picture, are not shown. The bench is a flat cross-section, so a lens here is really a cylinder of glass seen end-on. That is exact for rays in the plane of the drawing. Air is taken as n = 1, and the glass and water indices are given relative to air, so the angles are right. Colours on screen are an approximation of the spectrum.</p></div>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather, signal, ship, the code of life and light. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p><a href="../../glossary/">Glossary</a> · <a href="../../sky/names/">Names from the sky</a> · Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script src="../../assets/optics.js"></script>
+<script src="../../assets/light.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(!window.katex)return;document.querySelectorAll(".tex").forEach(function(el){try{katex.render(el.getAttribute("data-tex"),el,{displayMode:true,throwOnError:false})}catch(e){el.textContent=el.getAttribute("data-tex")}})});</script>
+</body>
+</html>

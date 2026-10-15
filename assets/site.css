@@ -320,3 +320,19 @@ svg .basebox { fill: color-mix(in srgb, var(--flag-b) 12%, var(--sheet)); stroke
 textarea { font-size: 16px; color: var(--ink); background: var(--paper); border: 1px solid var(--rule); padding: 8px 10px; }
 .plate + .plate { margin-top: 12px; }
 @media (max-width: 700px) { .figure.mid { overflow-x: auto; } .figure.mid svg { width: 680px; height: auto; } }
+
+[hidden] { display: none !important; }
+/* Light room: the optical bench (always a dark table, so rays read as light in both themes) */
+.figure.bench { aspect-ratio: 16 / 10; background: #0b1218; touch-action: none; border-color: #22313b; }
+.figure.bench canvas { cursor: grab; }
+.figure.bench.wide { aspect-ratio: 16 / 8; }
+.figure.bench .hint { color: #9aa9b1; }
+@media (max-width: 760px) { .figure.bench, .figure.bench.wide { aspect-ratio: 4 / 3; } }
+.sliders select { width: 100%; min-width: 0; }
+.sliders label.check { display: flex; gap: 10px; align-items: center; min-height: 44px; }
+.sliders label.check input { width: 22px; height: 22px; min-height: 0; }
+.figure.chart { aspect-ratio: auto; margin-top: 12px; padding: 6px; }
+.figure.chart svg { height: auto; }
+.figure.chart text { font: 12px var(--mono); fill: var(--muted); }
+.figure.chart .gl { stroke: var(--rule); stroke-width: 1; }
+.figure.chart .cur { stroke: var(--flag-y); stroke-width: 2; stroke-dasharray: 4 3; }

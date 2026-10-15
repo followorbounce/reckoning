@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mirrors · Reckoning</title>
+<meta name="description" content="Plane, spherical, parabolic and convex mirrors traced exactly: f = R/2, spherical aberration, why telescopes use parabolas, and coma.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/light/mirrors/">
+<meta property="og:title" content="Mirrors · Reckoning">
+<meta property="og:description" content="Plane, spherical, parabolic and convex mirrors traced exactly: f = R/2, spherical aberration, why telescopes use parabolas, and coma.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/">Shape</a><a href="../../number/">Number</a><a href="../../sky/">Sky & sea</a><a href="../../weather/">Weather</a><a href="../../signal/">Signal</a><a href="../../ship/">Ship</a><a href="../../life/">Code of life</a><a href="../../light/" aria-current="page">Light</a><a href="../../glossary/">Glossary</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Light</a> / Mirrors</p>
+<div class="head"><p class="eyebrow">Light · reflection</p><h1>Mirrors</h1>
+<p class="lede col">A mirror has one rule: the ray leaves at the same angle to the normal as it arrived. Curve the mirror and the normals tip,
+and parallel light gathers to a focus. A sphere gathers it almost to a point. A parabola gathers it exactly, but only for light along its axis.</p></div>
+<div class="shape"><div class="figure bench" data-page="mirrors"><canvas role="img" aria-label="Parallel rays reflecting from a curved mirror towards its focus"></canvas><span class="hint">rays traced exactly · drag the yellow handles where shown</span></div>
+<div class="stack"><div class="plate"><p class="label">The mirror</p><div class="sliders">
+<label>Shape <select id="mshape"><option value="spherical">Concave, spherical</option><option value="parabolic">Concave, parabolic</option><option value="convex">Convex, spherical</option><option value="plane">Plane</option></select><span></span></label>
+<label id="mfrow">Focal length <input type="range" id="mf" min="40" max="200" step="1" value="100"><output id="mfv"></output></label>
+<label>Diameter <input type="range" id="mD" min="20" max="240" step="2" value="160"><output id="mDv"></output></label>
+<label>Light tilt <input type="range" id="mtilt" min="-10" max="10" step="0.5" value="0"><output id="mtiltv"></output></label>
+<label>Rays <input type="range" id="mn" min="3" max="41" step="2" value="15"><output id="mnv"></output></label></div></div>
+<div class="plate" aria-live="polite"><p class="label">Measured</p><div class="qty" id="mq"></div></div></div></div>
+<section class="block"><h2>Spherical mirrors</h2><p class="col">For rays close to the axis, a spherical mirror of radius R focuses parallel light
+halfway between itself and its centre of curvature C:</p>
+<div class="formula"><span class="tex" data-tex="f = \frac{R}{2}"></span></div>
+<p class="col">A ray striking at height h, where the radius from C makes the angle α with the axis (sin α = h/R), crosses the axis a distance
+R/(2 cos α) from C. That is nearer the mirror than F, so a wide spherical mirror has spherical aberration like a lens. A <b>convex</b> mirror spreads
+light as if from a virtual focus behind it. That gives a wide view in a small mirror, at the price of images that look further away than they are.</p></section>
+<section class="block"><h2>The parabola</h2><p class="col">A parabola is the curve whose every point is as far from the focus as from a fixed
+line behind it. That makes every ray parallel to the axis reflect through the focus, however far from the axis it strikes. Choose the parabolic
+mirror: the spherical aberration reads zero. Then tilt the light a few degrees. The rays no longer meet at one point but cross unevenly, off to one side. Seen
+in a real telescope, where the cross-section becomes a whole image, that error is a comet-shaped blur called <b>coma</b>, and it limits the useful
+field of a parabolic telescope. Used the other way round, a lamp at the focus of a parabola sends out a parallel beam, as in a
+searchlight. A dish aerial gathers radio waves the same way.</p></section>
+<div class="then col"><b>Then and now</b><p>Isaac Newton’s first reflecting telescope (1668) used a spherical mirror of polished speculum metal. John
+Hadley showed the Royal Society a reflector with a true parabolic mirror in 1721, and parabolic main mirrors served most large telescopes until the
+mid-20th century, the 5 m Hale telescope (1948) among them. Most large telescopes since, from Hubble to Keck, use a pair of hyperbolic mirrors
+(the Ritchey–Chrétien design) that cancels coma as well. A mirror cannot have chromatic aberration, because reflection treats every colour the same. That is one reason the largest
+telescopes are reflectors.</p></div>
+<div class="then col"><b>What this model leaves out</b><p>These are rays, the geometrical-optics picture: light is treated as lines that bend and split at surfaces. Diffraction and interference, which need the wave picture, are not shown. The bench is a flat cross-section, so a lens here is really a cylinder of glass seen end-on. That is exact for rays in the plane of the drawing. Air is taken as n = 1, and the glass and water indices are given relative to air, so the angles are right. Colours on screen are an approximation of the spectrum.</p></div>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather, signal, ship, the code of life and light. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p><a href="../../glossary/">Glossary</a> · <a href="../../sky/names/">Names from the sky</a> · Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script src="../../assets/optics.js"></script>
+<script src="../../assets/light.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(!window.katex)return;document.querySelectorAll(".tex").forEach(function(el){try{katex.render(el.getAttribute("data-tex"),el,{displayMode:true,throwOnError:false})}catch(e){el.textContent=el.getAttribute("data-tex")}})});</script>
+</body>
+</html>

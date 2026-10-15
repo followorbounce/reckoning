@@ -23,6 +23,7 @@ sys.path.insert(0, ROOT)
 import rooms2  # noqa: E402
 import rooms3  # noqa: E402
 import rooms4  # noqa: E402
+import rooms5  # noqa: E402
 
 SITE = 'https://followorbounce.github.io/reckoning/'
 E = html.escape
@@ -33,7 +34,7 @@ THREE = ('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/thre
 FLAGS = ('<svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/>'
          '<rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>')
 
-LIVE_WAVE = 4
+LIVE_WAVE = 5
 ROOMS = [
     ('measure', 'Measure', 'Units, their exact definitions, and a converter that says where every factor comes from.', 1),
     ('shape', 'Shape', 'Areas and volumes of 42 figures and solids, each formula checked, with a topology lens.', 1),
@@ -43,6 +44,7 @@ ROOMS = [
     ('signal', 'Signal', 'Code flags, Morse with sound and correct timing, phonetic alphabets, sound signals.', 2),
     ('ship', 'Ship', 'A hull cutaway with every named part, buoyancy, and a stability simulator.', 4),
     ('life', 'Code of life', 'DNA bases and pairing in 3D, the IUPAC letters, and supercoiling as topology.', 4),
+    ('light', 'Light', 'An optical bench: rays traced exactly through lenses, prisms, mirrors and a raindrop.', 5),
 ]
 
 
@@ -50,7 +52,7 @@ def page(rel_path, title, desc, body, extra_head='', scripts='', nav=None):
     depth = rel_path.count('/')
     up = '../' * depth
     navs = ''.join('<a href="%s%s/"%s>%s</a>' % (up, k, ' aria-current="page"' if nav == k else '', n)
-                   for k, n in (('measure', 'Measure'), ('shape', 'Shape'), ('number', 'Number'), ('sky', 'Sky & sea'), ('weather', 'Weather'), ('signal', 'Signal'), ('ship', 'Ship'), ('life', 'Code of life'), ('glossary', 'Glossary'), ('about', 'About')))
+                   for k, n in (('measure', 'Measure'), ('shape', 'Shape'), ('number', 'Number'), ('sky', 'Sky & sea'), ('weather', 'Weather'), ('signal', 'Signal'), ('ship', 'Ship'), ('life', 'Code of life'), ('light', 'Light'), ('glossary', 'Glossary'), ('about', 'About')))
     canon = SITE + (rel_path[:-len('index.html')] if rel_path.endswith('index.html') else rel_path)
     out = f'''<!doctype html>
 <html lang="en">
@@ -79,7 +81,7 @@ def page(rel_path, title, desc, body, extra_head='', scripts='', nav=None):
 {body}
 </main>
 <footer><div class="wrap">
-<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather, signal, ship and the code of life. Every value cites a primary standard; every formula is checked when the site is built. <a href="{up}about/">How it is checked</a>.</p>
+<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather, signal, ship, the code of life and light. Every value cites a primary standard; every formula is checked when the site is built. <a href="{up}about/">How it is checked</a>.</p>
 <p><a href="{up}glossary/">Glossary</a> · <a href="{up}sky/names/">Names from the sky</a> · Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
 </div></footer>
 {scripts}</body>
@@ -243,9 +245,9 @@ def home():
         cards.append('<a class="card" href="%s/">%s</a>' % (slug, inner) if live else '<div class="card room-off">%s</div>' % inner)
     body = f'''
 <div class="head">
-  <p class="eyebrow">An interactive handbook · eight rooms</p>
+  <p class="eyebrow">An interactive handbook · nine rooms</p>
   <h1>Reckoning</h1>
-  <p class="lede col">Measure, shape, number, sky, weather, signal, ship and code: the reference tables a navigator, engineer or student
+  <p class="lede col">Measure, shape, number, sky, weather, signal, ship, code and light: the reference tables a navigator, engineer or student
   reaches for, made into instruments you can use. Every value is traced to a current primary standard, and every formula is checked
   by computer each time the site is built.</p>
 </div>
@@ -535,7 +537,7 @@ find an error, it will be corrected and the correction noted.</p></section>
 
 def run_checks():
     out = []
-    for t in ('tests/check_units.py', 'tests/check_shapes.py', 'tests/check_wave2.py', 'tests/check_wave3.py', 'tests/check_wave4.py'):
+    for t in ('tests/check_units.py', 'tests/check_shapes.py', 'tests/check_wave2.py', 'tests/check_wave3.py', 'tests/check_wave4.py', 'tests/check_wave5.py'):
         r = subprocess.run([sys.executable, os.path.join(ROOT, t)], capture_output=True, text=True)
         out.append(r.stdout.strip().splitlines()[-1] if r.stdout.strip() else r.stderr)
         if r.returncode:
@@ -584,6 +586,7 @@ def main():
               'signal: 40 flags and pennants, %d Morse signs; weather: Beaufort 0-12, WMO codes 3700 and 4677\n' % len(rooms2.MORSE) +
               'number: %d symbols, 24 Greek letters, triangle solver, slide rule; sky: Sun, sidereal time, planets, 88 constellations, Vincenty\n' % sum(len(i) for g, i in rooms3.SYMBOLS) +
               'ship: %d named parts, stability from the section polygon, IMO 2008 criteria, load-line marks; life: 15 IUPAC letters, 5 bases, A/B/Z forms, Lk = Tw + Wr\n' % len(rooms4.PARTS) +
+              'light: exact ray tracing (Snell, Fresnel, total internal reflection) through 5 materials from published dispersion formulas; lenses, prisms, mirrors, rainbow\n' +
               '\n'.join(lines))
     paths = [home(), measure_hub(), si_page(), derived_page(), prefix_page(), fractions_page()]
     paths += [kind_page(k) for k in KINDS]
@@ -591,6 +594,7 @@ def main():
     paths += rooms2.signal_pages(page, src_link) + rooms2.weather_pages(page, src_link)
     paths += rooms3.number_pages(page, src_link) + rooms3.sky_pages(page, src_link)
     paths += rooms4.ship_pages(page, src_link) + rooms4.life_pages(page, src_link, ROOT)
+    paths += rooms5.light_pages(page, src_link)
     paths += [rooms4.glossary_page(page, src_link), rooms4.names_page(page, src_link)]
     paths.append(about_page(report))
     write_signal_of_day()

@@ -63,3 +63,23 @@
 - Wave 3 leftovers: Moon phases; star chart; sight reduction; log-table page for sines.
 - Known gaps: foreign national units of the old handbook (vara, arroba…) are left out because
   they varied by country; density/specific-gravity explorer not built yet.
+
+## 2026-10-14: Wave 5 (Light) built
+- Owner request: an interactive explanation of light going through lenses, prisms and other objects ("call science team").
+- assets/optics.js: exact 2D ray tracer (Snell at the real surface, Fresnel split for unpolarised light, TIR), five materials from published
+  dispersion formulas (N-BK7, N-F2, fused silica, water 20 °C, diamond), lenses from signed radii, prisms, blocks, half-cylinder, drop,
+  plane/spherical/parabolic/convex mirrors, ideal thin lens. tests/check_wave5.js: 110 checks against published indices, IAPWS 1997 and
+  closed forms (see CLAUDE.md).
+- Pages: Refraction and total reflection, Lenses, Prisms and colour, Mirrors, The rainbow (with a deviation chart), Free bench (sandbox).
+- Found while checking: handbook indices (water n_D = 1.3330) are relative to air, while the Daimon-Masumura and IAPWS water formulas give
+  the absolute index (1.33335); they agree with each other to 1e-6. Water is now divided by the index of air so every material is
+  relative to air, as the bench (air = 1) needs. N-F2 has v_d = 36.43; the often-quoted 36.37 is the old lead glass F2.
+- Primary rainbow 42.08° (589 nm), red 42.49° / violet 40.62°; secondary 50.1°-53.5°; 60° N-BK7 prism minimum deviation 38.65°.
+- Not verified on a real iPhone: dragging on the bench (headless screenshots at 390 px only).
+- Science-team review (independent reviewer as Optical Physicist / Science Communicator / Historian, per AGENTS.md): approve-with-changes,
+  no blocks. Fixed: spectacles sermon was preached in Florence (by Giordano da Pisa), not Pisa; only F and C are Fraunhofer's letters
+  (d is helium, found 1868); most large modern telescopes are Ritchey-Chretien (hyperbolic), not parabolic; "each refraction" (not each
+  pass) turns the ray by i − r; coma described as the bench shows it; Newton's Opticks link is the 1730 4th edition; readouts no longer
+  print double negatives and say where distances are measured from; labels follow the chosen material; air index scaled to 20 °C.
+  Tests: prism and drop formulas now written out in the test (were compared with the page's own functions), added Fresnel R_s/R_p at 45°,
+  rotated lens and prism, two internal reflections, front focal distance, off-axis convex mirror (110 → 123 checks).

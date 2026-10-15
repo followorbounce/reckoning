@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Refraction and total reflection · Reckoning</title>
+<meta name="description" content="Snell’s law on an exact ray tracer: refraction into and out of glass, water and diamond, Fresnel reflection, the critical angle and Brewster’s angle.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/light/refraction/">
+<meta property="og:title" content="Refraction and total reflection · Reckoning">
+<meta property="og:description" content="Snell’s law on an exact ray tracer: refraction into and out of glass, water and diamond, Fresnel reflection, the critical angle and Brewster’s angle.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/">Shape</a><a href="../../number/">Number</a><a href="../../sky/">Sky & sea</a><a href="../../weather/">Weather</a><a href="../../signal/">Signal</a><a href="../../ship/">Ship</a><a href="../../life/">Code of life</a><a href="../../light/" aria-current="page">Light</a><a href="../../glossary/">Glossary</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Light</a> / Refraction</p>
+<div class="head"><p class="eyebrow">Light · one surface</p><h1>Refraction and total reflection</h1>
+<p class="lede col">Light slows down in glass and water, and a ray that meets the boundary at a slant changes direction. Here a laser is aimed at
+the middle of the flat face of a half-cylinder. On the round side every ray runs along a radius, so it crosses that face without bending, and the
+flat face is the only one that counts. Switch the direction to send the light out of the glass instead, then tilt it past the critical angle.</p></div>
+<div class="shape"><div class="figure bench" data-page="refraction"><canvas role="img" aria-label="A laser ray meeting the flat face of a glass half-cylinder, with the reflected and refracted rays"></canvas><span class="hint">rays traced exactly · drag the yellow handles where shown</span></div>
+<div class="stack"><div class="plate"><p class="label">Set up</p>
+<div class="row" role="group" aria-label="Direction"><button type="button" data-dir="in" aria-pressed="true">Air → glass</button><button type="button" class="ghost" data-dir="out" aria-pressed="false">Glass → air</button></div>
+<div class="sliders"><label>Material <select id="rmat"><option value="water">Water</option><option value="silica">Fused silica</option><option value="bk7" selected>Crown glass (N-BK7)</option><option value="f2">Flint glass (N-F2)</option><option value="diamond">Diamond</option></select><span></span></label>
+<label>Angle θ₁ <input type="range" id="rang" min="0" max="89.5" step="0.1" value="40"><output id="rangv"></output></label>
+<label>Wavelength <input type="range" id="rlam" min="400" max="700" step="1" value="589"><output id="rlamv"></output></label></div></div>
+<div class="plate" aria-live="polite"><p class="label">Measured on the ray</p><div class="qty" id="rq"></div><p class="small" id="rnote"></p></div></div></div>
+<section class="block"><h2>Snell’s law</h2><p class="col">Angles are measured from the <b>normal</b>, the line square to the surface. The
+<b>refractive index</b> n of a material is how many times slower light travels in it than in vacuum: n = c/v. Going into a slower material, the
+ray turns towards the normal. Coming out, it turns away.</p>
+<div class="formula"><span class="tex" data-tex="n_1 \sin\theta_1 = n_2 \sin\theta_2"></span></div>
+<p class="col">The index depends on the colour (wavelength) of the light. Blue light is slowed more than red, and that is all a prism needs to
+make a spectrum. The table gives the index at three wavelengths the glass trade uses: the blue F line of hydrogen (486.1 nm), the yellow d line of
+helium (587.6 nm) and the red C line of hydrogen (656.3 nm). The <b>Abbe number</b> V = (n<sub>d</sub> − 1)/(n<sub>F</sub> − n<sub>C</sub>)
+measures how little a material spreads the colours: the higher it is, the less the colours separate.</p>
+<div class="tablewrap"><table><thead><tr><th>Material</th><th>n<sub>F</sub></th><th>n<sub>d</sub></th><th>n<sub>C</sub></th><th>Abbe V</th><th>Critical angle</th><th>Reflected at 0°</th><th>Source</th></tr></thead>
+<tbody><tr><td>Water (20 °C)</td><td class="num">1.3371</td><td class="num">1.3330</td><td class="num">1.3312</td><td class="num">55.8</td><td class="num">48.6°</td><td class="num">2.0 %</td><td><a href="https://doi.org/10.1364/AO.46.003811" rel="noopener" title="Measurement of the refractive index of distilled water from the near-infrared region to the ultraviolet region, Applied Optics 46, 3811-3820 (20 °C formula)">Daimon and Masumura 2007</a></td></tr><tr><td>Fused silica</td><td class="num">1.4631</td><td class="num">1.4585</td><td class="num">1.4564</td><td class="num">67.8</td><td class="num">43.3°</td><td class="num">3.5 %</td><td><a href="https://doi.org/10.1364/JOSA.55.001205" rel="noopener" title="Interspecimen comparison of the refractive index of fused silica, J. Opt. Soc. Am. 55, 1205-1209">Malitson 1965</a></td></tr><tr><td>Crown glass (N-BK7)</td><td class="num">1.5224</td><td class="num">1.5168</td><td class="num">1.5143</td><td class="num">64.2</td><td class="num">41.2°</td><td class="num">4.2 %</td><td><a href="https://www.schott.com/en-gb/products/optical-glass-p1000267" rel="noopener" title="Optical glass data sheets for N-BK7 and N-F2: Sellmeier coefficients, n_d, Abbe number (index relative to air)">SCHOTT glass data</a></td></tr><tr><td>Flint glass (N-F2)</td><td class="num">1.6321</td><td class="num">1.6201</td><td class="num">1.6151</td><td class="num">36.4</td><td class="num">38.1°</td><td class="num">5.6 %</td><td><a href="https://www.schott.com/en-gb/products/optical-glass-p1000267" rel="noopener" title="Optical glass data sheets for N-BK7 and N-F2: Sellmeier coefficients, n_d, Abbe number (index relative to air)">SCHOTT glass data</a></td></tr><tr><td>Diamond</td><td class="num">2.4355</td><td class="num">2.4175</td><td class="num">2.4099</td><td class="num">55.3</td><td class="num">24.4°</td><td class="num">17.2 %</td><td><a href="https://doi.org/10.1007/BF01330488" rel="noopener" title="Über Brechungsindizes und Absorptionskonstanten des Diamanten zwischen 644 und 226 mμ, Zeitschrift für Physik 15, 358-368">Peter 1923</a></td></tr></tbody></table></div>
+<p class="small col">Computed from each material’s published dispersion formula, the same code the bench runs. Indices are relative to air. Water at 20 °C. Peter’s diamond measurements end at 644 nm, so the bench’s diamond beyond that is a slight extrapolation.</p></section>
+<section class="block"><h2>Total internal reflection</h2><p class="col">Going from glass into air, the refracted ray leans further from the normal than
+the incoming one. At the <b>critical angle</b> it skims along the surface, and beyond that angle no light gets out at all: the surface becomes a
+perfect mirror. For crown glass the critical angle is 41.2°, for water 48.6° and for diamond only 24.4°.
+That small angle traps light inside a cut diamond and helps it sparkle. Optical fibres, the prisms in binoculars and the rain sensor on a
+windscreen all work by total internal reflection.</p>
+<div class="formula"><span class="tex" data-tex="\sin\theta_c = \frac{n_2}{n_1} \qquad (n_1 &gt; n_2)"></span></div></section>
+<section class="block"><h2>How much is reflected</h2><p class="col">Every surface reflects some light. Fresnel’s equations give the share. It
+depends on the angle and on the <b>polarisation</b>, the direction in which the light’s electric field vibrates. Head on, crown glass reflects
+4.2 % from each surface. Towards grazing incidence it reflects almost everything, which is why a lake mirrors the far shore but
+lets you see the bottom at your feet.</p>
+<div class="formula"><span class="tex" data-tex="R_s = \left(\frac{n_1\cos\theta_1 - n_2\cos\theta_2}{n_1\cos\theta_1 + n_2\cos\theta_2}\right)^2 \qquad R_p = \left(\frac{n_1\cos\theta_2 - n_2\cos\theta_1}{n_1\cos\theta_2 + n_2\cos\theta_1}\right)^2"></span></div>
+<p class="col">At <b>Brewster’s angle</b>, tan θ<sub>B</sub> = n<sub>2</sub>/n<sub>1</sub> (56.6° for crown glass), light polarised in the plane of
+the drawing is not reflected at all. The reflected and refracted rays are then exactly at right angles. Glare off water and roads is therefore
+mostly polarised horizontally, and polarising sunglasses block that direction. The bench shows the average for unpolarised light.</p></section>
+<div class="then col"><b>Then and now</b><p>The law was first written down by Ibn Sahl in Baghdad around 984, in a treatise on burning mirrors and
+lenses (identified by the historian Roshdi Rashed in 1990). It was found again by Thomas Harriot about 1602 and by Willebrord Snell in 1621, neither
+of whom published it, and first printed by René Descartes in <i>La Dioptrique</i> (1637). Augustin Fresnel derived the reflection formulas in 1823,
+from a theory of light as a wave.</p></div>
+<div class="then col"><b>What this model leaves out</b><p>These are rays, the geometrical-optics picture: light is treated as lines that bend and split at surfaces. Diffraction and interference, which need the wave picture, are not shown. The bench is a flat cross-section, so a lens here is really a cylinder of glass seen end-on. That is exact for rays in the plane of the drawing. Air is taken as n = 1, and the glass and water indices are given relative to air, so the angles are right. Colours on screen are an approximation of the spectrum.</p></div>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather, signal, ship, the code of life and light. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p><a href="../../glossary/">Glossary</a> · <a href="../../sky/names/">Names from the sky</a> · Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script src="../../assets/optics.js"></script>
+<script src="../../assets/light.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(!window.katex)return;document.querySelectorAll(".tex").forEach(function(el){try{katex.render(el.getAttribute("data-tex"),el,{displayMode:true,throwOnError:false})}catch(e){el.textContent=el.getAttribute("data-tex")}})});</script>
+</body>
+</html>

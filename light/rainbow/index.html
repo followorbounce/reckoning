@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The rainbow · Reckoning</title>
+<meta name="description" content="Rays through a drop of water: Descartes’ minimum deviation, the 42° primary bow, the 51° secondary bow and Alexander’s dark band.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/light/rainbow/">
+<meta property="og:title" content="The rainbow · Reckoning">
+<meta property="og:description" content="Rays through a drop of water: Descartes’ minimum deviation, the 42° primary bow, the 51° secondary bow and Alexander’s dark band.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/">Shape</a><a href="../../number/">Number</a><a href="../../sky/">Sky & sea</a><a href="../../weather/">Weather</a><a href="../../signal/">Signal</a><a href="../../ship/">Ship</a><a href="../../life/">Code of life</a><a href="../../light/" aria-current="page">Light</a><a href="../../glossary/">Glossary</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Light</a> / The rainbow</p>
+<div class="head"><p class="eyebrow">Light · one drop</p><h1>The rainbow</h1>
+<p class="lede col">Sunlight enters a raindrop, reflects once off the back of it, and comes out again. Rays that strike the drop at different
+heights come out turned by different amounts. Near one particular height they bunch together, and that bunching, a little different for each colour,
+is the bow.</p></div>
+<div class="shape"><div class="figure bench" data-page="rainbow"><canvas role="img" aria-label="Sunlight entering a drop of water, reflecting inside and leaving split into colours"></canvas><span class="hint">rays traced exactly · drag the yellow handles where shown</span></div>
+<div class="stack"><div class="plate"><p class="label">The drop</p><div class="sliders">
+<label>Light <select id="rbmode"><option value="one">One ray of sunlight</option><option value="many">Sunlight across the whole drop</option></select><span></span></label>
+<label id="rbbrow">Height b <input type="range" id="rbb" min="0" max="0.99" step="0.001" value="0.86"><output id="rbbv"></output></label>
+<label class="check"><input type="checkbox" id="rbonly" checked> Show only light that reflects once inside</label></div></div>
+<div class="plate" aria-live="polite"><p class="label">Computed</p><div class="qty" id="rbq"></div></div></div></div>
+<div class="figure chart"><svg id="rbchart" viewBox="0 0 600 260" role="img" aria-label="Angle from the antisolar point against the height at which the ray strikes the drop, for red and violet light"></svg></div>
+<p class="small col">The chart shows where rays from each height end up. The curves flatten at their peaks (the dots), where many neighbouring rays
+leave at almost the same angle. That pile-up makes the bright bow. Red peaks at a larger angle than violet, so red is on the outside.</p>
+<section class="block"><h2>Descartes’ calculation</h2><p class="col">A ray striking the drop at height b (as a fraction of the radius) meets the
+surface at angle i with sin i = b, and refracts to r with sin i = n sin r. Each refraction, on entering and again on leaving, turns it by i − r, and each reflection inside
+turns it by 180° − 2r. With one reflection inside, the total turn is</p>
+<div class="formula"><span class="tex" data-tex="D = 2(i - r) + (180^\circ - 2r)"></span></div>
+<p class="col">D is least where cos² i = (n² − 1)/3. That is at b = 0.861, i = 59.4° for yellow light. The light leaving there makes
+an angle 180° − D with the direction straight away from the Sun, the <b>antisolar point</b>, where your head’s shadow falls. Every drop at that angle
+sends you its bright light, so the bow is a circle around the antisolar point: 42.5° for red, 42.1° for yellow and
+40.6° for violet light.</p>
+<p class="col">With two reflections inside, the least turn comes where cos² i = (n² − 1)/8. That gives the fainter <b>secondary bow</b>, from about
+50.1° (red, now on the inside) to 53.5° (violet, outside): its colours are reversed. No light from one or two reflections leaves between the two bows, so the sky
+there is darker: <b>Alexander’s dark band</b>.</p></section>
+<div class="then col"><b>Then and now</b><p>Theodoric of Freiberg explained the bow with water-filled glass globes about 1307: refraction, a
+reflection inside, refraction again. René Descartes traced rays through a drop by calculation in <i>Les Météores</i> (1637)
+(<a href="https://gallica.bnf.fr/ark:/12148/btv1b86069594" rel="noopener" title="Les Météores, Discours huitième: de l’arc-en-ciel (published with the Discours de la méthode)">Descartes 1637</a>) and found the 42° angle. Newton then explained the colours. Ray optics cannot explain everything. The faint
+pastel <b>supernumerary bows</b> just inside the main one come from interference, a wave effect, worked out by Thomas Young (1803) and George Airy
+(1838).</p></div>
+<div class="then col"><b>What this model leaves out</b><p>These are rays, the geometrical-optics picture: light is treated as lines that bend and split at surfaces. Diffraction and interference, which need the wave picture, are not shown. The bench is a flat cross-section, so a lens here is really a cylinder of glass seen end-on. That is exact for rays in the plane of the drawing. Air is taken as n = 1, and the glass and water indices are given relative to air, so the angles are right. Colours on screen are an approximation of the spectrum.</p></div>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather, signal, ship, the code of life and light. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p><a href="../../glossary/">Glossary</a> · <a href="../../sky/names/">Names from the sky</a> · Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script src="../../assets/optics.js"></script>
+<script src="../../assets/light.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(!window.katex)return;document.querySelectorAll(".tex").forEach(function(el){try{katex.render(el.getAttribute("data-tex"),el,{displayMode:true,throwOnError:false})}catch(e){el.textContent=el.getAttribute("data-tex")}})});</script>
+</body>
+</html>

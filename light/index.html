@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Light · Reckoning</title>
+<meta name="description" content="An optical bench that traces rays exactly through lenses, prisms, glass blocks, water drops and mirrors.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/light/">
+<meta property="og:title" content="Light · Reckoning">
+<meta property="og:description" content="An optical bench that traces rays exactly through lenses, prisms, glass blocks, water drops and mirrors.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../measure/">Measure</a><a href="../shape/">Shape</a><a href="../number/">Number</a><a href="../sky/">Sky & sea</a><a href="../weather/">Weather</a><a href="../signal/">Signal</a><a href="../ship/">Ship</a><a href="../life/">Code of life</a><a href="../light/" aria-current="page">Light</a><a href="../glossary/">Glossary</a><a href="../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../index.html">Reckoning</a> / Light</p>
+<div class="head"><p class="eyebrow">Room · wave 5</p><h1>Light</h1>
+<p class="lede col">Light runs straight until it meets something. At every surface part of it bends into the new material and part of it bounces
+off, and in glass or water each colour bends by a slightly different amount. This room traces rays exactly: Snell’s law is applied at the real
+curved surface, never a small-angle shortcut, and each surface sends back its share of light by Fresnel’s formulas. So, for rays in the plane of the drawing,
+what you see is what a lens designer’s software shows.</p></div>
+<section class="block"><div class="grid"><a class="card" href="refraction/"><h3>Refraction and total reflection</h3><p class="small">Snell’s law at one surface, how much light a surface reflects, the critical angle and Brewster’s angle.</p></a><a class="card" href="lenses/"><h3>Lenses</h3><p class="small">Converging and diverging lenses traced surface by surface: focal points, spherical and chromatic aberration, images.</p></a><a class="card" href="prism/"><h3>Prisms and colour</h3><p class="small">Deviation, minimum deviation, and white light opened into a spectrum by dispersion.</p></a><a class="card" href="mirrors/"><h3>Mirrors</h3><p class="small">Plane, spherical, parabolic and convex mirrors, and why a telescope mirror is a parabola.</p></a><a class="card" href="rainbow/"><h3>The rainbow</h3><p class="small">One drop of water, one reflection inside, and the 42° circle that every drop paints.</p></a><a class="card" href="bench/"><h3>Free bench</h3><p class="small">Put lenses, prisms, blocks, drops and mirrors anywhere, aim the light, and see what happens.</p></a></div></section>
+<section class="block"><h2>How the bench works</h2><p class="col">Every ray starts at a source and is followed from surface to surface. At each one
+the program finds the exact point where the ray meets the surface and the surface’s normal there. It then applies Snell’s law to get the refracted
+ray and Fresnel’s equations to split off the reflected one. Past the critical angle nothing is transmitted and all the light is reflected. A ray’s
+brightness on screen follows the share of light it carries. White light is traced as twelve wavelengths from 405 to 680 nm. Indices come from
+published dispersion formulas: the glass maker’s data for crown and flint glass, Malitson for fused silica, Daimon and Masumura for water, and
+Peter for diamond. The code is checked at every build against published indices, closed-form results and an independent paraxial calculation.</p></section>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather, signal, ship, the code of life and light. Every value cites a primary standard; every formula is checked when the site is built. <a href="../about/">How it is checked</a>.</p>
+<p><a href="../glossary/">Glossary</a> · <a href="../sky/names/">Names from the sky</a> · Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+</body>
+</html>

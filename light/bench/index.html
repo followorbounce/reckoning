@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Free bench · Reckoning</title>
+<meta name="description" content="An optical sandbox: lenses, prisms, blocks, drops and mirrors you can place and turn, with every ray traced exactly.">
+<link rel="canonical" href="https://followorbounce.github.io/reckoning/light/bench/">
+<meta property="og:title" content="Free bench · Reckoning">
+<meta property="og:description" content="An optical sandbox: lenses, prisms, blocks, drops and mirrors you can place and turn, with every ray traced exactly.">
+<meta name="theme-color" content="#14212b">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 36 24' aria-hidden='true'><rect width='36' height='24' fill='%23c8261d'/><rect x='15' width='6' height='24' fill='%23e8b500'/><rect y='9' width='36' height='6' fill='%23e8b500'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "bba4e16a7d9b4d9985eda0cda2624e60"}'></script>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="mark" href="../../index.html"><svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#c8261d"/><rect x="15" width="6" height="24" fill="#e8b500"/><rect y="9" width="36" height="6" fill="#e8b500"/></svg>Reckoning</a>
+<nav class="nav" aria-label="Rooms"><a href="../../measure/">Measure</a><a href="../../shape/">Shape</a><a href="../../number/">Number</a><a href="../../sky/">Sky & sea</a><a href="../../weather/">Weather</a><a href="../../signal/">Signal</a><a href="../../ship/">Ship</a><a href="../../life/">Code of life</a><a href="../../light/" aria-current="page">Light</a><a href="../../glossary/">Glossary</a><a href="../../about/">About</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="crumbs"><a href="../../index.html">Reckoning</a> / <a href="../">Light</a> / Free bench</p>
+<div class="head"><p class="eyebrow">Light · sandbox</p><h1>Free bench</h1>
+<p class="lede col">Add optical parts, drag them anywhere, turn them, and aim the light. Drag the yellow dot to move the source and the small ring to
+aim it. Tap a part to select it, then turn, resize, change its material or remove it. Everything is traced exactly, as on the other pages.</p></div>
+<div class="figure bench wide" data-page="bench"><canvas role="img" aria-label="An optical bench with lenses, prisms and mirrors"></canvas><span class="hint">drag parts and the light · tap a part to select it</span></div>
+<div class="mapgrid" style="margin-top:12px">
+<div class="plate"><p class="label">Add a part</p><div class="row"><button type="button" class="ghost" data-add="biconvex">Converging lens</button><button type="button" class="ghost" data-add="biconcave">Diverging lens</button><button type="button" class="ghost" data-add="prism">Prism</button><button type="button" class="ghost" data-add="rprism">Right-angle prism</button><button type="button" class="ghost" data-add="slab">Glass block</button><button type="button" class="ghost" data-add="half">Half-cylinder</button><button type="button" class="ghost" data-add="drop">Drop</button><button type="button" class="ghost" data-add="plane">Plane mirror</button><button type="button" class="ghost" data-add="concave">Concave mirror</button><button type="button" class="ghost" data-add="parabolic">Parabolic mirror</button><button type="button" class="ghost" data-add="thin">Ideal lens</button></div>
+<div class="row"><button type="button" class="ghost" id="bclear">Clear the bench</button></div></div>
+<div class="plate"><p class="label">The light</p><div class="sliders">
+<label>Source <select id="bsrc"><option value="beam">Parallel beam</option><option value="point">Point source</option><option value="laser">Single ray</option></select><span></span></label>
+<label>Colour <select id="bcol"><option value="white">White light</option><option value="mono">One colour</option></select><span></span></label>
+<label id="blamrow" hidden>Wavelength <input type="range" id="blam" min="400" max="700" step="1" value="589"><output id="blamv"></output></label>
+<label id="bwrow">Beam width <input type="range" id="bw" min="4" max="120" step="1" value="36"><output id="bwv"></output></label>
+<label id="bsprow" hidden>Spread <input type="range" id="bsp" min="2" max="120" step="1" value="30"><output id="bspv"></output></label>
+<label id="bnrow">Rays <input type="range" id="bn" min="1" max="31" step="1" value="9"><output id="bnv"></output></label></div></div>
+<div class="plate" id="bsel" hidden><p class="label" id="bname">Selected</p><div class="sliders">
+<label>Turn <input type="range" id="brot" min="-180" max="180" step="1" value="0"><output id="brotv"></output></label>
+<label>Size <input type="range" id="bsize" min="40" max="200" step="5" value="100"><output id="bsizev"></output></label>
+<label id="bmatrow">Material <select id="bmat"><option value="water">Water</option><option value="silica">Fused silica</option><option value="bk7" selected>Crown glass (N-BK7)</option><option value="f2">Flint glass (N-F2)</option><option value="diamond">Diamond</option></select><span></span></label></div>
+<div class="row"><button type="button" class="ghost" id="bdel">Remove</button></div></div></div>
+<p class="small" id="bq" aria-live="polite"></p>
+<section class="block"><h2>Things to try</h2><ul class="col">
+<li>Put two converging lenses in a row, a short focal length behind a longer one, about the sum of their focal lengths apart. That is a Keplerian telescope: a parallel beam goes in and a narrower parallel beam comes out.</li>
+<li>Send a single ray into a right-angled prism through its long face. It comes back out the way it came, totally reflected twice.</li>
+<li>Aim a narrow beam at a glass drop and at a water drop. Compare where the light that reflects once inside comes out.</li>
+<li>Put a diverging lens in a converging beam just before the focus. The focus moves back: that is a Barlow lens, or the back half of a telephoto lens.</li>
+<li>Tilt a block of glass in a beam. The rays come out parallel to how they went in, only shifted sideways.</li></ul></section>
+<div class="then col"><b>What this model leaves out</b><p>These are rays, the geometrical-optics picture: light is treated as lines that bend and split at surfaces. Diffraction and interference, which need the wave picture, are not shown. The bench is a flat cross-section, so a lens here is really a cylinder of glass seen end-on. That is exact for rays in the plane of the drawing. Air is taken as n = 1, and the glass and water indices are given relative to air, so the angles are right. Colours on screen are an approximation of the spectrum.</p></div>
+</main>
+<footer><div class="wrap">
+<p>Reckoning: an interactive handbook of measure, shape, number, sky, weather, signal, ship, the code of life and light. Every value cites a primary standard; every formula is checked when the site is built. <a href="../../about/">How it is checked</a>.</p>
+<p><a href="../../glossary/">Glossary</a> · <a href="../../sky/names/">Names from the sky</a> · Part of the <a href="https://followorbounce.github.io/">followorbounce</a> knowledge network.</p>
+</div></footer>
+<script src="../../assets/optics.js"></script>
+<script src="../../assets/light.js"></script>
+</body>
+</html>

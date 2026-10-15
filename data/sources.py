@@ -330,4 +330,52 @@ SOURCES = {
         'by': 'Royal Society of Chemistry',
         'url': 'https://www.rsc.org/periodic-table',
     },
+    'schott': {
+        'short': 'SCHOTT glass data',
+        'title': 'Optical glass data sheets for N-BK7 and N-F2: Sellmeier coefficients, n_d, Abbe number (index relative to air)',
+        'by': 'SCHOTT AG',
+        'url': 'https://www.schott.com/en-gb/products/optical-glass-p1000267',
+    },
+    'malitson1965': {
+        'short': 'Malitson 1965',
+        'title': 'Interspecimen comparison of the refractive index of fused silica, J. Opt. Soc. Am. 55, 1205-1209',
+        'by': 'I. H. Malitson (National Bureau of Standards)',
+        'url': 'https://doi.org/10.1364/JOSA.55.001205',
+    },
+    'daimon2007': {
+        'short': 'Daimon and Masumura 2007',
+        'title': 'Measurement of the refractive index of distilled water from the near-infrared region to the ultraviolet region, Applied Optics 46, 3811-3820 (20 °C formula)',
+        'by': 'M. Daimon and A. Masumura',
+        'url': 'https://doi.org/10.1364/AO.46.003811',
+    },
+    'iapws1997': {
+        'short': 'IAPWS R9-97',
+        'title': 'Release on the Refractive Index of Ordinary Water Substance as a Function of Wavelength, Temperature and Pressure',
+        'by': 'International Association for the Properties of Water and Steam',
+        'url': 'https://www.iapws.org/relguide/rindex.pdf',
+    },
+    'peckreeder1972': {
+        'short': 'Peck and Reeder 1972',
+        'title': 'Dispersion of air, J. Opt. Soc. Am. 62, 958-962',
+        'by': 'E. R. Peck and K. Reeder',
+        'url': 'https://doi.org/10.1364/JOSA.62.000958',
+    },
+    'peter1923': {
+        'short': 'Peter 1923',
+        'title': 'Über Brechungsindizes und Absorptionskonstanten des Diamanten zwischen 644 und 226 mμ, Zeitschrift für Physik 15, 358-368',
+        'by': 'F. Peter',
+        'url': 'https://doi.org/10.1007/BF01330488',
+    },
+    'descartes1637': {
+        'short': 'Descartes 1637',
+        'title': 'Les Météores, Discours huitième: de l’arc-en-ciel (published with the Discours de la méthode)',
+        'by': 'René Descartes',
+        'url': 'https://gallica.bnf.fr/ark:/12148/btv1b86069594',
+    },
+    'newton1704': {
+        'short': 'Newton, Opticks',
+        'title': 'Opticks: or, a Treatise of the Reflexions, Refractions, Inflexions and Colours of Light (1704; this text is the 4th edition, 1730), Book I',
+        'by': 'Isaac Newton',
+        'url': 'https://www.gutenberg.org/ebooks/33504',
+    },
 }
