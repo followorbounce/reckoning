@@ -99,3 +99,6 @@ measure/, shape/, about/, sitemap.xml, robots.txt).
 
 ## Share pictures (og:image)
 Added 2026-10-28. Every public page has a 1200×630 share picture at `og/<canonical path>.jpg` (`og/index.jpg` for the front page) and the tags `og:image` (+ width, height, alt), `twitter:card` = `summary_large_image` and `twitter:image`. `build.py` writes the tags (`og_tags()`), placed after the page's other og:/twitter: tags. The pictures are drawn by `engine/og_cards.py` in the followorbounce.github.io repo (one card template, this site's own palette and type, `og/manifest.json` = a hash per card so unchanged cards are skipped). After adding or renaming a page, or changing a title or description, run `python3 engine/og_cards.py reckoning` from that repo; it renders new cards, adds missing tags and deletes cards of pages that went away. `--check` lists pages without tags.
+
+## Structured data (2026-10-28, reach plan F4)
+`build.py` `structured()` adds JSON-LD to every page: front `WebSite`; every other page `Article` (headline = title without "· Reckoning", image = its share card, datePublished/dateModified from git via `git_dates`) + `BreadcrumbList` (Reckoning › room › page, room names from `SECTIONS`). A page can pass `ld=[...]` to replace the Article: the glossary passes a `DefinedTermSet` (English term, Spanish/French as alternateName).

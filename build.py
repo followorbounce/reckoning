@@ -4,6 +4,7 @@
 Runs the checks in tests/ first and stops if any fails, then writes every page from
 the data in data/. Never hand-edit generated HTML (index.html and the measure/,
 shape/, about/ folders, sitemap.xml, robots.txt)."""
+import datetime
 import html
 import json
 import math
@@ -60,7 +61,63 @@ def og_tags(canon, alt):
             % (img, html.escape(alt, quote=True), img))
 
 
-def page(rel_path, title, desc, body, extra_head='', scripts='', nav=None):
+NET = {'@type': 'Organization', 'name': 'Follow or Bounce', 'url': 'https://followorbounce.github.io/'}
+SECTIONS = dict([(r[0], r[1]) for r in ROOMS] + [('glossary', 'Glossary'), ('about', 'About')])
+_DATES = None
+
+
+def git_dates(rel_path):
+    """(first, last) commit dates of a built page, from one pass over the git log; today for a page not yet committed."""
+    global _DATES
+    if _DATES is None:
+        _DATES = {}
+        try:
+            log = subprocess.run(['git', 'log', '--format=@%cs', '--name-only', '--', '*.html'], cwd=ROOT,
+                                 capture_output=True, text=True, check=True).stdout
+        except (OSError, subprocess.CalledProcessError):
+            log = ''
+        day = None
+        for line in log.splitlines():            # newest first
+            if line.startswith('@'):
+                day = line[1:]
+            elif line:
+                first, last = _DATES.get(line, (day, day))
+                _DATES[line] = (day, last)
+    today = datetime.date.today().isoformat()
+    return _DATES.get(rel_path, (today, today))
+
+
+def ld_json(items):
+    """schema.org JSON-LD blocks for the head. "</" is escaped so text can never close the script."""
+    return ''.join('<script type="application/ld+json">%s</script>\n'
+                   % json.dumps(dict({'@context': 'https://schema.org'}, **it), ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
+                   for it in items)
+
+
+def structured(rel_path, canon, title, desc, ld):
+    """Every page: a BreadcrumbList (Reckoning > room > page) and, below the front page, an Article,
+    unless the page brings its own main type in ld (the glossary's DefinedTermSet)."""
+    if rel_path == 'index.html':
+        return ld_json([{'@type': 'WebSite', 'name': 'Reckoning', 'url': SITE, 'inLanguage': 'en', 'publisher': NET}] + list(ld or []))
+    name = re.sub(r'\s*·\s*Reckoning$', '', title)
+    parts = rel_path.split('/')[:-1]
+    trail = [('Reckoning', SITE)]
+    if len(parts) > 1 and parts[0] in SECTIONS:
+        trail.append((SECTIONS[parts[0]], SITE + parts[0] + '/'))
+    trail.append((name, canon))
+    items = list(ld or [])
+    if not items:
+        first, last = git_dates(rel_path)
+        items.append({'@type': 'Article', 'headline': name, 'description': desc, 'url': canon, 'mainEntityOfPage': canon,
+                      'image': re.search(r'og:image" content="([^"]+)', og_tags(canon, '')).group(1), 'datePublished': first, 'dateModified': last,
+                      'author': NET, 'publisher': NET, 'inLanguage': 'en',
+                      'isPartOf': {'@type': 'WebSite', 'name': 'Reckoning', 'url': SITE}})
+    items.append({'@type': 'BreadcrumbList', 'itemListElement': [
+        {'@type': 'ListItem', 'position': i + 1, 'name': n, 'item': u} for i, (n, u) in enumerate(trail)]})
+    return ld_json(items)
+
+
+def page(rel_path, title, desc, body, extra_head='', scripts='', nav=None, ld=None):
     depth = rel_path.count('/')
     up = '../' * depth
     navs = ''.join('<a href="%s%s/"%s>%s</a>' % (up, k, ' aria-current="page"' if nav == k else '', n)
@@ -76,7 +133,7 @@ def page(rel_path, title, desc, body, extra_head='', scripts='', nav=None):
 <link rel="canonical" href="{canon}">
 <meta property="og:title" content="{E(title)}">
 <meta property="og:description" content="{E(desc)}">
-{og_tags(canon, title)}<meta name="theme-color" content="#14212b">
+{og_tags(canon, title)}{structured(rel_path, canon, title, desc, ld)}<meta name="theme-color" content="#14212b">
 <link rel="icon" href="data:image/svg+xml,{FLAGS.replace('#', '%23').replace('"', "'")}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

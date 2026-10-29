@@ -83,3 +83,6 @@
   print double negatives and say where distances are measured from; labels follow the chosen material; air index scaled to 20 °C.
   Tests: prism and drop formulas now written out in the test (were compared with the page's own functions), added Fresnel R_s/R_p at 45°,
   rotated lens and prism, two internal reflections, front focal distance, off-axis convex mirror (110 → 123 checks).
+
+## 2026-10-28 — Reach plan F4: structured data
+Article on 100 pages, breadcrumbs on 101, glossary DefinedTermSet (JSON-LD in build.py).

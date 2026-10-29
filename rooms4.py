@@ -628,7 +628,11 @@ Some words have more than one equivalent at sea; the one given is the usual one 
 q.addEventListener('input',function(){var t=q.value.trim().toLowerCase();rows.forEach(function(r){r.hidden=t&&r.getAttribute('data-q').indexOf(t)<0;});});})();
 </script>
 '''
-    return page('glossary/index.html', 'Glossary · Reckoning', 'Nautical terms in English, Spanish and French, and words that mean different things in different fields.', body, scripts=script, nav='glossary')
+    return page('glossary/index.html', 'Glossary · Reckoning', 'Nautical terms in English, Spanish and French, and words that mean different things in different fields.', body, scripts=script, nav='glossary', ld=[{
+        '@type': 'DefinedTermSet', 'name': 'Reckoning glossary', 'url': 'https://followorbounce.github.io/reckoning/glossary/',
+        'inLanguage': ['en', 'es', 'fr'],
+        'hasDefinedTerm': [{'@type': 'DefinedTerm', 'name': en, 'description': d,
+                            'alternateName': [x for x in (es, fr) if x]} for en, es, fr, d, l in TERMS]}])
 
 
 def names_page(page, src_link):
