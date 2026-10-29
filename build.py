@@ -8,6 +8,7 @@ import html
 import json
 import math
 import os
+import re
 import subprocess
 import sys
 from fractions import Fraction as F
@@ -48,6 +49,17 @@ ROOMS = [
 ]
 
 
+def og_tags(canon, alt):
+    """Share-picture tags. The picture, og/<canonical path>.jpg, is drawn by engine/og_cards.py in the
+    followorbounce.github.io repo; run it after adding pages."""
+    rel = re.sub(r'\.html$', '', canon[len(SITE):].rstrip('/')) or 'index'
+    img = SITE + 'og/' + rel + '.jpg'
+    return ('<meta property="og:image" content="%s">\n<meta property="og:image:width" content="1200">\n'
+            '<meta property="og:image:height" content="630">\n<meta property="og:image:alt" content="%s">\n'
+            '<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:image" content="%s">\n'
+            % (img, html.escape(alt, quote=True), img))
+
+
 def page(rel_path, title, desc, body, extra_head='', scripts='', nav=None):
     depth = rel_path.count('/')
     up = '../' * depth
@@ -64,7 +76,7 @@ def page(rel_path, title, desc, body, extra_head='', scripts='', nav=None):
 <link rel="canonical" href="{canon}">
 <meta property="og:title" content="{E(title)}">
 <meta property="og:description" content="{E(desc)}">
-<meta name="theme-color" content="#14212b">
+{og_tags(canon, title)}<meta name="theme-color" content="#14212b">
 <link rel="icon" href="data:image/svg+xml,{FLAGS.replace('#', '%23').replace('"', "'")}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -606,6 +618,10 @@ def main():
     print(report)
     print(report_links)
     print('wrote %d pages' % len(paths))
+    # share pictures and the "More from Follow or Bounce" block (engine/og_cards.py in the homepage repo, when it sits next to this one)
+    og_pass = os.path.join(ROOT, '..', 'followorbounce.github.io', 'engine', 'og_cards.py')
+    if os.path.exists(og_pass):
+        subprocess.run([sys.executable, og_pass, 'reckoning'])
 
 
 if __name__ == '__main__':
